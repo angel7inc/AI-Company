@@ -1,0 +1,94 @@
+# 全ブランド台帳(SSOT: Single Source of Truth)
+# 新しいブランドを追加するときは、このリストに1件追加し、_company/brands/{ブランドID}/ フォルダを作成します。
+#
+# status: planned(準備中・台帳登録のみ) / independent-pending(既存ブランドからの分離検討中) / active(運用中) / retired(運営終了。削除せず保持)
+# ブランド追加ルール(命名規則・追加条件・ライフサイクル・必須ファイル・共有/非共有)は _company/brands/README.md を正本とする。
+# owner: このブランドの管理責任者(役割。通常はCOO)
+# human_owner: 最終意思決定を行う人間(通常はCEO)
+# primary_ai / secondary_ai: 主に使用するAIツール(ベンダーロックイン回避のため、いつでも入れ替え可能な参照値として管理)
+# created_by: 初回登録者 / updated_at: 最終更新日 / version: 変更のたびに1つずつ増やす版数
+
+brands:
+  - id: tomo-angel7
+    name: Tomo_Angel7(Tomo Angel)
+    status: active
+    concept: 恋愛に悩む女性の心を、そっと軽くする場所
+    target: 20代〜40代、恋愛に悩む女性
+    business_units: [instagram, seo]
+    owner: COO
+    primary_ai: ChatGPT
+    secondary_ai: Gemini
+    human_owner: CEO
+    created_by: COO
+    updated_at: "2026-07-12"
+    version: 3
+    brief: _company/brands/tomo-angel7/brand-brief.md
+    qa_checklist: _company/brands/tomo-angel7/qa-checklist.md
+    pain_point_categories: _company/brands/tomo-angel7/pain-point-categories.yaml
+    assets: _company/brands/tomo-angel7/assets/
+    created: "2026-07-11"
+    note: 個人鑑定ブランド。教育事業(tomo-academy)・電話占い企業(phone-fortune-company)とは別ブランドとして完全に分離する(2026-07-12 CEO決定)。
+
+  - id: tomo-academy
+    name: Tomo Academy
+    status: planned
+    concept: (未定。ブランド着手時に策定)
+    target: (未定。鑑定士志望者向け。ブランド着手時に策定)
+    business_units: []
+    owner: COO
+    primary_ai: null
+    secondary_ai: null
+    human_owner: CEO
+    created_by: COO
+    updated_at: "2026-07-12"
+    version: 1
+    brief: _company/brands/tomo-academy/brand-brief.md
+    qa_checklist: _company/brands/tomo-academy/qa-checklist.md
+    pain_point_categories: _company/brands/tomo-academy/pain-point-categories.yaml
+    assets: _company/brands/tomo-academy/assets/
+    created: "2026-07-12"
+    note: 台帳登録のみ(ブランドSSOTの実体は未作成)。スクール・教材・動画講座・会員サイト・コミュニティを担う独立ブランド。tomo-angel7とは別ブランド(2026-07-12 CEO決定)。事業ユニット新設・brand-brief作成は着手時に別途設計する。
+
+  - id: phone-fortune-company
+    name: Phone Fortune Company(仮称)
+    status: planned
+    concept: (未定。事業着手時に策定)
+    target: (未定)
+    business_units: []
+    owner: COO
+    primary_ai: null
+    secondary_ai: null
+    human_owner: CEO
+    created_by: COO
+    updated_at: "2026-07-12"
+    version: 1
+    brief: _company/brands/phone-fortune-company/brand-brief.md
+    qa_checklist: _company/brands/phone-fortune-company/qa-checklist.md
+    pain_point_categories: _company/brands/phone-fortune-company/pain-point-categories.yaml
+    assets: _company/brands/phone-fortune-company/assets/
+    created: "2026-07-12"
+    note: 台帳登録のみ(ブランドSSOTの実体は未作成)。個人鑑定ではなく、複数鑑定師を採用・育成・シフト管理・決済管理する企業。標準の事業ユニット雛形には収まらないため、着手時に将来のFinance Division(Phase9)・HR Division(Phase10)と連動した専用設計(Phase8c想定)を行う。tomo-angel7とは別ブランド(2026-07-12 CEO決定)。
+
+# ↓ 新しいブランドを追加するときのコピー用ひな形(#を外すまでは読み込まれません)
+#  - id: {ブランドID}
+#    name:
+#    status: planned
+#    concept:
+#    target:
+#    business_units: []
+#    owner:
+#    primary_ai:
+#    secondary_ai:
+#    human_owner:
+#    created_by:
+#    updated_at: "YYYY-MM-DD"
+#    version: 1
+#    brief: _company/brands/{ブランドID}/brand-brief.md
+#    qa_checklist: _company/brands/{ブランドID}/qa-checklist.md
+#    pain_point_categories: _company/brands/{ブランドID}/pain-point-categories.yaml
+#    assets: _company/brands/{ブランドID}/assets/
+#    created: "YYYY-MM-DD"
+
+# 【2026-07-12更新】個人鑑定(自社鑑定・ココナラ)=tomo-angel7、カードリーディングスクール=tomo-academy、
+# カードリーディング電話占い会社=phone-fortune-company として、CEO決定によりブランドを完全に分離した(旧: 割り当て未定としていた記述は撤回)。
+# 3ブランドとも「収益構造・運営体制・AIエージェント・SOPが全く異なる」ため混在させないこと。

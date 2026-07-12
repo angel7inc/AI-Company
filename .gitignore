@@ -1,0 +1,22 @@
+# 環境変数・認証情報(絶対にコミットしない)
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+service-account*.json
+
+# OS/エディタが生成する不要ファイル
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+
+# VS Codeの個人用ローカル設定(チーム共有設定は.vscode/settings.json・extensions.jsonのみ追跡)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# 一時ファイル・ログ
+*.log
+*.tmp

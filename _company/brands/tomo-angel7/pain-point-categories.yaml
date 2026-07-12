@@ -1,0 +1,28 @@
+# Tomo_Angel7 顧客の悩みカテゴリ一覧
+# brand-brief.md「6. 顧客の悩み(カテゴリ)」から参照されるSSOT
+# 新しいカテゴリを追加する場合は、この一覧に1行追記するだけでよい(brand-brief.md本体の編集は不要)
+#
+# status: draft(仮説段階、docs/phase2-instagram-design.mdの想定に基づく)
+#         validated(ig-researchの調査で裏付けが取れた段階)
+
+pain_point_categories:
+  - id: relationship-anxiety
+    name: 恋愛関係での不安
+    description: 相手の気持ちが分からない、関係が今後どうなるか分からない不安
+    status: draft
+
+  - id: self-understanding-lack
+    name: 自己理解不足
+    description: 自分が本当は何を求めているか分からない、自己肯定感の低さ
+    status: draft
+
+  - id: loneliness
+    name: 「分かってもらえない」孤独感
+    description: 周囲に本音を相談しづらい、共感してもらえないと感じる孤独感
+    status: draft
+
+created_at: "2026-07-12"
+updated_at: "2026-07-12"
+version: 1
+
+# 各カテゴリの妥当性検証は ig-research エージェントが継続的に行う想定(docs/phase2-instagram-design.md 01章参照)

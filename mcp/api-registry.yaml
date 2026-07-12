@@ -1,0 +1,60 @@
+# 直接API接続の導入状況一覧(MCP経由ではないAPI)
+# status: active(導入済) / planned(導入予定) / candidate(検討中)
+# 管理エージェント: automation-connection-manager(Phase6 Automation Division、docs/phase6-automation-division-design.md)
+# 認証情報・APIキーは記載しない(.envで管理)。新規追加時は_shared/sop/automation/の承認手順(CEO承認)に従うこと。
+
+apis:
+  - name: claude-api
+    purpose: (将来)Claude Codeの対話操作ではなく、プログラムからの直接呼び出し
+    phase: 6
+    status: candidate
+
+  - name: chatgpt-api
+    purpose: 企画構成・キャプション/記事下書きのプログラム的呼び出し
+    phase: 6
+    status: candidate
+
+  - name: gemini-api
+    purpose: Gemini Deep Research等のプログラム的呼び出し
+    phase: 6
+    status: candidate
+
+  - name: google-search-console-api
+    purpose: 検索パフォーマンスデータの自動取得(seo-search-console等)
+    phase: 6
+    status: candidate
+
+  - name: google-trends-api
+    purpose: トレンド・検索ボリュームの自動取得
+    phase: 6
+    status: candidate
+
+  - name: google-analytics-api
+    purpose: サイト横断のアクセス解析自動取得(shared-traffic-intelligence等)
+    phase: 6
+    status: candidate
+
+  - name: wordpress-api
+    purpose: 記事の自動投稿・更新(seo-wordpress-content等)
+    phase: 6
+    status: candidate
+
+  - name: line-api
+    purpose: LINE配信・ステップ配信の自動化(revenue-crm-manager)
+    phase: 6
+    status: candidate
+
+  - name: youtube-api
+    purpose: 動画投稿・分析の自動取得
+    phase: 6
+    status: candidate
+
+  - name: pinterest-api
+    purpose: 画像投稿・分析の自動取得
+    phase: 6
+    status: candidate
+
+  - name: n8n
+    purpose: ワークフロー自動化ツール本体(automation-workflow-manager・automation-schedulerの将来の実行基盤候補)
+    phase: 6
+    status: candidate

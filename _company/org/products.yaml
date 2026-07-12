@@ -1,0 +1,48 @@
+# 全商品台帳(SSOT: Single Source of Truth)
+# Product Division(product-service-designer)が管理する。Brand Layer(brands.yaml)とは独立した別軸のライフサイクルを持つ。
+# ブランドは永続的(数ブランド規模)、商品は流動的(将来100ブランド・1000商品規模)という性質差のため、あえて別ファイルにしている。
+#
+# lifecycle_status: Idea(着想) / Planning(企画) / Developing(開発中) / Beta(試験提供) / Released(正式提供) / Growing(成長中) / Mature(成熟・安定提供) / Retired(終了)
+#   通常はIdea→Planning→Developing→Beta→Released→Growing→Matureの順に進むが、どの段階からでもRetiredへ直接遷移してよい(企画中止・早期終了等)。
+#   Retiredになっても行は削除せず保持する(Knowledge/SOP/Brandと同じ「消さずstatusを変える」原則)。
+#
+# id: {ブランドID}-{商品スラッグ} の形式にする(例: tomo-angel7-reading-basic)。1000商品規模でのID衝突を避けるため、ブランドIDを必ず含める。
+# brand_id: 所属ブランドのid(brands.yamlのidと一致)。Productからブランドへの参照のみを持ち、Brand側からの逆参照(brands.yaml側にproduct一覧を持つ等)は行わない。
+# category: reading(個人鑑定) / school(スクール) / course-material(教材) / membership(会員サイト) / phone-fortune(電話占い) / ai-tool(AIツール) / book(書籍) / subscription(サブスク)
+#   新しい種類が必要な場合はこの一覧に追記する(重複防止のため、既存カテゴリに近いものがあれば流用する)。
+# owner: 通常COO(実務管理はproduct-service-designer)
+#
+# metrics: 商品の「健康状態」を保持するブロック。初期値はすべてnull。
+#   このファイルの構造(スキーマ)はproduct-service-designerが所有するが、metrics配下の値は以下のとおり他エージェントが更新する(product-service-designerは値を書き換えない)。
+#   - revenue_jpy / cvr / cpa / roas / ltv / retention_rate: 更新元 revenue-analytics(company/brand階層のKPIと同じ計算元。商品粒度に分解して提供)
+#   - refund_rate: 更新元(将来)Finance Division。同Divisionが未実装のため、それまでnullのまま
+#   - customer_satisfaction / review_score: 更新元 product-quality-standards(実際の収集はrevenue-crm-manager等が窓口)
+#   - metrics_updated_at: 最終更新日(値を更新したエージェントが都度更新する)
+#   会社KPI(management-kpi)・ブランドKPI(brand-brief.md)とは粒度が異なるだけで、重複ではない(同じ計算元を商品単位に分解して参照できるようにしたもの)。
+
+products:
+  # (まだ商品は登録されていません)
+
+# ↓ 新しい商品を追加するときのコピー用ひな形(#を外すまでは読み込まれません)
+#  - id: {ブランドID}-{商品スラッグ}
+#    name:
+#    brand_id: {ブランドID}
+#    category:
+#    lifecycle_status: Idea
+#    owner: COO
+#    created_by: COO
+#    created_at: "YYYY-MM-DD"
+#    updated_at: "YYYY-MM-DD"
+#    version: 1
+#    notes:
+#    metrics:
+#      revenue_jpy: null
+#      cvr: null
+#      cpa: null
+#      roas: null
+#      ltv: null
+#      retention_rate: null
+#      refund_rate: null
+#      customer_satisfaction: null
+#      review_score: null
+#      metrics_updated_at: null

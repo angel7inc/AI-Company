@@ -1,0 +1,51 @@
+# MCP(Model Context Protocol)サーバーの導入状況一覧
+# status: active(導入済) / planned(導入予定) / candidate(検討中)
+# 管理エージェント: automation-connection-manager(Phase6 Automation Division、docs/phase6-automation-division-design.md)
+# 注: meta-business-api・booking-payment-apiは本来「直接API」(MCP経由ではない)だが、既存登録済みのため移動せず維持する。
+#     今後の直接API登録は mcp/api-registry.yaml へ追加すること(重複回避のため、このファイルには新規の直接APIを追加しない)。
+
+servers:
+  - name: filesystem-git
+    purpose: リポジトリ・ファイル管理
+    phase: 1
+    status: active
+
+  - name: google-drive-sheets
+    purpose: コンテンツカレンダー・KPIシートの読み書き
+    phase: 1
+    status: planned
+
+  - name: slack
+    purpose: COOからCEOへの通知・週次レポート配信
+    phase: 2
+    status: candidate
+
+  - name: airtable-notion
+    purpose: エージェント台帳・コンテンツ管理のDB化
+    phase: 2
+    status: candidate
+
+  - name: meta-business-api
+    purpose: Instagram/TikTok分析の自動取得
+    phase: 3
+    status: candidate
+
+  - name: booking-payment-api
+    purpose: ココナラ等の受注管理自動化
+    phase: 3
+    status: candidate
+
+  - name: browser
+    purpose: Webページの閲覧・操作(リサーチ・競合監視の自動化)
+    phase: 6
+    status: candidate
+
+  - name: search
+    purpose: Web検索の自動実行
+    phase: 6
+    status: candidate
+
+  - name: memory
+    purpose: セッションを跨いだ長期記憶(将来のAgent間知識共有)
+    phase: 6
+    status: candidate

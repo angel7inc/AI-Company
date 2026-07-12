@@ -1,0 +1,687 @@
+# 全エージェント台帳(SSOT: Single Source of Truth)
+# 新しいエージェントを追加するときは、このリストに1件追加するだけでOKです。
+#
+# layer: core(経営・COO) / shared(事業横断) / business(事業専属)
+# status: draft(検討中) / active(稼働中) / paused(休止中) / retired(廃止)
+# division: layer:sharedのエージェントをグルーピングする任意ラベル(例: creative, brand-quality, conversion, revenue, intelligence)。
+#           旧division名 competitor-intelligence / traffic はPhase7でintelligenceに統合済み(shared-competitor-intelligence / shared-traffic-intelligence)。
+#           definition が _company/agents/ 配下を指すエージェント(management/automation)については必須(2026-07-12、Automation Division新設時にFable5判断で必須化)。
+#           独立台帳(divisions.yaml)は本ファイルが50行を超えるか、Divisionが独自予算/オーナーを持つまで新設しない(2026-07-12 Fable5判断)。
+# brand: 所属ブランドのid(brands.yamlと一致)。shared層のエージェントは実行時に対象ブランドを受け取るため null とする。
+#        (2026-07-12修正) SEO Division(business_unit: seo)の9エージェントは、設計意図に反しtomo-angel7に固定されていたためnullへ修正。
+#        Instagram(business_unit: instagram)はカルーセルテンプレート等ブランドごとに持続する成果物を扱うため、意図的にbrand固定のまま。
+
+agents:
+  - id: core-coo
+    name: COO(全体統括)
+    layer: core
+    division: management
+    business_unit: null
+    brand: null
+    role: 計画立案・進捗/品質/コスト管理・自動化設計・実装、各Division管理・Agent管理・優先順位管理・タスク配分・進捗管理
+    tools: [Claude Code]
+    kpi: []
+    status: active
+    owner: CEO
+    created: "2026-07-11"
+    review_cadence: monthly
+    definition: _company/agents/core-coo.md
+
+  - id: management-strategy
+    name: 経営戦略エージェント
+    layer: core
+    division: management
+    business_unit: null
+    brand: null
+    role: 事業戦略・競合戦略・成長戦略・新規事業判断・撤退判断・市場分析(月次/四半期)
+    tools: [Claude Code, Gemini Deep Research]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: quarterly
+    definition: _company/agents/management-strategy.md
+
+  - id: management-kpi
+    name: KPI集計エージェント
+    layer: core
+    division: management
+    business_unit: null
+    brand: null
+    role: 会社/Division/Agent単位のKPI集計(既存の値を再定義せず集約)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _company/agents/management-kpi.md
+
+  - id: management-resource
+    name: リソース管理エージェント
+    layer: core
+    division: management
+    business_unit: null
+    brand: null
+    role: 予算・APIコスト(Claude/Gemini/OpenAI/画像/動画生成)・稼働時間・トークンの監視
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: weekly
+    definition: _company/agents/management-resource.md
+
+  - id: management-quality
+    name: 品質メタ監査エージェント
+    layer: core
+    division: management
+    business_unit: null
+    brand: null
+    role: 既存QAエージェント群の合格率・稼働状況のメタ監査、月次較正サンプリング(個別コンテンツの再採点は行わない)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _company/agents/management-quality.md
+
+  - id: ig-content-planner
+    name: Instagram投稿企画エージェント
+    layer: business
+    business_unit: instagram
+    role: 投稿企画・カレンダー管理・キャプション下書き
+    tools: [Perplexity, ChatGPT, Canva]
+    kpi: [follower_count, save_rate]
+    status: active
+    owner: COO
+    created: "2026-07-11"
+    review_cadence: monthly
+    definition: businesses/instagram/agents/ig-content-planner.md
+
+  - id: ig-analytics
+    name: Instagram分析エージェント
+    layer: business
+    business_unit: instagram
+    role: 週次パフォーマンス分析・改善提案
+    tools: [Meta Business Suite, ChatGPT]
+    kpi: [follower_count, save_rate, profile_to_lp_click_rate]
+    status: active
+    owner: COO
+    created: "2026-07-11"
+    review_cadence: monthly
+    definition: businesses/instagram/agents/ig-analytics.md
+
+  - id: ig-carousel-intelligence
+    name: カルーセルインテリジェンスエージェント
+    layer: business
+    business_unit: instagram
+    brand: tomo-angel7
+    role: 競合カルーセル分析・保存率/スワイプ率分析・ページ構成/フック/CTA分析・勝ちパターン抽出
+    tools: [Claude Code, Gemini Deep Research]
+    kpi: [save_rate]
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/instagram/agents/ig-carousel-intelligence.md
+
+  - id: ig-creative-team
+    name: Instagramクリエイティブチーム
+    layer: business
+    business_unit: instagram
+    brand: tomo-angel7
+    role: カルーセルテンプレート管理・ブランドカラー/フォント適用・テンプレート改善
+    tools: [Claude Code]
+    kpi: [save_rate]
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/instagram/agents/ig-creative-team.md
+
+  - id: seo-research
+    name: SEOリサーチエージェント
+    layer: business
+    business_unit: seo
+    brand: null
+    role: 検索上位/検索意図/PAA/共起語/競合/EEAT分析、AI Overview・SERP構成・サジェスト・FAQ分析(Search Intelligence統合)
+    tools: [Google Search, Google Trends, Search Console, Gemini Deep Research]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-research.md
+
+  - id: seo-keyword-strategy
+    name: キーワード戦略エージェント
+    layer: business
+    business_unit: seo
+    brand: null
+    role: 親KW/ロングテール/記事クラスタ設計・優先順位付け・検索難易度分析・CV意識のKW選定
+    tools: [Claude Code, Search Console]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-keyword-strategy.md
+
+  - id: seo-wordpress-content
+    name: WordPress記事制作エージェント
+    layer: business
+    business_unit: seo
+    brand: null
+    role: SEO記事設計・タイトル・H1〜H4・内部リンク・FAQ・CTA・メタディスクリプション・ALT・カテゴリ・タグ・パーマリンク
+    tools: [Claude Code, ChatGPT]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-wordpress-content.md
+
+  - id: seo-technical
+    name: テクニカルSEOエージェント
+    layer: business
+    business_unit: seo
+    brand: null
+    role: Core Web Vitals・Schema・Robots・Sitemap・Canonical・Index管理・404・Redirect管理
+    tools: [Claude Code, Search Console]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-technical.md
+
+  - id: seo-internal-link
+    name: 内部リンク設計エージェント
+    layer: business
+    business_unit: seo
+    brand: null
+    role: サイト全体の内部リンク設計・記事間の最適リンク
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-internal-link.md
+
+  - id: seo-eeat-checker
+    name: EEATチェッカー
+    layer: business
+    business_unit: seo
+    brand: null
+    role: E-E-A-T観点の採点(seo-quality-checkerのサブルーチン)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-eeat-checker.md
+
+  - id: seo-search-console
+    name: Search Consoleエージェント
+    layer: business
+    business_unit: seo
+    brand: null
+    role: 表示回数・CTR・順位変動・リライト候補・急落記事検知
+    tools: [Search Console, Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-search-console.md
+
+  - id: seo-quality-checker
+    name: SEO品質チェッカー
+    layer: business
+    business_unit: seo
+    brand: null
+    role: SEO記事を100点満点で採点し90点未満は差し戻し(EEATサブスコアを内包)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-quality-checker.md
+
+  - id: seo-editorial-image
+    name: エディトリアル画像制作エージェント
+    layer: business
+    business_unit: seo
+    brand: null
+    role: WordPress記事ごとにアイキャッチ/本文画像/OGP画像をAI生成(テンプレート不使用)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: businesses/seo/agents/seo-editorial-image.md
+
+  - id: shared-competitor-intelligence
+    name: 競合インテリジェンス
+    layer: shared
+    division: intelligence
+    business_unit: null
+    brand: null
+    role: Instagram/Google/SEO/WordPress/LINE/Pinterest/YouTubeの日次軽量監視、深掘りは各専門エージェントへ引き継ぎ
+    tools: [Claude Code, Gemini Deep Research]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/research/shared-competitor-intelligence.md
+
+  - id: shared-traffic-intelligence
+    name: トラフィックインテリジェンス
+    layer: shared
+    division: intelligence
+    business_unit: null
+    brand: null
+    role: Pinterest/YouTube/Google検索/WordPress/Reddit/Trends/AI Overview/被リンク/ブランド検索の横断分析
+    tools: [Search Console, Google Trends, Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/analytics/shared-traffic-intelligence.md
+
+  - id: shared-brand-quality-checker
+    name: ブランド品質チェッカー
+    layer: shared
+    division: brand-quality
+    business_unit: null
+    brand: null
+    role: 全チャネル共通のブランドトーン/世界観/AI臭/禁止表現/一貫性チェック(実行時に対象ブランドを受け取る、フェイルクローズ)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/analytics/shared-brand-quality-checker.md
+
+  - id: shared-conversion-optimizer
+    name: コンバージョン最適化
+    layer: shared
+    division: conversion
+    business_unit: null
+    brand: null
+    role: LP/導線/CTA/CVR/離脱率/UX/LINE登録率改善、ABテスト・LINE固有CVR改善(Revenue Division Conversion Team相当)
+    tools: [Claude Code, Gemini Deep Research]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/conversion/shared-conversion-optimizer.md
+
+  - id: shared-video-creative-team
+    name: 動画制作チーム
+    layer: shared
+    division: creative
+    business_unit: null
+    brand: null
+    role: Reels/Shorts/YouTube/広告動画/LINE動画/LP動画の制作
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/design/shared-video-creative-team.md
+
+  - id: shared-image-prompt-engineer
+    name: 画像プロンプトエンジニア
+    layer: shared
+    division: creative
+    business_unit: null
+    brand: null
+    role: 画像生成AI用プロンプト作成・ブランド維持・CTR/SEO/構図設計
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/design/shared-image-prompt-engineer.md
+
+  - id: shared-video-prompt-engineer
+    name: 動画プロンプトエンジニア
+    layer: shared
+    division: creative
+    business_unit: null
+    brand: null
+    role: 動画生成AI用プロンプト作成・シーン設計・カメラワーク・BGM・テロップ・CTA
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/design/shared-video-prompt-engineer.md
+
+  - id: shared-image-quality-checker
+    name: 画像品質チェッカー
+    layer: shared
+    division: creative
+    business_unit: null
+    brand: null
+    role: 画質/構図/CTR/OGP/SEO/Alt/人物違和感/文字可読性の採点(ブランド判定はshared-brand-quality-checkerへ委譲)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/design/shared-image-quality-checker.md
+
+  - id: shared-video-quality-checker
+    name: 動画品質チェッカー
+    layer: shared
+    division: creative
+    business_unit: null
+    brand: null
+    role: 冒頭3秒/視聴維持率/テンポ/離脱率/CTA/字幕/音声/画質の採点(ブランド判定はshared-brand-quality-checkerへ委譲)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/design/shared-video-quality-checker.md
+
+  - id: shared-thumbnail-team
+    name: サムネイルチーム
+    layer: shared
+    division: creative
+    business_unit: null
+    brand: null
+    role: YouTube/Pinterest/LP/広告のサムネイル制作(プロンプト作成はPrompt Engineerへ委譲)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/design/shared-thumbnail-team.md
+
+  - id: shared-creative-asset-manager
+    name: クリエイティブアセットマネージャー
+    layer: shared
+    division: creative
+    business_unit: null
+    brand: null
+    role: ロゴ/アイコン/フォント/カラー/テンプレート/画像・動画プロンプト/背景素材/BGM/効果音の一元管理
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/design/shared-creative-asset-manager.md
+
+  - id: revenue-funnel-strategy
+    name: ファネル戦略エージェント
+    layer: shared
+    division: revenue
+    business_unit: null
+    brand: null
+    role: 複数ブランド・複数ファネル(tomo-angel7鑑定客向け/tomo-academy鑑定士志望者向け)を並行管理する多段階ファネル設計・段階間離脱分析。現状はtomo-angel7の鑑定客向けファネルのみ稼働
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/revenue/revenue-funnel-strategy.md
+
+  - id: revenue-crm-manager
+    name: CRM運用エージェント
+    layer: shared
+    division: revenue
+    business_unit: null
+    brand: null
+    role: LINE配信・ステップ配信・顧客管理・セグメント管理・再購入施策の実行
+    tools: [Claude Code, ChatGPT]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/revenue/revenue-crm-manager.md
+
+  - id: revenue-ltv-manager
+    name: LTV戦略エージェント
+    layer: shared
+    division: revenue
+    business_unit: null
+    brand: null
+    role: リピート率・クロスセル・アップセル・紹介・顧客維持(customer success相当を統合)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/revenue/revenue-ltv-manager.md
+
+  - id: revenue-analytics
+    name: 収益分析エージェント
+    layer: shared
+    division: revenue
+    business_unit: null
+    brand: null
+    role: 売上/CPA/CAC/ROAS/ROI/LTV/MRR/ARPU等、収益経済指標の計算元(management-kpiはここから集約するのみ)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/revenue/revenue-analytics.md
+
+  - id: revenue-pricing-offer-designer
+    name: 価格・オファー設計エージェント
+    layer: shared
+    division: revenue
+    business_unit: null
+    brand: null
+    role: 価格戦略・オファー設計(収益最適化のみ。商品内容そのものは将来Product Divisionが担当)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/revenue/revenue-pricing-offer-designer.md
+
+  - id: automation-workflow-manager
+    name: ワークフロー実行管理エージェント
+    layer: core
+    division: automation
+    business_unit: null
+    brand: null
+    role: Agent連携・タスク依存関係グラフ・Queue管理(優先順位の決定は行わず、core-cooの決定を機械的に実行するのみ)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _company/agents/automation-workflow-manager.md
+
+  - id: automation-connection-manager
+    name: 接続管理エージェント
+    layer: core
+    division: automation
+    business_unit: null
+    brand: null
+    role: API/MCP接続の登録台帳管理・死活監視(業務ロジックは各機能エージェントが担当)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _company/agents/automation-connection-manager.md
+
+  - id: automation-scheduler
+    name: スケジューラーエージェント
+    layer: core
+    division: automation
+    business_unit: null
+    brand: null
+    role: 日次/週次/月次/イベント実行/条件実行の定義・トリガー管理
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _company/agents/automation-scheduler.md
+
+  - id: automation-monitor
+    name: 実行監視エージェント
+    layer: core
+    division: automation
+    business_unit: null
+    brand: null
+    role: 実行履歴・失敗ログの記録、リトライ/エスカレーション判断(コスト・トークン計算はmanagement-resourceが担当)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _company/agents/automation-monitor.md
+
+  - id: intelligence-market
+    name: 市場分析エージェント
+    layer: shared
+    division: intelligence
+    business_unit: null
+    brand: null
+    role: 市場規模・ポジショニング・成長市場分析(チャネル横断)
+    tools: [Claude Code, Gemini Deep Research]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/intelligence/intelligence-market.md
+
+  - id: intelligence-consumer
+    name: 消費者分析エージェント
+    layer: shared
+    division: intelligence
+    business_unit: null
+    brand: null
+    role: 悩み・ペルソナ・行動分析(チャネル横断。旧ig-research計画を上位互換)
+    tools: [Claude Code, Perplexity, Gemini Deep Research]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: weekly
+    definition: _shared/agents/intelligence/intelligence-consumer.md
+
+  - id: intelligence-trend
+    name: トレンド分析エージェント
+    layer: shared
+    division: intelligence
+    business_unit: null
+    brand: null
+    role: コンテンツ企画のための兆し発見(news-intelligence統合。traffic-intelligenceの出力を再利用し再照会しない)
+    tools: [Claude Code, Google Trends]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: weekly
+    definition: _shared/agents/intelligence/intelligence-trend.md
+
+  - id: intelligence-insight-synthesizer
+    name: インサイト統合エージェント
+    layer: shared
+    division: intelligence
+    business_unit: null
+    brand: null
+    role: 複数Intelligence出力の統合・各チャネルへの配信(自らリサーチは行わない)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/intelligence/intelligence-insight-synthesizer.md
+
+  - id: intelligence-research-quality-checker
+    name: リサーチ品質チェッカー
+    layer: shared
+    division: intelligence
+    business_unit: null
+    brand: null
+    role: 引用漏れ・重複・古い情報・一次情報優先・ファクトチェック
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/intelligence/intelligence-research-quality-checker.md
+
+  - id: product-service-designer
+    name: サービス構造設計エージェント
+    layer: shared
+    division: product
+    business_unit: null
+    brand: null
+    role: 各ブランドのサービス→商品構造を定義(実行時に対象ブランドを受け取る。brand-briefは読み取りのみ)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/product/product-service-designer.md
+
+  - id: product-quality-standards
+    name: サービス品質基準エージェント
+    layer: shared
+    division: product
+    business_unit: null
+    brand: null
+    role: サービス提供の品質基準を定義(コンテンツQAとは別軸。アクティブ監査は将来management-qualityのパターンを踏襲して拡張)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _shared/agents/product/product-quality-standards.md
+
+# ↓ 新しいエージェントを追加するときのコピー用ひな形(#を外すまでは読み込まれません)
+#  - id: {事業コード}-{機能}
+#    name:
+#    layer: business
+#    business_unit: {事業名}
+#    role:
+#    tools: []
+#    kpi: []
+#    status: draft
+#    owner: COO
+#    created: "YYYY-MM-DD"
+#    review_cadence: monthly
+#    definition: businesses/{事業名}/agents/{エージェントID}.md
