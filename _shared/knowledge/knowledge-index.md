@@ -7,7 +7,7 @@
 
 | グループ | カテゴリ |
 |---|---|
-| Foundation | ai, automation, prompt-engineering, business-strategy, research-methodology, product-design |
+| Foundation | ai, automation, prompt-engineering, business-strategy, research-methodology, product-design, finance |
 | Tools | claude-code, chatgpt, gemini, perplexity, notebooklm |
 | Marketing | marketing, branding, design, copywriting, psychology, seo, analytics, crm |
 | Platform | instagram, youtube, pinterest, reddit, line, studio, canva, coconala, wordpress |

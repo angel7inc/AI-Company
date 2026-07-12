@@ -567,6 +567,21 @@ agents:
     review_cadence: monthly
     definition: _company/agents/automation-monitor.md
 
+  - id: finance-controller
+    name: 財務統括エージェント
+    layer: core
+    division: finance
+    business_unit: null
+    brand: null
+    role: revenue-analytics(売上)とmanagement-resource(AI/APIコスト)を合算し利益を算出。会社全体ROI・会計・予算配分(台帳は未新設)
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-12"
+    review_cadence: monthly
+    definition: _company/agents/finance-controller.md
+
   - id: intelligence-market
     name: 市場分析エージェント
     layer: shared

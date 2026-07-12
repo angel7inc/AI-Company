@@ -23,6 +23,7 @@
 | - | `management/` | CEO/COO承認フロー・週次/月次/四半期レビュー(Loop2、投稿ごとのフローとは独立) | (なし。全Divisionからの集計を受ける) |
 | - | `automation/` | Workflow設計・API/MCP追加・Scheduler追加・障害対応・ログ確認・Agent再実行(構造設計のみ。本番稼働は別途承認) | `management/` |
 | - | `product/` | サービス/商品定義・カリキュラム設計・品質基準定義(定義のみ。実行は`crm/`・`automation/`) | `crm/` |
+| - | `finance/` | 月次決算・売上コスト突合(予算配分手順は台帳新設まで見送り) | `management/` |
 
 `analytics/`・`conversion/`の分析結果は`research/`・`instagram/`・`seo/`の次サイクルへフィードバックされ、循環します。
 

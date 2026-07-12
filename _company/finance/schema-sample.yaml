@@ -1,0 +1,62 @@
+# Finance実績スキーマ サンプル(全金額0の記入例。実データではない)
+sample_only: true      # このファイルはサンプルであり、実績データではないことを明示
+do_not_import: true    # finance-controller・自動処理・レポート集計のいずれもこのファイルを実績として読み込んではならない
+sensitivity: public     # サンプルのため機密ではない(実ファイルは sensitivity: confidential)
+brand_id: "{brand_id}"
+period: "YYYY-MM"
+schema_version: 2
+
+records:
+  - id: "fin-202601-tomo-angel7-product-tomo-angel7-personal-reading-coconala"
+    brand_id: tomo-angel7
+    period: "2026-01"
+    service_line_id: personal-reading
+    channel: coconala
+    allocation_scope: product
+    scope_id: tomo-angel7-personal-reading
+    product_id: tomo-angel7-personal-reading
+    allocation_method: direct
+    recognition_basis: accrual
+    settlement_period: null
+    gross_revenue_jpy: 0
+    platform_fee_jpy: 0
+    refund_jpy: 0
+    ad_spend_jpy: 0
+    ai_api_cost_jpy: 0
+    outsourcing_fixed_cost_jpy: 0
+    other_expenses_jpy: 0
+    cash_received_jpy: 0
+    cash_paid_out_jpy: 0
+    evidence_id: null
+    notes: "サンプルレコード。実データではない"
+    status: draft
+    created_by: COO
+    created_at: "2026-01-01"
+    updated_at: "2026-01-01"
+
+  - id: "fin-202601-tomo-angel7-company-ai-company-none"
+    brand_id: tomo-angel7
+    period: "2026-01"
+    service_line_id: null
+    channel: none
+    allocation_scope: company
+    scope_id: ai-company
+    product_id: null
+    allocation_method: manual
+    recognition_basis: accrual
+    settlement_period: null
+    gross_revenue_jpy: 0
+    platform_fee_jpy: 0
+    refund_jpy: 0
+    ad_spend_jpy: 0
+    ai_api_cost_jpy: 0
+    outsourcing_fixed_cost_jpy: 0
+    other_expenses_jpy: 0
+    cash_received_jpy: 0
+    cash_paid_out_jpy: 0
+    evidence_id: null
+    notes: "サンプル: 特定商品に紐づかない全社共通経費の記入例"
+    status: draft
+    created_by: COO
+    created_at: "2026-01-01"
+    updated_at: "2026-01-01"

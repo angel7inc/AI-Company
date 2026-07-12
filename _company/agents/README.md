@@ -11,6 +11,7 @@
 |---|---|---|
 | `core-coo.md`、`management-*.md` | Management | 各Division管理・戦略・KPI集計・リソース監視・品質メタ監査 |
 | `automation-*.md` | Automation | Workflow実行・API/MCP接続管理・Scheduler・実行監視 |
+| `finance-controller.md` | Finance | 利益算出(売上−AI/APIコストの合算)・会社全体ROI・会計・予算配分 |
 
 ## 命名・管理ルール
 - エージェントIDは`{division名}-{機能}`とする(`core-coo`は既存のため例外)

@@ -20,3 +20,6 @@ desktop.ini
 # 一時ファイル・ログ
 *.log
 *.tmp
+
+# Finance実績データ(sensitivity: confidential。Private Repositoryでも実額はコミットしない)
+_company/finance/actuals/**/*.yaml

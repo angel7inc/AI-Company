@@ -12,16 +12,33 @@
 #   新しい種類が必要な場合はこの一覧に追記する(重複防止のため、既存カテゴリに近いものがあれば流用する)。
 # owner: 通常COO(実務管理はproduct-service-designer)
 #
-# metrics: 商品の「健康状態」を保持するブロック。初期値はすべてnull。
-#   このファイルの構造(スキーマ)はproduct-service-designerが所有するが、metrics配下の値は以下のとおり他エージェントが更新する(product-service-designerは値を書き換えない)。
-#   - revenue_jpy / cvr / cpa / roas / ltv / retention_rate: 更新元 revenue-analytics(company/brand階層のKPIと同じ計算元。商品粒度に分解して提供)
-#   - refund_rate: 更新元(将来)Finance Division。同Divisionが未実装のため、それまでnullのまま
-#   - customer_satisfaction / review_score: 更新元 product-quality-standards(実際の収集はrevenue-crm-manager等が窓口)
-#   - metrics_updated_at: 最終更新日(値を更新したエージェントが都度更新する)
-#   会社KPI(management-kpi)・ブランドKPI(brand-brief.md)とは粒度が異なるだけで、重複ではない(同じ計算元を商品単位に分解して参照できるようにしたもの)。
+# metrics: 商品の「健康状態」への参照情報のみを保持するブロック(2026-07-12改定)。
+#   products.yamlは完全な定義台帳とし、時間とともに変化する動的な実績数値(revenue_jpy・CVR・CPA・ROAS・LTV・
+#   customer_satisfaction・review_score等)は一切保存しない。実績の正本は_company/finance/actuals/、
+#   分析結果の正本はrevenue-analytics/product-quality-standardsの出力(_company/kpi/またはreports/)である。
+#   このファイルの構造(スキーマ)・metrics配下の参照情報はproduct-service-designerが所有する。
+#   - finance_source: 実績金額の正本の場所(_company/finance/actuals/{brand_id}/)
+#   - report_reference: 集計・分析レポートへの参照パス(_company/kpi/またはreports/配下。未作成時はnull)
+#   - computed_by: 分析指標・品質指標の計算責任者(複数可)
+#   - last_computed_at: 最終算出日(参照先レポートの更新日)
 
 products:
-  # (まだ商品は登録されていません)
+  - id: tomo-angel7-personal-reading
+    name: 個人鑑定(包括商品)
+    brand_id: tomo-angel7
+    category: reading
+    lifecycle_status: Released
+    owner: COO
+    created_by: COO
+    created_at: "2026-07-12"
+    updated_at: "2026-07-12"
+    version: 1
+    notes: "LINE・ココナラ・Instagram DM等は別商品ではなく、本商品の異なるchannelとして扱う(_company/finance/actuals/のchannel欄で区別)。価格別・プラン別の商品分割は、実際の商品構成が確定してから追加する。"
+    metrics:
+      finance_source: "_company/finance/actuals/tomo-angel7/"
+      report_reference: null
+      computed_by: [revenue-analytics, product-quality-standards]
+      last_computed_at: null
 
 # ↓ 新しい商品を追加するときのコピー用ひな形(#を外すまでは読み込まれません)
 #  - id: {ブランドID}-{商品スラッグ}
@@ -36,13 +53,7 @@ products:
 #    version: 1
 #    notes:
 #    metrics:
-#      revenue_jpy: null
-#      cvr: null
-#      cpa: null
-#      roas: null
-#      ltv: null
-#      retention_rate: null
-#      refund_rate: null
-#      customer_satisfaction: null
-#      review_score: null
-#      metrics_updated_at: null
+#      finance_source: "_company/finance/actuals/{ブランドID}/"
+#      report_reference: null
+#      computed_by: []
+#      last_computed_at: null

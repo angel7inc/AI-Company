@@ -1,0 +1,14 @@
+# Finance Layer 設定(実績数値・月一覧は一切含まない。正本は _company/finance/actuals/ 配下)
+schema_version: 2
+actuals_path_pattern: "_company/finance/actuals/{brand_id}/{YYYY-MM}.yaml"
+id_scheme: "fin-{yyyymm}-{brand_id}-{allocation_scope}-{scope_id}-{channel}"
+sensitivity: confidential
+
+# 記録対象ブランドのstatus(どの月のファイルが存在するかはここで管理せず、_company/finance/actuals/を直接確認する)
+brands:
+  - brand_id: tomo-angel7
+    status: active_recording
+  - brand_id: tomo-academy
+    status: not_recording
+  - brand_id: phone-fortune-company
+    status: not_recording
