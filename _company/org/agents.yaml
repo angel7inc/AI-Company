@@ -582,6 +582,21 @@ agents:
     review_cadence: monthly
     definition: _company/agents/finance-controller.md
 
+  - id: architecture-review-controller
+    name: アーキテクチャ監査エージェント
+    layer: core
+    division: architecture-review
+    business_unit: null
+    brand: null
+    role: Knowledge/SOP/Agent/命名規則/重複の全件監査(検出・報告のみ。是正実行は各Division・COOが担当)。agents.yaml行数の50行閾値到達も監視する
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-13"
+    review_cadence: quarterly
+    definition: _company/agents/architecture-review-controller.md
+
   - id: intelligence-market
     name: 市場分析エージェント
     layer: shared

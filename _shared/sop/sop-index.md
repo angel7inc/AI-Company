@@ -24,6 +24,7 @@
 | - | `automation/` | Workflow設計・API/MCP追加・Scheduler追加・障害対応・ログ確認・Agent再実行(構造設計のみ。本番稼働は別途承認) | `management/` |
 | - | `product/` | サービス/商品定義・カリキュラム設計・品質基準定義(定義のみ。実行は`crm/`・`automation/`) | `crm/` |
 | - | `finance/` | 月次決算・売上コスト突合(予算配分手順は台帳新設まで見送り) | `management/` |
+| - | `architecture-review/` | Knowledge/SOP/Agent/命名/重複の全社監査(検出・報告のみ。是正実行は含めない) | `management/` |
 
 `analytics/`・`conversion/`の分析結果は`research/`・`instagram/`・`seo/`の次サイクルへフィードバックされ、循環します。
 
