@@ -69,7 +69,7 @@ status: draft-for-ceo-review
 - **受入条件:** ファイル内に`ig-research`の文字列が残存しないこと
 - **CEO承認の要否:** 不要(軽微修正)
 - **推奨実施Batch:** B
-- **状態:** open
+- **状態:** resolved(2026-07-13 実施・検証済み。詳細は本書末尾「Batch B 再監査結果」参照)
 - **修正後にArchitecture Reviewが再確認する項目:** 他のブランド固有ファイル(将来のtomo-academy等)に同種の記載が発生していないか
 
 ### チケット RT-004(対応: ARC-003)
@@ -83,7 +83,7 @@ status: draft-for-ceo-review
 - **受入条件:** ステータス欄に上書き注記が追加されており、後継設計書(phase3/phase3b/phase7/phase8)へのリンクが明記されていること
 - **CEO承認の要否:** 要(5-part形式の軽微確認: 変更対象/目的/メリット/デメリット/既存設計への影響)
 - **推奨実施Batch:** B
-- **状態:** open
+- **状態:** resolved(2026-07-13 実施・検証済み。詳細は本書末尾「Batch B 再監査結果」参照)
 - **修正後にArchitecture Reviewが再確認する項目:** 他の古いPhase設計書(phase3・phase4等)にも同様の「実態と乖離したステータス」が無いか、次回監査で全Phase設計書を横断確認する
 
 ### チケット RT-005(対応: ARC-004)
@@ -97,7 +97,7 @@ status: draft-for-ceo-review
 - **受入条件:** 7ファイルすべてで`ig-research`の文字列が残存しないこと
 - **CEO承認の要否:** 不要(軽微修正)
 - **推奨実施Batch:** B
-- **状態:** open
+- **状態:** resolved(2026-07-13 実施・検証済み。詳細は本書末尾「Batch B 再監査結果」参照)
 - **修正後にArchitecture Reviewが再確認する項目:** 置換先のエージェント名がそのカテゴリの実際の利用実態と一致しているか(機械的な一括置換による誤りがないか)
 
 ---
@@ -184,7 +184,68 @@ status: draft-for-ceo-review
 | C | 5(RT-006〜010) | 0/5 | 4/5(RT-008は新設判断時のみ要) |
 | **合計** | **10** | **3/10** | ― |
 
+**Batch A・B実施状況(2026-07-13時点):** Batch A(RT-001・RT-002)コミット済み(`e9cf122`)・push済み。Batch B(RT-003〜005)は本改訂で`resolved`へ更新(下記「Batch B 再監査結果」参照)。Batch C・HR Division・Tomo Academyは未着手。
+
+---
+
+## Batch B 再監査結果(2026-07-13実施)
+
+**再監査実行:** `architecture-review-controller`(検出・検証のみ。是正実行はCOOが個別に実施)
+**制限事項:** 過去の監査内容(上記ARC-002〜004・RT-003〜005の原文)は削除せず、本節に再監査日・検証根拠・修正前の状態を追記する形式で記録する。
+
+### RT-003 再監査
+- **修正前の状態:** `pain-point-categories.yaml` 6・28行目に`ig-research`(退役済み)が現役の検証担当として記載
+- **検証根拠:** (1)`intelligence-consumer`が`_company/org/agents.yaml`615行目に登録済み、status: draft、division: intelligence。(2)definitionファイル`_shared/agents/intelligence/intelligence-consumer.md`の実在を確認。(3)役割記述「悩み・ペルソナ・行動分析」「`pain-point-categories.yaml`の`status`更新提案(draft→validated)」を確認し、対象ファイルとの整合性が取れている。(4)`grep`により、修正後のファイル内に`ig-research`の文字列が残存しないことを確認(初回置換時に「旧ig-research計画を上位互換」という補足文言で文字列が再混入していたため、「旧研究エージェント計画を上位互換」に再修正し、完全除去を確認)。(5)YAML構造(`pain_point_categories`配下の3カテゴリ・`status: draft`・`created_at`・`updated_at`・`version`)は無変更であることを`git diff`で確認
+- **status:** resolved
+
+### RT-004 再監査
+- **修正前の状態:** `docs/phase2-instagram-design.md` 3行目のステータスが「設計フェーズ ― CEO承認待ち(未実装)」のまま
+- **検証根拠:** (1)ステータスを「実装済み・一部後続Phaseで置換(implemented with superseding changes)」に更新し、実態(Instagram事業は稼働中、一部内容は後続Phaseで置換)と一致させた。(2)`phase5-revenue-division-design.md`40行目・`phase8b-finance-division-design.md`29行目の既存「上書き注記」形式(blockquote)を踏襲した注記を追加。(3)注記内で参照した`docs/phase3-search-seo-division-design.md`・`phase3b-creative-division-design.md`・`phase5-revenue-division-design.md`・`phase7-intelligence-division-design.md`・`phase8-product-division-design.md`・`docs/roadmap.md`の実在をすべて`test -f`で確認済み(**CEOご指示の「Phase8a」は実際のファイル名として存在しないため、実在する`docs/phase8-product-division-design.md`(Product Division新設)に置き換えて参照した。**意図が異なる場合はご指摘ください)。(4)`git diff docs/phase2-instagram-design.md`で、ステータス行の更新と注記1段落の追加(3行追加・1行削除)のみであることを確認し、本文(00章以降)が削除・改変されていないことを確認
+- **status:** resolved
+
+### RT-005 再監査
+- **修正前の状態:** 7件のKnowledge README(gemini/instagram/perplexity/pinterest/reddit/seo/youtube)の「誰が参照するか」欄に`ig-research`が残存
+- **検証根拠(ファイル別):**
+  - `gemini/README.md`→`intelligence-consumer`: `agents.yaml`615-628行目でtools「Gemini Deep Research」を保持することを確認。**高確信度**
+  - `perplexity/README.md`→`intelligence-consumer`: `agents.yaml`同箇所でtools「Perplexity」を保持することを確認。**高確信度**
+  - `reddit/README.md`→`shared-traffic-intelligence`: `agents.yaml`285-298行目の役割記述に「Reddit」が明記されていることを確認。**高確信度**
+  - `youtube/README.md`→`shared-competitor-intelligence`: `agents.yaml`270-283行目の役割記述に「YouTube」が明記され、「競合の変化を検知する」がKnowledge側の「競合動画調査の観点」と一致することを確認。**高確信度**
+  - `instagram/README.md`・`pinterest/README.md`・`seo/README.md`: 複数の候補エージェント(`intelligence-consumer`/`shared-traffic-intelligence`/`shared-competitor-intelligence`)がいずれも部分的にしか一致せず、単一エージェントへの断定に十分な根拠が得られなかったため、**推測による置換は行わず**、CEO指定の代替表現「当該Knowledgeを使用するIntelligence関連エージェント」を採用した(`ig-strategy`・`ig-content-planning`等、当該箇所以外の既存記載は変更していない)
+  - 7ファイル全てで`grep`により`ig-research`の文字列が残存しないことを確認済み
+- **status:** resolved(7/7ファイル対応済み。うち4件は特定の後継エージェント名へ、3件はCEO承認済みの役割ベース表現へ置換。根拠不足のまま推測で特定エージェント名を割り当てた箇所は無し)
+
+---
+
+## 追加発見事項(Batch B実施中に判明・次回CEO承認対象の候補)
+
+以下は今回のBatch B(RT-003〜005)の対象範囲外のため修正していません。既存のARC ID・RT IDとは別の新規IDを付与し、次回監査での正式な指摘化・CEO承認を経てから是正します。
+
+### ARC-011(候補)
+- **発見ID:** ARC-011
+- **対象ファイル数:** 約12ファイル
+- **代表的な対象ファイル:** `docs/phase2-instagram-design.md`、`_company/agents/management-strategy.md`、`_company/brands/tomo-angel7/brand-brief.md`、`_shared/knowledge/{ai,branding,chatgpt,gemini,instagram,marketing,psychology}/README.md`
+- **問題内容:** `ig-strategy`という名称が`_company/org/agents.yaml`に一度も登録されていないにもかかわらず、Phase2設計書由来の名称として複数ファイルに残存している。エージェントとして実装されなかったのか、別名で実装されたのかが未確認
+- **想定される正式名称または後継:** 未確定。`management-strategy`(全社戦略)または将来のInstagram専用戦略エージェントのいずれかが該当する可能性があるが、本調査では特定に至らず
+- **全件調査が必要:** 要(12ファイルの前後文脈を確認し、`ig-strategy`が指していた機能が現在どのエージェントに帰属しているかを特定する必要がある)
+- **重要度案:** medium(実害は限定的だが、ARC-002〜004と同種の「存在しない参照」であるため)
+- **状態:** open(候補。次回監査での正式ARC化待ち)
+- **次回CEO承認対象:** 要(正式な是正チケット化の際に承認を得る)
+
+### ARC-012(候補)
+- **発見ID:** ARC-012
+- **対象ファイル数:** 約16ファイル
+- **代表的な対象ファイル:** `businesses/instagram/agents/ig-carousel-intelligence.md`、`businesses/instagram/agents/ig-creative-team.md`、`docs/phase7-intelligence-division-design.md`、`_shared/agents/intelligence/intelligence-insight-synthesizer.md`、`_shared/knowledge/{canva,chatgpt,copywriting,design,instagram,pinterest,psychology}/README.md`、`_shared/sop/{design,instagram,research}/`配下
+- **問題内容:** `agents.yaml`上の正式ID`ig-content-planner`に対し、16ファイルで`ig-content-planning`という表記(末尾が異なる)が使われている。誤字による表記揺れか、「役割・機能カテゴリ名」と「エージェントID」を意図的に使い分けているのかが未確認
+- **想定される正式名称または後継:** `ig-content-planner`(`agents.yaml`90行目に登録済み、definitionファイル`businesses/instagram/agents/ig-content-planner.md`実在確認済み)。ただし16ファイル全件が単純な誤字か、意図的な使い分けかの判断が先に必要
+- **全件調査が必要:** 要(表記揺れか意図的区分かをファイルごとに確認したうえで、統一するか、区別する表記規則(ARC-009の`related_sop`表記規則と同種の対応)を定めるかを判断する必要がある)
+- **重要度案:** low(実行時の参照エラーにはならず、可読性・将来の混乱リスクの問題であるため)
+- **状態:** open(候補。次回監査での正式ARC化待ち)
+- **次回CEO承認対象:** 要(正式な是正チケット化の際に承認を得る)
+
+---
+
 ## 変更履歴
 | 版 | 日付 | 変更内容 | 変更者 |
 |---|---|---|---|
 | 1 | 2026-07-13 | 初版作成。CEO確認待ち | architecture-review-controller(実行: COO) |
+| 2 | 2026-07-13 | Batch B(RT-003〜005)実施。各チケットのstatusを`resolved`へ更新し「Batch B 再監査結果」を追記。実施中に判明した`ig-strategy`・`ig-content-planning`表記問題をARC-011・ARC-012(候補)として追記 | architecture-review-controller(実行: COO) |

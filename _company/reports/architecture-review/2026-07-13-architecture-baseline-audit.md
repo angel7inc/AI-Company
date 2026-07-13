@@ -98,9 +98,11 @@ _company/reports/
 - **是正担当Division/Agent:** Product Division(`product-service-designer`)またはCOO(ブランドファイルの軽微修正のため`sop/management/coo-approval-flow.md`の範囲内)
 - **CEO承認が必要か:** 不要(誤字・旧参照の修正であり、設計判断を伴わない軽微修正に該当)
 - **自動修正可能か:** 可能
-- **現在の状態:** open
+- **現在の状態:** resolved(2026-07-13 再監査で確認。RT-003として実施)
 - **依存関係:** なし
 - **推奨対応順序:** 2位
+
+**【2026-07-13 再監査追記】** 修正前の状態(6行目「validated(ig-researchの調査で裏付けが取れた段階)」、28行目「各カテゴリの妥当性検証は ig-research エージェントが継続的に行う想定」)は上記のとおり。`intelligence-consumer`が`agents.yaml`615行目に登録済み・definitionファイル実在・役割が「悩み・ペルソナ・行動分析」かつ「`pain-point-categories.yaml`のstatus更新提案」を担うことを確認したうえで置換した。置換後、ファイル内に`ig-research`の文字列が残存しないこと、YAML構造・値(3カテゴリ・status・created_at等)が無変更であることを確認済み。詳細は`_company/reports/architecture-review/2026-07-13-architecture-remediation-plan.md`の「Batch B 再監査結果」を参照。
 
 ---
 
@@ -116,9 +118,11 @@ _company/reports/
 - **是正担当Division/Agent:** COO(設計書への注記追加、二段階承認プロセスのGate2相当)
 - **CEO承認が必要か:** 要(過去の設計書の位置づけを変更する記述のため、5-part形式の軽微確認を推奨)
 - **自動修正可能か:** 可能(注記追加のみ)
-- **現在の状態:** open
+- **現在の状態:** resolved(2026-07-13 再監査で確認。RT-004として実施)
 - **依存関係:** なし
 - **推奨対応順序:** 3位
+
+**【2026-07-13 再監査追記】** 修正前の状態(3行目「設計フェーズ ― CEO承認待ち(未実装)」)は上記のとおり。ステータスを「実装済み・一部後続Phaseで置換(implemented with superseding changes)」に更新し、`phase5`・`phase8b`設計書と同じ上書き注記(blockquote)形式で、後継設計書(phase3・phase3b・phase5・phase7・phase8)へのリンクを追加した。全リンク先の実在を`test -f`で確認済み(CEOご指示の「Phase8a」は実ファイルとして存在しないため、実在する`phase8-product-division-design.md`に置き換えて参照。詳細は是正計画書を参照)。`git diff`で本文(00章以降)が削除・改変されていないことを確認済み。詳細は`_company/reports/architecture-review/2026-07-13-architecture-remediation-plan.md`の「Batch B 再監査結果」を参照。
 
 ---
 
@@ -134,9 +138,11 @@ _company/reports/
 - **是正担当Division/Agent:** COO(軽微修正)
 - **CEO承認が必要か:** 不要(旧参照の一括修正、設計判断を伴わない)
 - **自動修正可能か:** 可能
-- **現在の状態:** open
+- **現在の状態:** resolved(2026-07-13 再監査で確認。RT-005として実施)
 - **依存関係:** ARC-002と同時に対応することを推奨
 - **推奨対応順序:** 4位
+
+**【2026-07-13 再監査追記】** 一括文字列置換ではなく、ファイルごとに後継の妥当性を個別確認した。`gemini`→`intelligence-consumer`、`perplexity`→`intelligence-consumer`、`reddit`→`shared-traffic-intelligence`、`youtube`→`shared-competitor-intelligence`の4件は`agents.yaml`のtools/役割記述との直接一致を確認し置換(高確信度)。`instagram`・`pinterest`・`seo`の3件は複数候補が部分的にしか一致せず単一エージェントへの断定根拠が不足していたため、推測での特定エージェント置換は行わず「当該Knowledgeを使用するIntelligence関連エージェント」という役割ベースの表現に置換した。7ファイル全てで`ig-research`の文字列残存なしを確認済み。詳細は`_company/reports/architecture-review/2026-07-13-architecture-remediation-plan.md`の「Batch B 再監査結果」を参照。
 
 ---
 
@@ -300,3 +306,4 @@ _company/reports/
 |---|---|---|---|
 | 1 | 2026-07-13 | 初回ベースライン監査。CEO確認待ち | architecture-review-controller(実行: COO) |
 | 2 | 2026-07-13 | CEO指摘により修正: (1)重要度別件数の再集計(high 3→4、info 2→1、原因を明記)、(2)ARC-001をGit除外領域の分離案に改訂、(3)ARC-007を全社的なprepare/execute区分の再評価に拡大し、Outbound Action Approval Policy新設案を追加。是正計画書を新設し本報告書からリンク | architecture-review-controller(実行: COO) |
+| 3 | 2026-07-13 | Batch B(RT-003〜005)実施に伴う再監査。ARC-002・ARC-003・ARC-004の状態を`open`→`resolved`へ更新し、各項目に再監査追記(修正前の状態・検証根拠)を追加。過去の記述は削除していない | architecture-review-controller(実行: COO) |

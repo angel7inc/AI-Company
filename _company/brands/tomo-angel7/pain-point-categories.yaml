@@ -3,7 +3,7 @@
 # 新しいカテゴリを追加する場合は、この一覧に1行追記するだけでよい(brand-brief.md本体の編集は不要)
 #
 # status: draft(仮説段階、docs/phase2-instagram-design.mdの想定に基づく)
-#         validated(ig-researchの調査で裏付けが取れた段階)
+#         validated(intelligence-consumerの調査で裏付けが取れた段階)
 
 pain_point_categories:
   - id: relationship-anxiety
@@ -25,4 +25,4 @@ created_at: "2026-07-12"
 updated_at: "2026-07-12"
 version: 1
 
-# 各カテゴリの妥当性検証は ig-research エージェントが継続的に行う想定(docs/phase2-instagram-design.md 01章参照)
+# 各カテゴリの妥当性検証は intelligence-consumer エージェントが継続的に行う想定(旧研究エージェント計画を上位互換。docs/phase2-instagram-design.md 01章参照)

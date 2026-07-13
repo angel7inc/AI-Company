@@ -7,7 +7,7 @@ Perplexityの使い方・仕様・活用法(最新情報・トレンド調査用
 実際のプロンプト本文、APIキー・認証情報。
 
 ## 3. 誰が参照するか
-`ig-research`等、Perplexityを使う全エージェント。
+`intelligence-consumer`等、Perplexityを使う全エージェント。
 
 ## 4. 更新ルール
 Perplexityの新機能を確認したら更新する。

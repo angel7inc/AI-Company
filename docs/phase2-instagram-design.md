@@ -1,8 +1,10 @@
 # Phase2設計書 ― Instagram事業 共通基盤設計(Tomo_Angel7)
 
-**ステータス:** 設計フェーズ ― CEO承認待ち(未実装。ファイル作成・エージェント追加・設定変更は行っていません)
+**ステータス:** 実装済み・一部後続Phaseで置換(implemented with superseding changes)― Instagram事業の基本構造は実装済み。本書はhistorical design documentとして保持する(詳細は下記上書き注記参照)
 **策定日:** 2026年7月11日
 **対象:** Instagram事業(MVP)/ 将来の全チャネル(ココナラ・LINE・Studio・YouTube・TikTok・X・Threads・Facebook・Pinterest等)へ展開する共通基盤
+
+> **【2026-07-13 追記・上書き注記】** Instagram事業の基本構造(`business_unit: instagram`)は実装済みで、稼働中です。本書は**historical design document**として保持し、本文(過去時点の名称・記述)は削除・改変しません。ただし、本書内の一部のエージェント名・責任範囲・統合方式は、後続Phase設計書により置換・退役済みです ― `docs/phase3-search-seo-division-design.md`(Search & SEO・全社横断4 Division新設)、`docs/phase3b-creative-division-design.md`(Creative Division新設)、`docs/phase5-revenue-division-design.md`(Revenue Division新設、ブランド分離判断)、`docs/phase7-intelligence-division-design.md`(Intelligence Division新設、`ig-research`計画を`intelligence-consumer`等へ統合)、`docs/phase8-product-division-design.md`(Product Division新設、Brand LayerとProduct Divisionの責務分離)。現在の正本は`docs/roadmap.md`・`_company/org/agents.yaml`および上記の各後継設計書を参照してください。
 
 ---
 
