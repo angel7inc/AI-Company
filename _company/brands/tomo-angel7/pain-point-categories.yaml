@@ -21,8 +21,28 @@ pain_point_categories:
     description: 周囲に本音を相談しづらい、共感してもらえないと感じる孤独感
     status: draft
 
+  # 以下3件は2026-07-13、Instagram投稿パイロット運用(businesses/instagram/content/pilot-scope.md参照)のために追加。
+  # 既存3件(relationship-anxiety/self-understanding-lack/loneliness)は変更していない。恋愛以外の悩みへの検証目的の追加であり、
+  # パイロットの成否に応じて継続・修正・削除を再判断する(pilot-scope.mdの停止条件を参照)。
+  # 【重要】本3件は通常運用で自動的に使用可能な正規カテゴリとしては扱わない。pilot-scope.md(status: experimental)で
+  # 定義された実験範囲内でのみ利用可能とし、パイロット外の投稿・企画でこれらのIDを正規カテゴリとして参照しないこと。
+  - id: interpersonal-boundary-fatigue
+    name: 対人関係での気遣い疲れ
+    description: 家族・友人・職場等で他人に気を遣いすぎて、心身が疲れてしまう
+    status: draft
+
+  - id: work-future-uncertainty
+    name: 仕事・将来への不安
+    description: 仕事の先行きや将来のキャリア・生活が見えず、漠然とした不安を抱える
+    status: draft
+
+  - id: life-choice-paralysis
+    name: 人生の選択における停滞感
+    description: 人生の岐路で何を選べばよいか分からず、決断できずに動けなくなる
+    status: draft
+
 created_at: "2026-07-12"
-updated_at: "2026-07-12"
-version: 1
+updated_at: "2026-07-13"
+version: 2
 
 # 各カテゴリの妥当性検証は intelligence-consumer エージェントが継続的に行う想定(旧研究エージェント計画を上位互換。docs/phase2-instagram-design.md 01章参照)

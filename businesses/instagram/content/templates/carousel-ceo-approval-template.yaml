@@ -1,0 +1,21 @@
+# CEO承認記録テンプレート(パイロット用カルーセル投稿)
+# _company/charter/outbound-action-policy.md の承認記録スキーマに準拠。
+# 本テンプレート自体はサンプルであり、実際の承認記録ではない(実データは作成しない)。
+sample_only: true
+do_not_import: true
+sensitivity: internal
+
+approval_record:
+  action_id: null              # 例: "approve-tomo-angel7-pilot-01"
+  action_type: null            # 例: "instagram-carousel-publish"(execute区分。outbound-action-policy.md準拠)
+  target: null                 # 例: "instagram: tomo_angel7 official account"
+  content_reference: null      # 承認対象の企画書パス(例: businesses/instagram/content/pilot-approved/tomo-angel7-pilot-01.md)
+  content_hash: null           # 承認時点の内容のハッシュ値(再承認要否の判定に使用)
+  approved_by: null            # CEO
+  approved_at: null            # "YYYY-MM-DDTHH:MM:SS+09:00"
+  expires_at: null             # 有効期限
+  status: null                 # pending / approved / expired / revoked
+
+# 承認記録に直接保存しない情報: 顧客情報・DM本文・LINE登録者情報・APIキー・アクセストークン・パスワード
+# 再承認が必要になる変更: 5枚の文章・キャプション・画像・投稿先・公開範囲・CTA・投稿日時のいずれかの変更
+# 有効な承認記録が確認できない場合、投稿(execute)は禁止(default-deny、outbound-action-policy.md準拠)

@@ -31,7 +31,7 @@
 
 ## SOP一覧
 
-**本表は2026-07-13時点で実在を確認したSOPの一覧です。件数(16件)は現在確認時点のものであり、長期的な固定値・正本ではありません。** 新しいSOPを追加・退役・名称変更した場合は、**その変更と同じ変更単位(同じコミット/同じ承認)で本表も必ず更新してください**(表の更新漏れ自体が監査対象になります)。
+**本表は2026-07-13時点で実在を確認したSOPの一覧です。件数(17件)は現在確認時点のものであり、長期的な固定値・正本ではありません。** 新しいSOPを追加・退役・名称変更した場合は、**その変更と同じ変更単位(同じコミット/同じ承認)で本表も必ず更新してください**(表の更新漏れ自体が監査対象になります)。
 
 | 実行順 | カテゴリ | id | タイトル | Status | Owner | 更新頻度(frequency) | 依存SOP | 関連Knowledge | 定義ファイルパス |
 |---|---|---|---|---|---|---|---|---|---|
@@ -51,6 +51,7 @@
 | - | architecture-review | `sop-audit` | SOP Layer監査手順 | draft | `architecture-review-controller` | quarterly | `knowledge-audit`, `cross-duplication-audit` | (なし) | `_shared/sop/architecture-review/sop-audit.md` |
 | - | hr | `agent-onboarding` | エージェントオンボーディング手順 | draft | `hr-workforce-manager` | as-needed | `agent-retirement` | (なし) | `_shared/sop/hr/agent-onboarding.md` |
 | - | hr | `agent-retirement` | エージェント退役手順 | draft | `hr-workforce-manager` | as-needed | `agent-onboarding` | (なし) | `_shared/sop/hr/agent-retirement.md` |
+| 2 | instagram | `carousel-post-pilot` | Instagramカルーセル投稿パイロット手順(Tomo_Angel7) | draft | `ig-content-planner` | as-needed | `consumer-analysis` | instagram, psychology, copywriting | `_shared/sop/instagram/carousel-post-pilot.md` |
 
 *「実行順」は上の「カテゴリ一覧・用途・参照順」の順番列と対応させてください。同一カテゴリ内で複数SOPがある場合は`1-a`, `1-b`のように枝番を振ります。「依存SOP」は各SOPのfrontmatter`related_sop_ids`(特定ファイルへの参照)のみを転記し、`related_sop_categories`(カテゴリ全体への参照。例: `management`)は上の「カテゴリ一覧・用途・参照順」表で代表させ、本表には転記しません。`sop-template.md`はテンプレートであり実手順ではないため本表に含めません。*
 
