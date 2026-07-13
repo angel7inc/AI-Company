@@ -23,3 +23,11 @@ desktop.ini
 
 # Finance実績データ(sensitivity: confidential。Private Repositoryでも実額はコミットしない)
 _company/finance/actuals/**/*.yaml
+
+# KPI実績データ(Finance実績と同じ扱い。ディレクトリ維持用の.gitkeepのみ追跡)
+_company/kpi/actuals/**
+!_company/kpi/actuals/.gitkeep
+
+# 機密レポート(実数値を含む週次/月次スナップショット等。.gitkeepのみ追跡)
+_company/reports/confidential/**
+!_company/reports/confidential/.gitkeep

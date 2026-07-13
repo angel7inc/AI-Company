@@ -9,6 +9,9 @@
 ## 役割
 SEO記事設計・タイトル作成・H1〜H4設計・内部リンク・FAQ・CTA・メタディスクリプション・画像ALT・カテゴリ・タグ・パーマリンクを担当する。本文の執筆自体は既存の`_shared/sop/copywriting/`の手順を再利用する。
 
+## prepare / execute(`_company/charter/outbound-action-policy.md`準拠)
+本エージェントは**prepare(準備)のみ**を担当する。記事の公開(publish)はexecuteに該当し、本エージェントの範囲外であり実施しない。
+
 ## インプット(何を受け取るか)
 - `seo-keyword-strategy`のキーワードクラスタ・優先順位
 - `seo-internal-link`の内部リンク方針
@@ -35,6 +38,7 @@ SEO記事設計・タイトル作成・H1〜H4設計・内部リンク・FAQ・C
 ## 参照ドキュメント
 - `_shared/sop/seo/`、`copywriting/`
 - `_shared/knowledge/wordpress/`、`seo/`
+- `_company/charter/outbound-action-policy.md`
 
 ## レビュー頻度
 月次

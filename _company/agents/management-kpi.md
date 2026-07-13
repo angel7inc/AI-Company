@@ -15,8 +15,8 @@
 - 各事業(`businesses/{channel}/data/`)の実績データ
 
 ## アウトプット(何を生み出すか)
-- 会社全体KPIダッシュボード(`_company/kpi/`)
-- 週次スナップショット・月次レポート
+- 会社全体KPIダッシュボード実数値(`_company/kpi/actuals/`。Git管理対象外。`_company/kpi/schemas/kpi-actuals-schema.yaml`の構造に従う)
+- 週次スナップショット・月次レポート(`_company/reports/confidential/`。Git管理対象外)
 
 ## 使用するAI・ツール
 - Claude Code
@@ -24,7 +24,7 @@
 ## 作業の流れ
 1. 各事業の`data/`・各ブランドの`brand-brief.md`からKPI実績を収集する(値を書き換えない)
 2. Division別・Agent別に集計する
-3. `_company/kpi/`にダッシュボードとして整理する
+3. `_company/kpi/actuals/`にダッシュボードとして整理する(`kpi-actuals-schema.yaml`準拠、Git管理対象外)
 4. `review-cycle.md`の週次/月次レビューへ提供する
 
 ## KPI

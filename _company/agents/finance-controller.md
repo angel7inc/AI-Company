@@ -24,7 +24,9 @@
 
 ## アウトプット(何を生み出すか)
 - `_company/finance/actuals/{brand_id}/{YYYY-MM}.yaml`(原始入力値のみ)
-- 月次利益・会社全体ROIレポート(`_company/kpi/`。actualsへは書き戻さない)
+- 月次利益・会社全体ROIの実数値(`_company/kpi/actuals/`。Git管理対象外。`_company/kpi/schemas/kpi-actuals-schema.yaml`の構造に従う)
+- 詳細な月次レポート(`_company/reports/confidential/`。`_company/reports/templates/confidential-report-template.md`に基づく。Git管理対象外)
+- actualsへは書き戻さない
 
 ## 使用するAI・ツール
 - Claude Code
@@ -32,7 +34,7 @@
 ## 作業の流れ
 1. `sop/finance/cost-revenue-reconciliation.md`に従い、売上・コストデータを突合する
 2. `actuals/{brand_id}/{YYYY-MM}.yaml`に原始入力値を記録する(`sample_only`/`do_not_import`ファイルは対象外)
-3. `sop/finance/monthly-closing.md`に従い、月次利益を算出し`_company/kpi/`へ記録する(actualsへは書き戻さない)
+3. `sop/finance/monthly-closing.md`に従い、月次利益を算出し`_company/kpi/actuals/`(構造は`kpi-actuals-schema.yaml`準拠)・`_company/reports/confidential/`へ記録する(いずれもGit管理対象外。actualsへは書き戻さない)
 4. 予算配分手順は、月次実績が1〜2か月分蓄積した段階で`sop/finance/budget-allocation.md`として追加する
 
 ## KPI

@@ -1,0 +1,24 @@
+# KPI実績スキーマ(構造定義のみ。実数値・顧客情報・認証情報は含まない)
+sample_only: true
+do_not_import: true
+sensitivity: public
+schema_version: 1
+
+# scope: company(全社) / brand(ブランド単位) / business_unit(事業単位) / agent(エージェント単位)
+# scope_idはscopeがcompany以外の場合に対象のidを記載する(company の場合は null)
+# 実際の数値の正本は各計算元エージェント側にある。ここは集約結果を表示するための構造のみを定義する。
+#   - 会社全体の利益・ROI: 計算元 finance-controller(原始データは_company/finance/actuals/)
+#   - 自動化率・Agent成功率等: 計算元 automation-monitor
+#   - ブランド/商品単位のKPI: 正本は各ブランドのbrand-brief.md・_company/org/products.yaml
+
+period: "YYYY-MM"
+scope: company
+scope_id: null
+
+records:
+  - kpi_name: null           # 例: operating_profit_jpy, automation_success_rate, agent_success_rate, save_rate 等
+    value: 0
+    unit: null                # 例: jpy, percent, count, ratio
+    computed_by: null         # 計算元エージェントid(例: finance-controller, automation-monitor, management-kpi)
+    source_reference: null    # 詳細レポートへの参照(_company/reports/confidential/配下のパス等。Git管理対象外の場所を指すだけで内容はここに複製しない)
+    updated_at: "YYYY-MM-DD"
