@@ -14,3 +14,10 @@
 | `product/` | サービス/商品構造設計・品質基準定義(Product Division) |
 
 Phase 2以降、実際のエージェント定義ファイル(.md)をここに追加していきます。エージェントが多い共有Divisionは、`_company/org/agents.yaml`の`division`フィールドでグループ管理します。
+
+## `copywriting/`が空である理由(2026-07-13記録)
+`copywriting/`は現時点で共有エージェントが一度も配置されておらず、`.gitkeep`のみの状態です。これは欠落や設定漏れではなく、以下の判断によるものです。
+- コピーライティングは現時点ではInstagram(`ig-content-planner`等)・SEO(`seo-wordpress-content`等)・Revenue(`revenue-crm-manager`等)のようなチャネル固有エージェントが、各チャネルのトーン・フォーマットに合わせて担当する
+- `design/`・`analytics/`のような共有方法論エージェントを今すぐ新設すると、チャネル固有エージェントとの役割重複が生じるリスクがあるため、共有copywritingエージェントは現時点では未配置とする
+- 複数Divisionで同一のコピー業務(例: 複数チャネルで共通するコピーの型・禁止表現チェック等)が重複していると判明した場合は、その時点で別途Gate1提案を行い、共有エージェント新設を検討する
+- `_shared/agents/copywriting/`というフォルダ自体は将来の拡張用に維持し、`design/`・`analytics/`と同様にいつでも配置できる状態にしておく(フォルダの存在は現在の欠落・故障を意味しない)

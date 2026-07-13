@@ -115,7 +115,7 @@ status: draft-for-ceo-review
 - **受入条件:** 表に14行すべてが記載され、「まだSOPがありません」の文言が削除されていること
 - **CEO承認の要否:** 不要
 - **推奨実施Batch:** C
-- **状態:** open
+- **状態:** resolved(2026-07-13実施・検証済み。詳細は本書末尾「Batch C 再監査結果」参照)
 - **修正後にArchitecture Reviewが再確認する項目:** 今後SOP追加のたびに本表が更新される運用が徹底されているか(次回監査で再発有無を確認)
 
 ### チケット RT-007(対応: ARC-006)
@@ -129,7 +129,7 @@ status: draft-for-ceo-review
 - **受入条件:** 8ファイルすべてに「してはいけないこと」セクションが存在すること
 - **CEO承認の要否:** 不要(既存役割の明文化)
 - **推奨実施Batch:** C
-- **状態:** open
+- **状態:** resolved(2026-07-13実施・検証済み。詳細は本書末尾「Batch C 再監査結果」参照)
 - **修正後にArchitecture Reviewが再確認する項目:** 将来新設されるQA/監査系エージェントが、テンプレート段階からこのセクションを含む運用になっているか
 
 ### チケット RT-008(対応: ARC-008)
@@ -143,7 +143,7 @@ status: draft-for-ceo-review
 - **受入条件:** `_shared/agents/README.md`に本件の判断根拠が記載されていること
 - **CEO承認の要否:** 不要(現状維持の記録のみの場合)。新設する場合は要
 - **推奨実施Batch:** C
-- **状態:** open
+- **状態:** resolved(2026-07-13実施・検証済み。詳細は本書末尾「Batch C 再監査結果」参照)
 - **修正後にArchitecture Reviewが再確認する項目:** 次回監査時点で`copywriting/`が実際に空のままか、新設判断がなされたか
 
 ### チケット RT-009(対応: ARC-009)
@@ -152,12 +152,12 @@ status: draft-for-ceo-review
 - **担当Division:** COO
 - **担当Agent:** COO
 - **修正対象ファイル:** `docs/naming-conventions.md`
-- **修正内容:** 「カテゴリ全体を指す場合はカテゴリ名、特定の手順を指す場合はそのファイルの`id`を用いる」という表記規則を追記
+- **修正内容:** 「カテゴリ全体を指す場合は`related_sop_categories`、特定の手順を指す場合は`related_sop_ids`を用いる」というフィールド分離規則を`docs/naming-conventions.md`・`sop-template.md`へ追記し、既存14件のSOPも移行する
 - **依存関係:** なし
-- **受入条件:** `docs/naming-conventions.md`に本規則が明記されていること(既存の`related_sop`値の遡及修正は任意)
+- **受入条件:** `docs/naming-conventions.md`・`sop-template.md`に本規則が明記され、既存SOPの`related_sop`値のうち意味が明確なものは新フィールドへ移行されていること。曖昧な値が残る場合はresolvedにせずpartially resolvedとする
 - **CEO承認の要否:** 不要
 - **推奨実施Batch:** C
-- **状態:** open
+- **状態:** resolved(2026-07-13実施・検証済み。既存14件全てで意味が明確に分類でき、曖昧値は0件だったため完全移行。詳細は本書末尾「Batch C 再監査結果」参照)
 - **修正後にArchitecture Reviewが再確認する項目:** 新規SOP作成時にこの規則が実際に守られているか
 
 ### チケット RT-010(対応: ARC-010)
@@ -182,9 +182,10 @@ status: draft-for-ceo-review
 | A | 2(RT-001, RT-002) | 2/2 | 一部(構造作成は可、基準決定は不可) |
 | B | 3(RT-003〜005) | 1/3(RT-004のみ) | 3/3(RT-004は注記追加のみ) |
 | C | 5(RT-006〜010) | 0/5 | 4/5(RT-008は新設判断時のみ要) |
-| **合計** | **10** | **3/10** | ― |
+| 新規(別Batch) | 3(RT-011〜013。RT-011は実施済み) | 1/3(RT-013のみ) | 2/3(RT-013は分割等の設計判断のため不可) |
+| **合計** | **13** | **4/13** | ― |
 
-**Batch A・B実施状況(2026-07-13時点):** Batch A(RT-001・RT-002)コミット済み(`e9cf122`)・push済み。Batch B(RT-003〜005)は本改訂で`resolved`へ更新(下記「Batch B 再監査結果」参照)。Batch C・HR Division・Tomo Academyは未着手。
+**Batch A・B・C実施状況(2026-07-13時点):** Batch A(RT-001・RT-002)コミット済み(`e9cf122`)・push済み。Batch B(RT-003〜005)コミット済み(`9ec3acf`)・push済み。Batch C(RT-006〜009)は本改訂で`resolved`へ更新、RT-010は`accepted`のまま(下記「Batch C 再監査結果」参照)。ARC-011・012・013を正式採番し、RT-011を今回実施、RT-012・RT-013は別Batchへ繰越。HR Division・Tomo Academyは未着手。
 
 ---
 
@@ -216,31 +217,121 @@ status: draft-for-ceo-review
 
 ---
 
-## 追加発見事項(Batch B実施中に判明・次回CEO承認対象の候補)
+## Batch C 再監査結果(2026-07-13実施)
 
-以下は今回のBatch B(RT-003〜005)の対象範囲外のため修正していません。既存のARC ID・RT IDとは別の新規IDを付与し、次回監査での正式な指摘化・CEO承認を経てから是正します。
+**再監査実行:** `architecture-review-controller`(検出・検証のみ。是正実行はCOOが個別に実施)
 
-### ARC-011(候補)
+### RT-006 再監査
+- **修正前の状態:** `sop-index.md`の「SOP一覧」表が「(まだSOPがありません)」のまま
+- **検証根拠:** 実在確認済みの14件(`sop-template.md`を除く)全てを、実行順・カテゴリ・id・タイトル・Status・Owner・更新頻度・依存SOP・関連Knowledge・定義ファイルパスの10列で追記。「まだSOPがありません」の文言を削除。件数(14件)が2026-07-13時点の確認件数であり長期固定値でないこと、SOP新設・退役・改名時は同じ変更単位で本表を更新する保守ルールを明記
+- **status:** resolved
+
+### RT-007 再監査
+- **修正前の状態:** QA/監査系9エージェント中8体に「してはいけないこと」セクションが無い
+- **検証根拠:** 対象8ファイル(`shared-brand-quality-checker`・`shared-image-quality-checker`・`shared-video-quality-checker`・`seo-quality-checker`・`seo-eeat-checker`・`management-quality`・`product-quality-standards`・`intelligence-research-quality-checker`)全てに「してはいけないこと」セクションを追加。各セクションは(1)判定対象・エージェント定義・設定・データを自ら修正しない、(2)公開・送信・配信・外部API書き込み等のexecuteを行わない、(3)合否判定・スコアリング・問題検出・根拠提示・改善提案・報告のみ行う、(4)修正は担当Division・Agentへ差し戻す、(5)CEO承認があっても本エージェント自身が修正担当に変わらない、の5点を明記。監査報告書・評価結果・改善提案の作成自体は明示的に許容(禁止していない)。対象8ファイル以外への横展開なし(`grep`で追加後の該当セクション数8件を確認)。なお`product-quality-standards`は既存の`products.yaml`メトリクス更新という正規出力を損なわないよう文言を調整
+- **status:** resolved
+
+### RT-008 再監査
+- **修正前の状態:** `_shared/agents/copywriting/`が空である理由の記録が無い
+- **検証根拠:** `_shared/agents/README.md`に「コピーライティングは現時点ではチャネル固有エージェントが担当」「共有copywritingエージェントは役割重複回避のため現時点で未配置」「重複が判明した場合は別途Gate1」「フォルダの存在は欠落・故障を意味しない」という判断根拠を記載。新規エージェントは作成していない
+- **status:** resolved
+
+### RT-009 再監査
+- **修正前の状態:** `related_sop`欄がファイル単位IDとカテゴリ単位名称を無区別に混在
+- **検証根拠:** `docs/naming-conventions.md`に`related_sop_ids`(特定ファイル)・`related_sop_categories`(カテゴリ全体)への分離規則を追記。`_shared/sop/sop-template.md`の frontmatter も同様に分離。既存14件のSOP全件の`related_sop`値を確認した結果、全ての値が「実在するSOP id」または「実在するSOPカテゴリフォルダ名(`_shared/sop/{category}/`)」のいずれかに明確に分類可能であることを`ls`・`grep`で確認し、**曖昧な値は0件だったため全14件を新フィールドへ完全移行**。旧`related_sop:`フィールドの残存が無いことを確認済み
+- **status:** resolved(曖昧値なし。partially resolvedへの該当なし)
+
+---
+
+## 正式指摘(ARC-011・ARC-012・ARC-013)
+
+### ARC-011(正式採番)
 - **発見ID:** ARC-011
-- **対象ファイル数:** 約12ファイル
-- **代表的な対象ファイル:** `docs/phase2-instagram-design.md`、`_company/agents/management-strategy.md`、`_company/brands/tomo-angel7/brand-brief.md`、`_shared/knowledge/{ai,branding,chatgpt,gemini,instagram,marketing,psychology}/README.md`
-- **問題内容:** `ig-strategy`という名称が`_company/org/agents.yaml`に一度も登録されていないにもかかわらず、Phase2設計書由来の名称として複数ファイルに残存している。エージェントとして実装されなかったのか、別名で実装されたのかが未確認
-- **想定される正式名称または後継:** 未確定。`management-strategy`(全社戦略)または将来のInstagram専用戦略エージェントのいずれかが該当する可能性があるが、本調査では特定に至らず
-- **全件調査が必要:** 要(12ファイルの前後文脈を確認し、`ig-strategy`が指していた機能が現在どのエージェントに帰属しているかを特定する必要がある)
-- **重要度案:** medium(実害は限定的だが、ARC-002〜004と同種の「存在しない参照」であるため)
-- **状態:** open(候補。次回監査での正式ARC化待ち)
-- **次回CEO承認対象:** 要(正式な是正チケット化の際に承認を得る)
+- **分類:** 旧判断の誤読リスク/未実装機能の誤表示
+- **重要度:** medium
+- **対象ファイル数:** 13ファイル(全件調査で確定。うち現在の参照として問題があるのは8ファイル)
+- **全出現箇所:** `docs/phase2-instagram-design.md`(8箇所、歴史的記述として保護対象)、`docs/phase4-management-division-design.md`:49(既に「phase2計画、未実装」と明記済み、問題なし)、`_company/agents/management-strategy.md`:10(既に「将来の」と明記済み、問題なし)、`_company/brands/tomo-angel7/brand-brief.md`:114(現在参照として問題あり)、`_shared/knowledge/{ai,branding,chatgpt,gemini,instagram,marketing,psychology}/README.md`(計7ファイル、現在参照として問題あり)、監査報告書・是正計画書(自己言及、対象外)
+- **歴史的記述か現在の参照か:** 混在。問題があるのは`brand-brief.md`1件+Knowledge README 7件の計8ファイルのみ
+- **agents.yamlへの登録:** 無し(確認済み)
+- **後継エージェント:** **存在しない。** Phase2原案の`ig-strategy`(Instagram月次アカウント戦略・KPI目標設定)は、`intelligence-consumer`等のように退役・置換されたのではなく、機能自体が現時点で誰も担っていない未実装領域
+- **単純置換してよい箇所:** 無し(後継が存在しないため推測での単一エージェント置換は行わない)
+- **過去の設計記録として残す箇所:** `docs/phase2-instagram-design.md`の8箇所全て
+- **CEO判断(2026-07-13):** (1)`ig-strategy`の新エージェントは現時点で作成しない、(2)`management-strategy`等の既存エージェントへ無理に割り当てない、(3)Instagram固有の戦略機能は「未実装・担当未割当」として扱う、(4)必要性を将来再評価してからエージェント新設または役割配分を行う
+- **状態:** open
+- **対応する是正チケット:** RT-012(別Batch。今回未実施)
 
-### ARC-012(候補)
+### ARC-012(正式採番)
 - **発見ID:** ARC-012
-- **対象ファイル数:** 約16ファイル
-- **代表的な対象ファイル:** `businesses/instagram/agents/ig-carousel-intelligence.md`、`businesses/instagram/agents/ig-creative-team.md`、`docs/phase7-intelligence-division-design.md`、`_shared/agents/intelligence/intelligence-insight-synthesizer.md`、`_shared/knowledge/{canva,chatgpt,copywriting,design,instagram,pinterest,psychology}/README.md`、`_shared/sop/{design,instagram,research}/`配下
-- **問題内容:** `agents.yaml`上の正式ID`ig-content-planner`に対し、16ファイルで`ig-content-planning`という表記(末尾が異なる)が使われている。誤字による表記揺れか、「役割・機能カテゴリ名」と「エージェントID」を意図的に使い分けているのかが未確認
-- **想定される正式名称または後継:** `ig-content-planner`(`agents.yaml`90行目に登録済み、definitionファイル`businesses/instagram/agents/ig-content-planner.md`実在確認済み)。ただし16ファイル全件が単純な誤字か、意図的な使い分けかの判断が先に必要
-- **全件調査が必要:** 要(表記揺れか意図的区分かをファイルごとに確認したうえで、統一するか、区別する表記規則(ARC-009の`related_sop`表記規則と同種の対応)を定めるかを判断する必要がある)
-- **重要度案:** low(実行時の参照エラーにはならず、可読性・将来の混乱リスクの問題であるため)
-- **状態:** open(候補。次回監査での正式ARC化待ち)
-- **次回CEO承認対象:** 要(正式な是正チケット化の際に承認を得る)
+- **分類:** 存在しない参照(監査項目17)
+- **重要度:** **medium**(CEO判定により、当初案のlowから引き上げ。理由: (1)現役エージェント定義が、存在しないエージェント名を連携先として参照している、(2)正式IDはagents.yaml登録済みの`ig-content-planner`で確定している、(3)将来のエージェント実行や連携判断を誤らせる可能性がある)
+- **対象ファイル数:** 17ファイル(全件調査で確定。うち現在有効な参照として修正が必要なのは14ファイル)
+- **各表記の出現ファイル数:** `ig-content-planning` 17ファイル、正式ID`ig-content-planner` 12ファイル
+- **正式IDの根拠:** `_company/org/agents.yaml`90行目に`id: ig-content-planner`・`status: active`・`definition: businesses/instagram/agents/ig-content-planner.md`として登録済み(definitionファイル実在確認済み)。`docs/naming-conventions.md`8行目の命名規則例としても採用
+- **歴史的記述か現在の参照か:** `docs/phase2-instagram-design.md`(6箇所)は、Phase2が「`ig-content-planner`を`ig-content-planning`に改名する計画」だったことを示す歴史的原本(改名は実行されなかった)。監査報告書・是正計画書(自己言及)を除く14ファイルは現在有効な参照であり、稼働中エージェント自身の定義ファイルが誤った連携先名を使用している実質的なバグ
+- **状態:** resolved(RT-011として今回実施・検証済み。詳細は下記参照)
+- **対応する是正チケット:** RT-011(今回実施)
+
+### ARC-013(正式採番)
+- **発見ID:** ARC-013
+- **タイトル:** Architecture Review Divisionの拡張性・独立性・優先順位付け不足
+- **重要度:** medium
+- **内容:**
+  1. 1エージェント(`architecture-review-controller`)に複数監査観点(Knowledge/SOP/Agent/命名/重複)が集中している
+  2. Division/Agent数が増加した場合の分割トリガーが未定義(`finance-controller`にはある明示的な分割トリガーが本エージェントには無い)
+  3. 全件走査が「Claude Codeによる手動実行」を前提としており、自動化されていない
+  4. 自己監査(本エージェント自身・本SOP群の命名・重複)の独立性が弱い(第三者視点が無い)
+  5. severity以外の定量的な優先順位付け基準(影響範囲・修正コスト等)が未定義
+- **RT-007との関係:** RT-007は他のQA/監査系8エージェントへ非実行境界を横展開する内容であり、`architecture-review-controller`自身の上記5項目の構造的弱点は解消しない
+- **状態:** open
+- **対応する是正チケット:** RT-013(別Batch。今回未実施)
+
+---
+
+## 新規是正チケット(RT-011・RT-012・RT-013)
+
+### チケット RT-011(対応: ARC-012)
+- **重要度:** medium
+- **問題:** `ig-content-planning`という未実装名称が、稼働中エージェントの定義ファイルを含む14ファイルで正式ID`ig-content-planner`の代わりに使用されている
+- **担当Division:** COO横断対応
+- **担当Agent:** COO
+- **修正対象ファイル(14件、今回実施):** `businesses/instagram/agents/ig-carousel-intelligence.md`、`businesses/instagram/agents/ig-creative-team.md`、`docs/phase7-intelligence-division-design.md`、`_shared/agents/intelligence/intelligence-insight-synthesizer.md`、`_shared/knowledge/canva/README.md`、`_shared/knowledge/chatgpt/README.md`、`_shared/knowledge/copywriting/README.md`、`_shared/knowledge/design/README.md`、`_shared/knowledge/instagram/README.md`、`_shared/knowledge/pinterest/README.md`、`_shared/knowledge/psychology/README.md`、`_shared/sop/design/README.md`、`_shared/sop/instagram/README.md`、`_shared/sop/research/insight-synthesis.md`
+- **対象外(変更しない):** `docs/phase2-instagram-design.md`の歴史的記述、監査報告書・是正計画書内の自己言及部分
+- **修正内容:** `ig-content-planning`を`ig-content-planner`へ置換。`docs/phase7-intelligence-division-design.md`は置換後の文意を目視確認
+- **依存関係:** なし
+- **受入条件:** (1)14ファイルに`ig-content-planning`が残っていない、(2)`ig-content-planner`が`agents.yaml`に存在する、(3)definitionファイルが存在する、(4)各文章の意味が置換後も成立する、(5)歴史的記述が保持されている
+- **CEO承認の要否:** 不要(軽微修正)
+- **推奨実施Batch:** 今回実施済み
+- **状態:** resolved(2026-07-13実施・検証済み。14ファイル全てで`ig-content-planning`の残存なしを`grep`で確認。`docs/phase7-intelligence-division-design.md`の置換後の文「→ ig-content-planner / ig-carousel-intelligence(Instagram)」は文意が成立することを目視確認。`docs/phase2-instagram-design.md`の歴史的記述・監査報告書/是正計画書の自己言及部分は無変更)
+- **修正後にArchitecture Reviewが再確認する項目:** 新規Instagram関連ファイル作成時に、正式ID`ig-content-planner`が一貫して使用されているか
+
+### チケット RT-012(対応: ARC-011)
+- **重要度:** medium
+- **問題:** `ig-strategy`という未登録・未実装の名称が、現在の参照として8ファイルに残存
+- **担当Division:** COO
+- **担当Agent:** COO
+- **修正対象ファイル(将来実施):** `_company/brands/tomo-angel7/brand-brief.md`(現在参照1件)、`_shared/knowledge/{ai,branding,chatgpt,gemini,instagram,marketing,psychology}/README.md`(現在参照7件)
+- **対象外(変更しない):** `docs/phase2-instagram-design.md`等の歴史的記述、`docs/phase4-management-division-design.md`・`_company/agents/management-strategy.md`(既に「未実装」と正しく明記済み)
+- **修正方針(CEO承認済み、実装は別Batch):** 現在稼働中のエージェントとして記載せず、「Instagram固有戦略機能: planned / unassigned」または既存文書形式に合う同義表現へ変更する
+- **依存関係:** なし
+- **受入条件:** 8ファイル全てで、`ig-strategy`が現役エージェントであるかのような記載が無くなっていること
+- **CEO承認の要否:** 不要(表現修正のみ。ただし修正方針自体は今回のCEO判断により確定済み)
+- **推奨実施Batch:** 別Batch(今回未実施)
+- **状態:** open
+- **修正後にArchitecture Reviewが再確認する項目:** Instagram戦略機能の必要性が将来再評価された際、本ファイル群が新しい担当エージェント名へ正しく更新されるか
+
+### チケット RT-013(対応: ARC-013)
+- **重要度:** medium
+- **問題:** Architecture Review Division自身の拡張性・独立性・優先順位付けの構造的弱点(ARC-013参照)
+- **担当Division:** COO(Architecture Review Division自身の設計変更のため、通常の是正実行とは性質が異なる)
+- **担当Agent:** 未定(分割する場合は新規Agent検討が必要)
+- **修正対象ファイル(将来検討):** `_company/agents/architecture-review-controller.md`、`docs/phase10-architecture-review-division-design.md`、関連SOP(`_shared/sop/architecture-review/`)
+- **修正内容(将来検討、今回未実装):** 分割トリガーの明文化、優先順位付けロジックの定義、自己監査の独立性確保方法の検討。**今回はArchitecture Reviewエージェントの分割・自動化・第三者監査エージェントの新設は行わない**
+- **依存関係:** なし
+- **受入条件:** 未定(次回のGate1相当の設計提案時に定義)
+- **CEO承認の要否:** 要(Architecture Review Division自身の構造変更のため)
+- **推奨実施Batch:** 別Batch(今回未実施)
+- **状態:** open
+- **修正後にArchitecture Reviewが再確認する項目:** 該当なし(現時点で未実装のため)
 
 ---
 
@@ -249,3 +340,4 @@ status: draft-for-ceo-review
 |---|---|---|---|
 | 1 | 2026-07-13 | 初版作成。CEO確認待ち | architecture-review-controller(実行: COO) |
 | 2 | 2026-07-13 | Batch B(RT-003〜005)実施。各チケットのstatusを`resolved`へ更新し「Batch B 再監査結果」を追記。実施中に判明した`ig-strategy`・`ig-content-planning`表記問題をARC-011・ARC-012(候補)として追記 | architecture-review-controller(実行: COO) |
+| 3 | 2026-07-13 | Batch C(RT-006〜009)実施(「案Aプラス」)。各チケットのstatusを`resolved`へ更新し「Batch C 再監査結果」を追記。RT-010は`accepted`のまま維持。ARC-011・ARC-012・ARC-013を正式採番し、新規チケットRT-011(今回実施・resolved)・RT-012(別Batch・open)・RT-013(別Batch・open)を発行 | architecture-review-controller(実行: COO) |

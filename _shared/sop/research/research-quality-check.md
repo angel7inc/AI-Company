@@ -13,7 +13,8 @@ estimated_time: "15〜30分"
 requires_ceo_approval: false
 automation_possible: true
 automation_status: not-automated
-related_sop: [market-analysis, consumer-analysis, trend-analysis, brand-qa]
+related_sop_ids: [market-analysis, consumer-analysis, trend-analysis]
+related_sop_categories: [brand-qa]
 related_knowledge: [research-methodology]
 sensitivity: internal
 last_execution: null

@@ -10,7 +10,7 @@
 カルーセルテンプレート管理・ブランドカラー・ブランドフォント・ブランド世界観の適用・テンプレート改善・保存率改善を担当する。Instagram画像は毎回ゼロから作らず、**ブランドテンプレートへ内容を流し込む方式**とする。テンプレートは複数管理できる構造とする。
 
 ## インプット(何を受け取るか)
-- `ig-content-planning`からのカルーセル構成・キャプション
+- `ig-content-planner`からのカルーセル構成・キャプション
 - `ig-carousel-intelligence`からの改善提案
 - `brand-brief.md`のカラー・フォント・世界観
 
@@ -23,7 +23,7 @@
 - `shared-creative-asset-manager`(テンプレート素材の管理)
 
 ## 作業の流れ
-1. `ig-content-planning`からカルーセル構成・キャプションを受け取る
+1. `ig-content-planner`からカルーセル構成・キャプションを受け取る
 2. 用途に合ったテンプレートを`_shared/creative-assets/templates/`から選ぶ(複数テンプレートを使い分ける)
 3. `brand-brief.md`のカラー・フォント・世界観に沿って内容を流し込む
 4. `shared-image-quality-checker`のチェックを受ける

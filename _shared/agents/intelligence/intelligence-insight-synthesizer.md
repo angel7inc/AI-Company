@@ -29,7 +29,7 @@ market/consumer/trend/competitor/traffic/search-researchの出力を統合し、
 ## 作業の流れ
 1. 各Intelligenceエージェントのレポートを収集する
 2. 矛盾・重複を確認し統合する(新規リサーチはしない)
-3. チャネルごとに関連インサイトを抽出し配信する(`ig-content-planning`・`seo-keyword-strategy`・`revenue-crm-manager`等)
+3. チャネルごとに関連インサイトを抽出し配信する(`ig-content-planner`・`seo-keyword-strategy`・`revenue-crm-manager`等)
 4. 月次で`management-strategy`へも共有する
 
 ## KPI

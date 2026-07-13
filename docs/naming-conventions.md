@@ -48,5 +48,17 @@
 - `agents.yaml`の行数が50行を超えたとき
 - いずれかのDivisionが独自の予算・COO以外のオーナーなど、独立した属性を持つに至ったとき
 
+## SOPの`related_sop`表記規則(2026-07-13追加)
+特定のSOPファイルを指すのか、SOPカテゴリ全体を指すのかを区別せず`related_sop`欄に混在させない。frontmatterでは以下の2フィールドに分離する。
+```yaml
+related_sop_ids: []          # 特定のSOPファイルを指す場合。値は必ず実在するSOPのid(sop-index.mdに登録済みのもの)
+related_sop_categories: []   # カテゴリ全体を指す場合。値は必ず実在するSOPカテゴリ名(_shared/sop/{category}/のフォルダ名)
+```
+- 特定ファイルを参照する場合は`related_sop_ids`、カテゴリ全体を参照する場合は`related_sop_categories`を使う
+- 存在しないSOP IDを`related_sop_ids`に記載しない(`sop-index.md`で実在確認できるIDのみ)
+- カテゴリ名を`related_sop_ids`に紛れ込ませない(例: `management`はカテゴリ名であり、SOP IDではない)
+- 関連が無い場合はそれぞれ空配列`[]`とする
+- 意味が曖昧で分類できない既存値は、推測で分類せず未解決のまま残し、判断できる情報が揃うまで是正しない
+
 ## Knowledgeカテゴリ新設のタイミング(未使用ツール)
 Figma・Photoshop・Illustrator・Premiere Pro・CapCut・DaVinci Resolve等、まだどのエージェントも使用していないツールについては、Knowledgeカテゴリを先回りして作らない。**実際にいずれかのSOP/エージェント定義の「使用ツール」欄に採用された時点で**、該当のKnowledgeカテゴリを1つ追加する。

@@ -13,7 +13,8 @@ estimated_time: "30分〜1時間"
 requires_ceo_approval: false
 automation_possible: true
 automation_status: not-automated
-related_sop: [market-analysis, consumer-analysis, insight-synthesis]
+related_sop_ids: [market-analysis, consumer-analysis, insight-synthesis]
+related_sop_categories: []
 related_knowledge: [marketing, analytics]
 sensitivity: internal
 last_execution: null

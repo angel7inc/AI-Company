@@ -13,7 +13,8 @@ estimated_time: "週次30分/月次1〜2時間"
 requires_ceo_approval: false
 automation_possible: true
 automation_status: not-automated
-related_sop: [ceo-approval-flow]
+related_sop_ids: [ceo-approval-flow]
+related_sop_categories: []
 related_knowledge: [business-strategy, analytics]
 sensitivity: internal
 last_execution: null

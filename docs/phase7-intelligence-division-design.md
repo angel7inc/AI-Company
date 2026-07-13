@@ -61,7 +61,7 @@
 intelligence-market / intelligence-consumer / intelligence-trend / shared-competitor-intelligence / shared-traffic-intelligence / seo-research
 → intelligence-research-quality-checker(品質チェック)
 → intelligence-insight-synthesizer(統合・配信のみ)
-→ ig-content-planning / ig-carousel-intelligence(Instagram)
+→ ig-content-planner / ig-carousel-intelligence(Instagram)
 → seo-keyword-strategy(SEO/WordPress)
 → revenue-crm-manager(LINE)
 → (YouTube/Pinterestは事業ユニット新設時に接続)

@@ -15,7 +15,7 @@
 
 ## アウトプット(何を生み出すか)
 - カルーセル分析レポート(保存率・スワイプ率・勝ちパターン)
-- `ig-content-planning`・`ig-creative-team`への改善提案
+- `ig-content-planner`・`ig-creative-team`への改善提案
 
 ## 使用するAI・ツール
 - Claude Code
@@ -25,7 +25,7 @@
 1. `shared-competitor-intelligence`から深掘り依頼を受ける(または定期的に自社カルーセルを分析する)
 2. ページ構成・フック・CTA・文字量・デザインを分解して分析する
 3. 保存率・スワイプ率と照らし合わせ、勝ちパターンを抽出する
-4. `ig-content-planning`・`ig-creative-team`へ改善提案を共有する
+4. `ig-content-planner`・`ig-creative-team`へ改善提案を共有する
 
 ## KPI
 - save_rate(保存率)

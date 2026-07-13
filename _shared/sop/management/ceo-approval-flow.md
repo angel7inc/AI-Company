@@ -13,7 +13,8 @@ estimated_time: "案件による(数分〜数十分)"
 requires_ceo_approval: true
 automation_possible: false
 automation_status: not-automated
-related_sop: [coo-approval-flow]
+related_sop_ids: [coo-approval-flow]
+related_sop_categories: []
 related_knowledge: [business-strategy]
 sensitivity: internal
 last_execution: null

@@ -13,7 +13,8 @@ estimated_time: "30分"
 requires_ceo_approval: false
 automation_possible: true
 automation_status: not-automated
-related_sop: [market-analysis, consumer-analysis, trend-analysis, management]
+related_sop_ids: [market-analysis, consumer-analysis, trend-analysis]
+related_sop_categories: [management]
 related_knowledge: []
 sensitivity: internal
 last_execution: null
@@ -51,7 +52,7 @@ Claude Code
 ## Procedure(手順)
 1. 各Intelligenceエージェントのレポートを収集する
 2. 矛盾・重複を確認し、統合する(新規リサーチは行わない)
-3. チャネルごとに関連するインサイトを抽出し、`ig-content-planning`・`seo-keyword-strategy`・`revenue-crm-manager`等へ配信する
+3. チャネルごとに関連するインサイトを抽出し、`ig-content-planner`・`seo-keyword-strategy`・`revenue-crm-manager`等へ配信する
 4. 月次で`management-strategy`へも共有する
 
 ## Checklist(実行時チェックリスト)

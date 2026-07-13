@@ -7,7 +7,7 @@ ChatGPTの使い方・仕様・活用法。
 実際のプロンプト本文(→`_shared/prompts/`)、APIキー・認証情報。
 
 ## 3. 誰が参照するか
-`ig-copywriting`、`ig-content-planning`、`ig-strategy`等、ChatGPTを使う全エージェント。
+`ig-copywriting`、`ig-content-planner`、`ig-strategy`等、ChatGPTを使う全エージェント。
 
 ## 4. 更新ルール
 ChatGPTの新機能・モデル更新を確認したら更新する。

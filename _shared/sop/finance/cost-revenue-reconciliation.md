@@ -13,7 +13,8 @@ estimated_time: "30分"
 requires_ceo_approval: false
 automation_possible: true
 automation_status: not-automated
-related_sop: [monthly-closing]
+related_sop_ids: [monthly-closing]
+related_sop_categories: []
 related_knowledge: [finance, analytics]
 sensitivity: internal
 last_execution: null

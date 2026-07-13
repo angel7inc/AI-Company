@@ -13,7 +13,8 @@ estimated_time: "1〜2時間"
 requires_ceo_approval: false
 automation_possible: true
 automation_status: not-automated
-related_sop: [knowledge-audit, cross-duplication-audit, management]
+related_sop_ids: [knowledge-audit, cross-duplication-audit]
+related_sop_categories: [management]
 related_knowledge: []
 sensitivity: internal
 last_execution: null

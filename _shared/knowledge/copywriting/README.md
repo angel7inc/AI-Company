@@ -7,7 +7,7 @@
 特定ブランドの実際の投稿文・キャプション(→ブランド層または事業の`content/`)。
 
 ## 3. 誰が参照するか
-`ig-copywriting`、`ig-content-planning`(および将来、全チャネルのコピー担当エージェント)。
+`ig-copywriting`、`ig-content-planner`(および将来、全チャネルのコピー担当エージェント)。
 
 ## 4. 更新ルール
 実践して効果が高かった型は`confidence`を`verified`へ更新する。

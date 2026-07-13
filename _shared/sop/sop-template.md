@@ -13,7 +13,8 @@ estimated_time:            # 例: "30分"、"2時間" ― 1回の実行にかか
 requires_ceo_approval: false  # true の場合、Procedureに承認確認ステップを必ず含めること
 automation_possible: true     # このSOPは将来的に自動化しうるか(true/false)
 automation_status: not-automated  # not-automated / partially-automated / fully-automated ― 現在の自動化状況
-related_sop: []            # 関連する他のSOPのid
+related_sop_ids: []        # 特定のSOPファイルを指す場合のみ。値は実在するSOPのid(sop-index.mdで確認できるもの)
+related_sop_categories: [] # SOPカテゴリ全体を指す場合のみ。値は実在するカテゴリ名(_shared/sop/{category}/)。id(特定ファイル)と混在させない
 related_knowledge: []      # 前提となるKnowledgeのid(_shared/knowledge/を参照)
 sensitivity: internal      # public / internal / confidential / restricted ― confidential/restrictedは外部AI・外部サービスへ絶対に送信しない
 last_execution: null       # 直近の実行日。実行ログの仕組みができるまでは手動更新必須ではない

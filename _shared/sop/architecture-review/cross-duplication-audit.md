@@ -13,7 +13,8 @@ estimated_time: "2〜3時間"
 requires_ceo_approval: false
 automation_possible: false
 automation_status: not-automated
-related_sop: [knowledge-audit, sop-audit, agent-registry-audit, management]
+related_sop_ids: [knowledge-audit, sop-audit, agent-registry-audit]
+related_sop_categories: [management]
 related_knowledge: []
 sensitivity: internal
 last_execution: null
