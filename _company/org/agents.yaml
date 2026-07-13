@@ -3,6 +3,9 @@
 #
 # layer: core(経営・COO) / shared(事業横断) / business(事業専属)
 # status: draft(検討中) / active(稼働中) / paused(休止中) / retired(廃止)
+#         (2026-07-13、Phase11 HR Division新設に伴い8段階への拡張を予定: planned/proposed/approved/onboarding/active/paused/retiring/retired。
+#          既存の draft(44件)は「役割定義済みだが日常自動実行前」を意味するため approved へ一括移行する予定。
+#          本コメントは移行の予告のみであり、実際の値変更は別途のCEO確認後に別バッチで行う(詳細はdocs/phase11-hr-division-design.md参照)。
 # division: layer:sharedのエージェントをグルーピングする任意ラベル(例: creative, brand-quality, conversion, revenue, intelligence)。
 #           旧division名 competitor-intelligence / traffic はPhase7でintelligenceに統合済み(shared-competitor-intelligence / shared-traffic-intelligence)。
 #           definition が _company/agents/ 配下を指すエージェント(management/automation)については必須(2026-07-12、Automation Division新設時にFable5判断で必須化)。
@@ -701,6 +704,21 @@ agents:
     created: "2026-07-12"
     review_cadence: monthly
     definition: _shared/agents/product/product-quality-standards.md
+
+  - id: hr-workforce-manager
+    name: AIワークフォース管理エージェント
+    layer: core
+    division: hr
+    business_unit: null
+    brand: null
+    role: AIエージェントのライフサイクル記録・オンボーディング/退役手順実行
+    tools: [Claude Code]
+    kpi: []
+    status: draft
+    owner: COO
+    created: "2026-07-13"
+    review_cadence: monthly
+    definition: _company/agents/hr-workforce-manager.md
 
 # ↓ 新しいエージェントを追加するときのコピー用ひな形(#を外すまでは読み込まれません)
 #  - id: {事業コード}-{機能}

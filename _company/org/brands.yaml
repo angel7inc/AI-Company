@@ -67,7 +67,7 @@ brands:
     pain_point_categories: _company/brands/phone-fortune-company/pain-point-categories.yaml
     assets: _company/brands/phone-fortune-company/assets/
     created: "2026-07-12"
-    note: 台帳登録のみ(ブランドSSOTの実体は未作成)。個人鑑定ではなく、複数鑑定師を採用・育成・シフト管理・決済管理する企業。標準の事業ユニット雛形には収まらないため、着手時に将来のFinance Division(Phase9)・HR Division(Phase10)と連動した専用設計(Phase8c想定)を行う。tomo-angel7とは別ブランド(2026-07-12 CEO決定)。
+    note: 台帳登録のみ(ブランドSSOTの実体は未作成)。個人鑑定ではなく、複数鑑定師を採用・育成・シフト管理・決済管理する企業。標準の事業ユニット雛形には収まらないため、着手時に将来のFinance Division(Phase8b、実装済み)・HR Division(Phase11、設計完了)と連動した専用設計(Phase8c想定)を行う。tomo-angel7とは別ブランド(2026-07-12 CEO決定)。
 
 # ↓ 新しいブランドを追加するときのコピー用ひな形(#を外すまでは読み込まれません)
 #  - id: {ブランドID}

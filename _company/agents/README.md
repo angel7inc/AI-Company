@@ -13,6 +13,7 @@
 | `automation-*.md` | Automation | Workflow実行・API/MCP接続管理・Scheduler・実行監視 |
 | `finance-controller.md` | Finance | 利益算出(売上−AI/APIコストの合算)・会社全体ROI・会計・予算配分 |
 | `architecture-review-controller.md` | Architecture Review | Knowledge/SOP/Agent/命名規則/重複の全件監査(検出・報告のみ) |
+| `hr-workforce-manager.md` | HR | AIエージェントのライフサイクル管理・オンボーディング・退役手順(検出結果を受けた意思決定・実行を担当) |
 
 ## 命名・管理ルール
 - エージェントIDは`{division名}-{機能}`とする(`core-coo`は既存のため例外)

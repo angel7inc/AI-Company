@@ -25,12 +25,13 @@
 | - | `product/` | サービス/商品定義・カリキュラム設計・品質基準定義(定義のみ。実行は`crm/`・`automation/`) | `crm/` |
 | - | `finance/` | 月次決算・売上コスト突合(予算配分手順は台帳新設まで見送り) | `management/` |
 | - | `architecture-review/` | Knowledge/SOP/Agent/命名/重複の全社監査(検出・報告のみ。是正実行は含めない) | `management/` |
+| - | `hr/` | AIエージェントのライフサイクル管理・オンボーディング・退役手順 | `management/`, `architecture-review/` |
 
 `analytics/`・`conversion/`の分析結果は`research/`・`instagram/`・`seo/`の次サイクルへフィードバックされ、循環します。
 
 ## SOP一覧
 
-**本表は2026-07-13時点で実在を確認したSOPの一覧です。件数(14件)は現在確認時点のものであり、長期的な固定値・正本ではありません。** 新しいSOPを追加・退役・名称変更した場合は、**その変更と同じ変更単位(同じコミット/同じ承認)で本表も必ず更新してください**(表の更新漏れ自体が監査対象になります)。
+**本表は2026-07-13時点で実在を確認したSOPの一覧です。件数(16件)は現在確認時点のものであり、長期的な固定値・正本ではありません。** 新しいSOPを追加・退役・名称変更した場合は、**その変更と同じ変更単位(同じコミット/同じ承認)で本表も必ず更新してください**(表の更新漏れ自体が監査対象になります)。
 
 | 実行順 | カテゴリ | id | タイトル | Status | Owner | 更新頻度(frequency) | 依存SOP | 関連Knowledge | 定義ファイルパス |
 |---|---|---|---|---|---|---|---|---|---|
@@ -48,6 +49,8 @@
 | - | architecture-review | `cross-duplication-audit` | 横断的重複検出手順 | draft | `architecture-review-controller` | quarterly | `knowledge-audit`, `sop-audit`, `agent-registry-audit` | (なし) | `_shared/sop/architecture-review/cross-duplication-audit.md` |
 | - | architecture-review | `knowledge-audit` | Knowledge Layer監査手順 | draft | `architecture-review-controller` | quarterly | `sop-audit`, `cross-duplication-audit` | (なし) | `_shared/sop/architecture-review/knowledge-audit.md` |
 | - | architecture-review | `sop-audit` | SOP Layer監査手順 | draft | `architecture-review-controller` | quarterly | `knowledge-audit`, `cross-duplication-audit` | (なし) | `_shared/sop/architecture-review/sop-audit.md` |
+| - | hr | `agent-onboarding` | エージェントオンボーディング手順 | draft | `hr-workforce-manager` | as-needed | `agent-retirement` | (なし) | `_shared/sop/hr/agent-onboarding.md` |
+| - | hr | `agent-retirement` | エージェント退役手順 | draft | `hr-workforce-manager` | as-needed | `agent-onboarding` | (なし) | `_shared/sop/hr/agent-retirement.md` |
 
 *「実行順」は上の「カテゴリ一覧・用途・参照順」の順番列と対応させてください。同一カテゴリ内で複数SOPがある場合は`1-a`, `1-b`のように枝番を振ります。「依存SOP」は各SOPのfrontmatter`related_sop_ids`(特定ファイルへの参照)のみを転記し、`related_sop_categories`(カテゴリ全体への参照。例: `management`)は上の「カテゴリ一覧・用途・参照順」表で代表させ、本表には転記しません。`sop-template.md`はテンプレートであり実手順ではないため本表に含めません。*
 
