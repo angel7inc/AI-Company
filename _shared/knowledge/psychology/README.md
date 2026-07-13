@@ -7,7 +7,7 @@
 特定個人(顧客)の心理状態の推測・個人情報。
 
 ## 3. 誰が参照するか
-`ig-content-planner`、`ig-copywriting`、`ig-strategy`。
+`ig-content-planner`、`ig-copywriting`、Instagram固有戦略機能(planned / unassigned)。
 
 ## 4. 更新ルール
 学術的な内容が中心のため更新頻度は低いが、`sources`(出典)を必ず明記する。

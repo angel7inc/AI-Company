@@ -182,10 +182,10 @@ status: draft-for-ceo-review
 | A | 2(RT-001, RT-002) | 2/2 | 一部(構造作成は可、基準決定は不可) |
 | B | 3(RT-003〜005) | 1/3(RT-004のみ) | 3/3(RT-004は注記追加のみ) |
 | C | 5(RT-006〜010) | 0/5 | 4/5(RT-008は新設判断時のみ要) |
-| 新規(別Batch) | 3(RT-011〜013。RT-011は実施済み) | 1/3(RT-013のみ) | 2/3(RT-013は分割等の設計判断のため不可) |
+| 新規(RT-011〜013) | 3(RT-011・RT-012は実施済み) | 1/3(RT-013のみ) | 1/3(RT-013は分割等の設計判断のため不可) |
 | **合計** | **13** | **4/13** | ― |
 
-**Batch A・B・C実施状況(2026-07-13時点):** Batch A(RT-001・RT-002)コミット済み(`e9cf122`)・push済み。Batch B(RT-003〜005)コミット済み(`9ec3acf`)・push済み。Batch C(RT-006〜009)は本改訂で`resolved`へ更新、RT-010は`accepted`のまま(下記「Batch C 再監査結果」参照)。ARC-011・012・013を正式採番し、RT-011を今回実施、RT-012・RT-013は別Batchへ繰越。HR Division・Tomo Academyは未着手。
+**Batch A・B・C・D実施状況(2026-07-13時点):** Batch A(RT-001・RT-002)コミット済み(`e9cf122`)・push済み。Batch B(RT-003〜005)コミット済み(`9ec3acf`)・push済み。Batch C(RT-006〜011。RT-011はBatch C是正計画作成後に新規発行し同一コミットへ含めた)コミット済み(`8eb93a7`)・push済み。Batch D(RT-012。`ig-strategy`のwording修正)実施済み・未コミット。RT-013はFable5判断による再評価トリガー(open指摘25件超/エージェント総数50超/2回連続で単一観点偏重のいずれか)を付記し、トリガー未発火のため保留(`open`のまま)。HR Division・Tomo Academyは未着手。
 
 ---
 
@@ -311,12 +311,12 @@ status: draft-for-ceo-review
 - **担当Agent:** COO
 - **修正対象ファイル(将来実施):** `_company/brands/tomo-angel7/brand-brief.md`(現在参照1件)、`_shared/knowledge/{ai,branding,chatgpt,gemini,instagram,marketing,psychology}/README.md`(現在参照7件)
 - **対象外(変更しない):** `docs/phase2-instagram-design.md`等の歴史的記述、`docs/phase4-management-division-design.md`・`_company/agents/management-strategy.md`(既に「未実装」と正しく明記済み)
-- **修正方針(CEO承認済み、実装は別Batch):** 現在稼働中のエージェントとして記載せず、「Instagram固有戦略機能: planned / unassigned」または既存文書形式に合う同義表現へ変更する
+- **修正方針(CEO承認済み):** 現在稼働中のエージェントとして記載せず、「Instagram固有戦略機能(planned / unassigned)」または既存文書形式に合う同義表現へ変更する
 - **依存関係:** なし
 - **受入条件:** 8ファイル全てで、`ig-strategy`が現役エージェントであるかのような記載が無くなっていること
-- **CEO承認の要否:** 不要(表現修正のみ。ただし修正方針自体は今回のCEO判断により確定済み)
-- **推奨実施Batch:** 別Batch(今回未実施)
-- **状態:** open
+- **CEO承認の要否:** 不要(表現修正のみ。修正方針自体は既にCEO判断により確定済み)
+- **推奨実施Batch:** Batch D(2026-07-13実施)
+- **状態:** resolved(2026-07-13実施・検証済み。8ファイル(`brand-brief.md`・`_shared/knowledge/{ai,branding,chatgpt,gemini,instagram,marketing,psychology}/README.md`)全てで`ig-strategy`を「Instagram固有戦略機能(planned / unassigned)」等、既存文書形式に合わせた表現へ置換。`docs/phase2-instagram-design.md`の歴史的記述、`docs/phase4-management-division-design.md`・`_company/agents/management-strategy.md`(既に「未実装」と明記済み)は無変更)
 - **修正後にArchitecture Reviewが再確認する項目:** Instagram戦略機能の必要性が将来再評価された際、本ファイル群が新しい担当エージェント名へ正しく更新されるか
 
 ### チケット RT-013(対応: ARC-013)
@@ -326,12 +326,16 @@ status: draft-for-ceo-review
 - **担当Agent:** 未定(分割する場合は新規Agent検討が必要)
 - **修正対象ファイル(将来検討):** `_company/agents/architecture-review-controller.md`、`docs/phase10-architecture-review-division-design.md`、関連SOP(`_shared/sop/architecture-review/`)
 - **修正内容(将来検討、今回未実装):** 分割トリガーの明文化、優先順位付けロジックの定義、自己監査の独立性確保方法の検討。**今回はArchitecture Reviewエージェントの分割・自動化・第三者監査エージェントの新設は行わない**
+- **再評価トリガー(2026-07-13追記、Fable5判断に基づく):** 以下のいずれかに該当した時点で、本チケットの実装(分割・自動化・優先順位付けロジック定義等)についてGate1相当の設計提案を行う。それまでは`RT-010`と同様、受容済みの技術的負債として保留する。
+  1. 一巡の監査でopen指摘(status: open)が約25件を超えた場合
+  2. `agents.yaml`のエージェント総数が約50行を超えた場合(`_company/org/divisions.yaml`新設の既存閾値と同一基準)
+  3. 2回連続の監査で、単一の監査観点(Knowledge/SOP/Agent/命名/重複のいずれか)に指摘が偏った場合
 - **依存関係:** なし
-- **受入条件:** 未定(次回のGate1相当の設計提案時に定義)
+- **受入条件:** 未定(上記トリガー発火時、次回のGate1相当の設計提案で定義)
 - **CEO承認の要否:** 要(Architecture Review Division自身の構造変更のため)
-- **推奨実施Batch:** 別Batch(今回未実施)
-- **状態:** open
-- **修正後にArchitecture Reviewが再確認する項目:** 該当なし(現時点で未実装のため)
+- **推奨実施Batch:** 別Batch(トリガー発火まで着手しない)
+- **状態:** open(トリガー未発火のため保留)
+- **修正後にArchitecture Reviewが再確認する項目:** 毎回の定例監査時に、上記3トリガーのいずれかに該当していないかを確認する
 
 ---
 
@@ -341,3 +345,4 @@ status: draft-for-ceo-review
 | 1 | 2026-07-13 | 初版作成。CEO確認待ち | architecture-review-controller(実行: COO) |
 | 2 | 2026-07-13 | Batch B(RT-003〜005)実施。各チケットのstatusを`resolved`へ更新し「Batch B 再監査結果」を追記。実施中に判明した`ig-strategy`・`ig-content-planning`表記問題をARC-011・ARC-012(候補)として追記 | architecture-review-controller(実行: COO) |
 | 3 | 2026-07-13 | Batch C(RT-006〜009)実施(「案Aプラス」)。各チケットのstatusを`resolved`へ更新し「Batch C 再監査結果」を追記。RT-010は`accepted`のまま維持。ARC-011・ARC-012・ARC-013を正式採番し、新規チケットRT-011(今回実施・resolved)・RT-012(別Batch・open)・RT-013(別Batch・open)を発行 | architecture-review-controller(実行: COO) |
+| 4 | 2026-07-13 | Batch C(RT-006〜011)をコミット(`8eb93a7`)・push済み。Fable5判断に基づきBatch D(RT-012)を実施: `ig-strategy`の現在参照8ファイルを「Instagram固有戦略機能(planned / unassigned)」等の表現へ置換し`resolved`へ更新。RT-013にFable5判断による再評価トリガー(open指摘25件超/エージェント総数50超/2回連続で単一観点偏重)を追記し、トリガー未発火のため`open`のまま保留 | architecture-review-controller(実行: COO、Fable5判断を踏まえ) |

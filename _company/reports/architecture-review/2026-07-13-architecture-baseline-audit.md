@@ -40,7 +40,7 @@ status: draft-for-ceo-review
 
 **再集計の経緯(初版の誤り):** 初版の概要表は「high 3 / info 2」としていたが、本文で`ARC-007`を`high`と明記していたにもかかわらず概要表の集計に含めておらず、また`info`は`ARC-010`の1件のみであるにもかかわらず2件と誤記していた。本文各ARC IDの`重要度`欄を全件突き合わせた結果、正しい内訳は上表のとおり(high 4 / medium 3 / low 2 / info 1 = 10件)。原因は概要表を本文とは別に手作業で集計し、本文更新後に再突き合わせを行わなかったことによる転記漏れであり、判定基準そのものの誤りではない。是正チケット化はしない(本報告書自体の訂正のため)が、`architecture-review-controller`の今後の運用ルールとして「概要表は本文の各ARC IDの重要度から自動集計し、手動転記しない」ことを`sop/architecture-review/`側の留意事項として記録する。
 
-**【2026-07-13 Batch C実施時の追加】** 上表の10件は2026-07-13の初回ベースライン監査(154ファイル全件走査)時点の発見件数であり、この数値自体は変更しない(歴史的な基準点として保持)。その後、Batch B・Batch Cの是正作業中に新たに3件(ARC-011・ARC-012・ARC-013)を発見し、正式なARC IDとして採番した(いずれも初回走査後に判明したため、初回の「発見件数10」には含めない)。追加3件の内訳: medium 3(ARC-011, ARC-012, ARC-013)。2026-07-13時点の指摘総数は10+3=13件(このうちresolved: ARC-002・003・004・005・006・008・009・012の8件、accepted: ARC-010の1件、open: ARC-001・ARC-007・ARC-011・ARC-013の4件。**ARC-001・ARC-007はBatch A実施済みだが、本報告書のstatus欄更新がBatch A実施時点で漏れていたため、現時点でも`open`のまま残っている**。これは今回のBatch C是正範囲外のため本改訂では修正せず、次回是正時に反映する)。
+**【2026-07-13 Batch C実施時の追加、Batch D実施後に更新】** 上表の10件は2026-07-13の初回ベースライン監査(154ファイル全件走査)時点の発見件数であり、この数値自体は変更しない(歴史的な基準点として保持)。その後、Batch B・Batch Cの是正作業中に新たに3件(ARC-011・ARC-012・ARC-013)を発見し、正式なARC IDとして採番した(いずれも初回走査後に判明したため、初回の「発見件数10」には含めない)。追加3件の内訳: medium 3(ARC-011, ARC-012, ARC-013)。2026-07-13時点の指摘総数は10+3=13件(このうちresolved: ARC-002・003・004・005・006・008・009・011・012の9件、accepted: ARC-010の1件、open: ARC-001・ARC-007・ARC-013の3件。**ARC-001・ARC-007はBatch A実施済みだが、本報告書のstatus欄更新がBatch A実施時点で漏れていたため、現時点でも`open`のまま残っている**。これは今回のBatch C・D是正範囲外のため本改訂では修正せず、次回是正時に反映する。ARC-013はFable5判断による再評価トリガー未発火のため意図的に`open`のまま保留)。
 
 ### 総合判定
 - **SSOT二重管理:** 明確な二重管理は検出されず。ただし監視すべき軽微な相関あり(ARC-010)
@@ -298,13 +298,15 @@ _company/reports/
 - **問題の具体的内容:** `ig-strategy`という名称が全13ファイルに出現するが、`agents.yaml`に登録が無い。うち`docs/phase4-management-division-design.md`・`_company/agents/management-strategy.md`は既に「未実装」と正しく明記済みだが、`brand-brief.md`1件+Knowledge README 7件の計8ファイルは現役エージェントであるかのように記載
 - **根拠:** 全13ファイルを`grep`で全件調査。`agents.yaml`に`ig-strategy`の`id:`が存在しないことを確認
 - **影響:** Instagram戦略業務の再開時・HR Division新設時等に、存在しない監視/戦略機能が稼働していると誤認するリスク
-- **推奨する是正方法:** ARC-002/004とは異なり後継エージェントが存在しないため、単純な名前の置換は不可。CEO判断により「Instagram固有戦略機能: planned / unassigned」等、未実装であることが明確な表現へ修正する(RT-012)
+- **推奨する是正方法:** ARC-002/004とは異なり後継エージェントが存在しないため、単純な名前の置換は不可。CEO判断により「Instagram固有戦略機能(planned / unassigned)」等、未実装であることが明確な表現へ修正する(RT-012)
 - **是正担当Division/Agent:** COO
 - **CEO承認が必要か:** 不要(表現修正のみ。修正方針自体は2026-07-13時点でCEO判断済み)
-- **自動修正可能か:** 可能(ただし今回は未実施)
-- **現在の状態:** open
+- **自動修正可能か:** 可能
+- **現在の状態:** resolved(2026-07-13 Fable5判断に基づきBatch Dとして実施。RT-012として実施・検証済み)
 - **依存関係:** なし
-- **推奨対応順序:** 別Batch(RT-012)
+- **推奨対応順序:** 実施済み(RT-012、Batch D)
+
+**【2026-07-13 Batch D実施時の再監査追記】** `brand-brief.md`(現在参照1件)・`_shared/knowledge/{ai,branding,chatgpt,gemini,instagram,marketing,psychology}/README.md`(現在参照7件)の計8ファイルで、`ig-strategy`を「Instagram固有戦略機能(planned / unassigned)」等、既存文書形式に合わせた表現へ置換。`docs/phase2-instagram-design.md`の歴史的記述、`docs/phase4-management-division-design.md`・`_company/agents/management-strategy.md`(既に「未実装」と明記済み)は無変更。`grep`により8ファイル全てで`ig-strategy`の残存なしを確認済み。詳細は是正計画書の該当チケットを参照。
 
 ---
 
@@ -338,9 +340,9 @@ _company/reports/
 - **是正担当Division/Agent:** COO(設計変更のため、通常の是正実行より重い意思決定)
 - **CEO承認が必要か:** 要(Architecture Review Division自身の構造変更のため)
 - **自動修正可能か:** 不可(設計判断を要する)
-- **現在の状態:** open
+- **現在の状態:** open(2026-07-13、Fable5判断により再評価トリガーを設定。トリガー未発火のため保留を継続。トリガー: (1)open指摘が約25件超、(2)`agents.yaml`のエージェント総数が約50超、(3)2回連続の監査で単一監査観点に指摘が偏る、のいずれか。詳細は是正計画書のRT-013参照)
 - **依存関係:** なし
-- **推奨対応順序:** 別Batch(RT-013)
+- **推奨対応順序:** トリガー発火まで着手しない(RT-013)
 
 ---
 
@@ -374,3 +376,4 @@ _company/reports/
 | 2 | 2026-07-13 | CEO指摘により修正: (1)重要度別件数の再集計(high 3→4、info 2→1、原因を明記)、(2)ARC-001をGit除外領域の分離案に改訂、(3)ARC-007を全社的なprepare/execute区分の再評価に拡大し、Outbound Action Approval Policy新設案を追加。是正計画書を新設し本報告書からリンク | architecture-review-controller(実行: COO) |
 | 3 | 2026-07-13 | Batch B(RT-003〜005)実施に伴う再監査。ARC-002・ARC-003・ARC-004の状態を`open`→`resolved`へ更新し、各項目に再監査追記(修正前の状態・検証根拠)を追加。過去の記述は削除していない | architecture-review-controller(実行: COO) |
 | 4 | 2026-07-13 | Batch C(RT-006〜009)実施に伴う再監査(「案Aプラス」)。ARC-005・ARC-006・ARC-008・ARC-009の状態を`open`→`resolved`へ更新し再監査追記を追加。RT-010/ARC-010は`accepted`のまま維持。ARC-011(`ig-strategy`、open)・ARC-012(`ig-content-planning`、resolved)・ARC-013(Architecture Review自身の弱点、open)を正式採番。過去の記述は削除していない | architecture-review-controller(実行: COO) |
+| 5 | 2026-07-13 | Batch C(RT-006〜011)をコミット・push。Fable5判断に基づきBatch D(RT-012)を実施: ARC-011の状態を`open`→`resolved`へ更新し再監査追記を追加(`ig-strategy`8ファイルを「Instagram固有戦略機能(planned / unassigned)」表現へ置換)。ARC-013に再評価トリガー(open指摘25件超/エージェント総数50超/2回連続で単一観点偏重)を追記し、トリガー未発火のため`open`のまま保留を継続 | architecture-review-controller(実行: COO、Fable5判断を踏まえ) |
