@@ -6,6 +6,10 @@
 credentials.json
 service-account*.json
 
+# 例外: .env.exampleは実値を含まない変数名テンプレートのため、Git管理対象とする(2026-07-14追加)。
+# 除外ルールより後ろに書く必要がある(順序が前後すると無効になる)。
+!.env.example
+
 # OS/エディタが生成する不要ファイル
 .DS_Store
 Thumbs.db
