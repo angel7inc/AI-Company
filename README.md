@@ -22,6 +22,10 @@ AIを活用したコンテンツ事業会社の運営基盤です。CEOの指示
 
 `businesses/_template/` をそのままコピーして、事業名のフォルダにリネームするだけです。詳細は [`businesses/_template/README.md`](businesses/_template/README.md) を参照してください。
 
+## 運用開始・実行環境
+
+現時点で本リポジトリは実行アプリケーションではなく、48件のAgentはいずれもMarkdownによる役割定義です(独立実行するソフトウェアではありません)。作業を開始・再開する際の環境確認手順・停止と再開のルールは [`docs/runbooks/ai-company-local-operations.md`](docs/runbooks/ai-company-local-operations.md) を、CEO・GPT・Claude Code・Fable 5・Canva・人間の投稿担当者の役割分担は [`_company/charter/tool-role-responsibility.md`](_company/charter/tool-role-responsibility.md) を参照してください。
+
 ## 現在のフェーズ
 
 Phase 1(基盤構築)が完了した段階です。各事業のエージェントはまだ稼働していません。次のフェーズはCEOの確認後に着手します。
