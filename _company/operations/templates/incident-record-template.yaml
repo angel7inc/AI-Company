@@ -1,0 +1,43 @@
+# 障害記録 テンプレート(項目定義のみ。実在する障害記録ではない)
+# 正本としての実記録は _company/operations/local/incidents/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実記録ファイルは作成しない。
+# _company/operations/local/incidents/ はGit管理対象外とする(.gitignore参照)。
+# 重大度(severity)・状態(status)の定義、フェイルクローズ手順は
+# docs/runbooks/operations-continuity.md を正本として参照する。
+
+sample_only: true
+do_not_import: true
+
+incident_id: null
+detected_at: null
+detected_by: null
+
+severity: null              # low / medium / high / critical(定義はoperations-continuity.md参照)
+status: null                # open / contained / recovering / resolved / closed
+
+incident_type: null
+affected_scope: null
+affected_files: []
+affected_services: []
+
+external_execute_involved: null
+secret_exposure_suspected: null
+personal_data_involved: null
+
+# 秘密値・個人情報・顧客氏名・DM本文・相談本文・二要素認証コード等を含めないこと。
+# 説明は必ず秘密情報・個人情報を除去した内容のみとする。
+description_sanitized: null
+
+immediate_containment: null
+credential_revocation_required: null
+CEO_notified: null
+evidence_references: []
+
+recovery_actions: []
+validation_after_recovery: null
+root_cause: null
+preventive_actions: []
+
+resolved_at: null
+closed_by: null
+notes: null

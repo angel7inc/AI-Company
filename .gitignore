@@ -35,3 +35,9 @@ _company/kpi/actuals/**
 # 機密レポート(実数値を含む週次/月次スナップショット等。.gitkeepのみ追跡)
 _company/reports/confidential/**
 !_company/reports/confidential/.gitkeep
+
+# 運用ログ・障害記録・バックアップ台帳(実記録はローカルパス等の運用情報を含み得るため除外。
+# テンプレートは_company/operations/templates/配下でGit管理する。2026-07-14追加)
+_company/operations/local/logs/**
+_company/operations/local/incidents/**
+_company/operations/local/backup-manifests/**

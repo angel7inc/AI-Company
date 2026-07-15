@@ -1,0 +1,48 @@
+# 作業ログ テンプレート(項目定義のみ。実在する作業記録ではない)
+# 正本としての実ログは _company/operations/local/logs/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実ログファイルは作成しない。
+# 実ログにはローカルパス・エラー内容等の運用情報が含まれ得るため、
+# _company/operations/local/logs/ はGit管理対象外とする(.gitignore参照)。
+# 詳細は docs/runbooks/operations-continuity.md を参照。
+
+sample_only: true
+do_not_import: true
+
+task_id: null
+started_at: null
+ended_at: null
+operator: null
+requested_by: null
+
+work_mode: null            # read_only / gate1_review / gate2_implementation / commit_only / push_only / manual_external_action
+
+repository: null
+branch: null
+start_commit: null
+end_commit: null
+
+agent_definitions_referenced: []
+files_read: []
+files_created: []
+files_modified: []
+files_deleted: []
+commands_executed: []
+
+validations_performed: []
+validation_result: null
+
+external_login_performed: null
+external_api_accessed: null
+external_write_performed: null
+
+approval_status: null
+approval_reference: null
+
+working_tree_end_state: null
+push_status: null
+next_resume_point: null
+blocked_by: null
+
+errors: []
+security_notes: null
+notes: null
