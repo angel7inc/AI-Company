@@ -1,0 +1,80 @@
+# KPI観測値 テンプレート(項目定義のみ。実在するKPI観測値ではない)
+# 正本としての実観測値は _company/analytics/local/observations/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実ファイルは作成しない。
+# _company/analytics/local/observations/ はGit管理対象外とする(.gitignore参照)。
+# 用語・状態値・許容値の定義は docs/runbooks/kpi-data-entry-and-validation.md を正本として参照する。
+#
+# 注意: 売上・広告費・AI/APIコスト等、金額を伴うP&L明細は _company/finance/actuals/ が既存の正本であり、
+# 本テンプレート(kpi_id)でそれらを重複して入力対象としない(詳細はRunbook「0. 既存構成との関係」参照)。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+observation_id: null
+kpi_id: null
+brand_id: null
+channel: null
+account_reference: null
+content_id: null
+campaign_id: null
+
+observation_status: null          # planned〜blocked(定義はRunbook「9.5 記録状態」参照)
+
+value_type: null                  # raw_metric / derived_metric(定義はRunbook「9.2 用語」参照)
+value: null
+unit: null                        # count / percentage / currency / duration / ratio / score / boolean
+currency: null
+tax_treatment: null
+decimal_precision: null
+
+reporting_frequency: null         # daily / weekly / monthly / cumulative等
+aggregation_level: null
+
+source_period_start: null
+source_period_end: null
+period_boundary_rule: null        # 期間の始点・終点を含むか含まないかを明示(定義はRunbook「9.7」参照)
+
+source_timezone: null
+reporting_timezone: null
+
+collected_at: null
+recorded_at: null
+recorded_by: null
+
+entry_method: null                # manual / imported / calculated
+source_system: null
+source_reference: null            # 非公開URL・実アカウント名等の実値は入れない
+evidence_ids: []
+
+dimensions: null                  # 構造例: {region: null, audience_segment: null, device: null, organic_or_paid: null} 等(定義はRunbook「9.9」参照)。顧客個人を特定するディメンションは扱わない
+
+calculation_required: false
+calculation_formula_reference: null
+calculation_version: null
+input_observation_ids: []
+rounding_rule: null
+
+duplicate_check_status: null
+
+validation_status: null           # 定義はRunbook「9.11 検証」参照
+validated_at: null
+validated_by: null
+
+current_effective_record: false
+supersedes_observation_id: null
+superseded_by_observation_id: null
+
+locked: false
+
+human_review_required: null
+human_review_status: null
+ceo_review: null
+external_reporting_approved: false
+
+backup_status: null
+
+personal_data_status: null
+secret_information_status: null
+
+notes: null

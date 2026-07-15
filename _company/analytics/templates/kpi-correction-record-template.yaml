@@ -1,0 +1,43 @@
+# KPI訂正記録 テンプレート(項目定義のみ。実在する訂正記録ではない)
+# 正本としての実訂正記録は _company/analytics/local/corrections/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実ファイルは作成しない。
+# _company/analytics/local/corrections/ はGit管理対象外とする(.gitignore参照)。
+# 訂正ルールの定義は docs/runbooks/kpi-data-entry-and-validation.md「9.13 訂正ルール」を正本として参照する。
+# 元記録は削除せず、原則としてoriginal_observation_id側をsupersededとして扱う。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+correction_id: null
+original_observation_id: null
+replacement_observation_id: null
+
+correction_type: null              # 例: typo_correction / value_correction(誤字訂正と数値訂正を区別する)
+correction_reason: null
+
+detected_at: null
+detected_by: null
+requested_at: null
+requested_by: null
+approved_at: null
+approved_by: null
+corrected_at: null
+
+evidence_ids: []
+
+impact_scope: null
+downstream_reports_affected: false
+downstream_report_references: []
+
+notification_required: false
+notification_status: null
+
+original_record_status: null       # 訂正後は原則supersededとする
+replacement_record_status: null
+
+human_review_required: null
+human_review_status: null
+ceo_review: null
+
+notes: null

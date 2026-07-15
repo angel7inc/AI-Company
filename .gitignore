@@ -51,3 +51,12 @@ _company/assets/local/records/**
 _company/assets/local/content-maps/**
 _company/assets/local/export-manifests/**
 _company/assets/local/license-evidence/**
+
+# KPI観測値・入力Batch・証跡・訂正記録の実データ(テンプレートは_company/analytics/templates/配下でGit管理する。2026-07-14追加)
+_company/analytics/local/observations/**
+_company/analytics/local/entry-batches/**
+_company/analytics/local/evidence/**
+_company/analytics/local/corrections/**
+_company/analytics/local/source-extracts/**
+_company/analytics/local/reconciliation/**
+_company/analytics/local/reports/**

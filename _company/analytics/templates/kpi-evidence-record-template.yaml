@@ -1,0 +1,49 @@
+# KPI証跡 テンプレート(項目定義のみ。実在する証跡記録ではない)
+# 正本としての実証跡は _company/analytics/local/evidence/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実ファイルは作成しない。
+# _company/analytics/local/evidence/ はGit管理対象外とする(.gitignore参照)。
+# 実URL・非公開URL・実ファイルパス・実アカウント名は、Git管理テンプレートへ記載しない。
+# 証跡が外部サービスにしか存在しない場合、そのサービスは唯一のバックアップ先とは扱わない
+# (operations-continuity.md「Canvaだけを唯一のバックアップ先としない」と同じ考え方)。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+evidence_id: null
+related_observation_ids: []
+related_entry_batch_id: null
+
+source_system: null
+source_type: null                  # 例: screenshot / csv_export / api_response_saved / manual_note等
+source_reference: null             # 非公開URL・実ファイルパス等の実値は入れない
+source_period_start: null
+source_period_end: null
+source_timezone: null
+
+collected_at: null
+collected_by: null
+
+evidence_location: null            # 実パスは入れない。保管場所の種別のみ記載する想定
+screenshot_present: false
+export_file_present: false
+
+file_name: null
+file_extension: null
+file_size_bytes: null
+checksum_algorithm: null
+checksum: null
+
+access_status: null
+retention_status: null
+
+personal_data_status: null
+secret_information_status: null
+metadata_review_status: null
+
+backup_status: null
+
+human_review_required: null
+human_review_status: null
+
+notes: null
