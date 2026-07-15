@@ -1,0 +1,69 @@
+# アセット単位 記録テンプレート(項目定義のみ。実在するアセット記録ではない)
+# 正本としての実記録は _company/assets/local/records/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実記録ファイルは作成しない。
+# 実記録はローカルパス・書き出し情報等の運用情報を含み得るため、
+# _company/assets/local/records/ はGit管理対象外とする(.gitignore参照)。
+# 用語・状態値・許容値の定義は docs/runbooks/creative-asset-management.md を正本として参照する。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+asset_id: null
+brand_id: null
+project_id: null
+content_id: null
+
+asset_role: null              # fixed_asset / reusable_asset / derivative_asset 等(定義はRunbook「8.2 用語」参照)
+asset_type: null              # 例: photo / illustration / logo / icon / ogp_image / thumbnail 等
+asset_status: null            # planned〜blocked(定義はRunbook「8.5 アセット状態」参照)
+
+source_type: null             # 例: canva / photo / ai_generated / stock 等
+source_reference: null        # 非公開URL・実在するCanvaデザイン名等の実値は入れない
+source_owner: null
+source_access_status: null    # 例: confirmed / unknown / no_access
+
+parent_asset_id: null
+derivative_asset_ids: []
+
+reusable: null
+fixed_asset: null
+replacement_allowed: null
+
+intended_channel: null
+intended_usage: null
+
+local_source_path: null
+local_working_path: null
+local_export_path: null
+
+file_name: null
+file_extension: null
+mime_type: null
+width_px: null
+height_px: null
+aspect_ratio: null
+file_size_bytes: null
+
+checksum_algorithm: null
+checksum: null
+
+rights_status: null           # owned〜prohibited(定義はRunbook「8.9 権利・ライセンス」参照)
+license_reference: null
+ai_generated: null
+ai_generation_service: null
+
+personal_data_status: null    # 定義はRunbook「8.10 個人情報・秘密情報」参照
+secret_information_status: null
+metadata_review_status: null
+
+human_review_required: null
+human_review_status: null
+ceo_review: null
+public_release_approved: false
+
+backup_status: null
+
+created_at: null
+updated_at: null
+notes: null

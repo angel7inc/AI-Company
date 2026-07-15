@@ -1,0 +1,48 @@
+# コンテンツ⇔画像スロット 対応テンプレート(項目定義のみ。実在する対応表ではない)
+# 正本としての実対応表は _company/assets/local/content-maps/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実ファイルは作成しない。
+# _company/assets/local/content-maps/ はGit管理対象外とする(.gitignore参照)。
+# 用語・状態値の定義は docs/runbooks/creative-asset-management.md を正本として参照する。
+#
+# 注意: 本テンプレートは完全に汎用の空テンプレートであり、第1投稿(tomo-angel7-pilot-01)
+# その他、実在するcontent_id・asset_id・スロット情報は一切記載していない。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+content_id: null
+brand_id: null
+content_type: null              # 例: instagram_carousel / reel / article / lp 等
+intended_channel: null
+
+expected_asset_count: null
+required_asset_count: null
+optional_asset_count: null
+
+sequence_locked: null
+fixed_assets_present: null
+all_required_assets_identified: null
+
+human_review_required: null
+human_review_status: null
+ceo_review: null
+public_release_approved: false
+
+# slots: 各要素が1つの画像スロットに対応する。以下はスロット1件分の項目定義であり、
+# 実在するスロット・asset_idのデータではない(全項目null)。
+slots:
+  - slot_id: null
+    sequence: null
+    role: null
+    required: null
+    fixed_asset: null
+    replacement_allowed: null
+    expected_asset_type: null
+    expected_width_px: null
+    expected_height_px: null
+    expected_aspect_ratio: null
+    asset_id: null
+    asset_status: null
+    mapping_status: null
+    notes: null

@@ -1,0 +1,52 @@
+# 書き出し結果 記録テンプレート(項目定義のみ。実在するexport manifestではない)
+# 正本としての実manifestは _company/assets/local/export-manifests/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実ファイルは作成しない。
+# _company/assets/local/export-manifests/ はGit管理対象外とする(.gitignore参照)。
+# 用語・状態値の定義は docs/runbooks/creative-asset-management.md を正本として参照する。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+export_batch_id: null
+content_id: null
+source_system: null            # 例: canva / local_editor 等
+source_reference: null         # 非公開URL等の実値は入れない
+exported_at: null
+operator: null
+intended_channel: null
+
+overwrite_performed: false
+duplicate_check_status: null
+
+human_review_required: null
+human_review_status: null
+ceo_review: null
+public_release_approved: false
+
+external_upload_performed: false
+external_publish_performed: false
+
+# files: 各要素が1件の書き出しファイルに対応する。以下はファイル1件分の項目定義であり、
+# 実在するファイル・checksumのデータではない(全項目null)。
+files:
+  - asset_id: null
+    slot_id: null
+    sequence: null
+    file_name: null
+    local_path: null
+    file_extension: null
+    mime_type: null
+    width_px: null
+    height_px: null
+    aspect_ratio: null
+    file_size_bytes: null
+    checksum_algorithm: null
+    checksum: null
+    export_status: null
+    rights_status: null
+    personal_data_status: null
+    secret_information_status: null
+    notes: null
+
+notes: null

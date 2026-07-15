@@ -41,3 +41,13 @@ _company/reports/confidential/**
 _company/operations/local/logs/**
 _company/operations/local/incidents/**
 _company/operations/local/backup-manifests/**
+
+# クリエイティブアセットの実データ(実画像・実記録。テンプレートは_company/assets/templates/配下でGit管理する。2026-07-14追加)
+_company/assets/local/source/**
+_company/assets/local/working/**
+_company/assets/local/exports/**
+_company/assets/local/previews/**
+_company/assets/local/records/**
+_company/assets/local/content-maps/**
+_company/assets/local/export-manifests/**
+_company/assets/local/license-evidence/**
