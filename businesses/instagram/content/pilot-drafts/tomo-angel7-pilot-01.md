@@ -65,7 +65,7 @@ editable: false
 asset_owner: CEO
 human_review_required: true
 public_release_approved: false
-asset_reference: pending_ceo_asset_identification
+asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
 ```
 **asset_referenceについて:** CEOが実際に使用する固定誘導画像のファイル名・Canvaデザイン名・その他人間が識別できる管理名が確定するまで、`pending_ceo_asset_identification`とします。添付されたInstagramプロフィール画面・ココナラプロフィール画面等を固定誘導画像そのものと勝手に判断していません。画像内の文言も推測で記載していません。
 
