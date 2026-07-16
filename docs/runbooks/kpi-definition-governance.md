@@ -120,7 +120,7 @@ KPI名称・目標・actuals schema・集約構造は存在するが、完全な
 ## 6. 期間・タイムゾーン
 `reporting_frequency`・`aggregation_level`・`period_boundary_rule`・`business_timezone`・`source_timezone_policy`・`week_start_day`・`month_boundary_rule`・`cumulative_value_allowed`を定義する。
 
-**事業上の基準タイムゾーンは現在`not_decided`([`kpi-data-entry-and-validation.md`](kpi-data-entry-and-validation.md)参照)のため、本Batchで独断決定していない。** `business_timezone`が未決定のKPIは、期間解釈に影響する場合`blocked`とする。source timezoneとreporting timezoneを区別する。日次・週次・月次・累計を区別し、期間開始・終了が含むか含まないかを明記する。週の開始曜日・月末/月初の境界を明記する。累計値と期間値を同じ定義として混同しない。
+**事業上の基準タイムゾーンは現在`not_decided`([`kpi-data-entry-and-validation.md`](kpi-data-entry-and-validation.md)参照)のため、本Batchで独断決定していない。** `business_timezone`が未決定のKPIは、期間解釈に影響する場合`blocked`とする。source timezoneとreporting timezoneを区別する。日次・週次・月次・累計を区別し、期間開始・終了が含むか含まないかを明記する。週の開始曜日・月末/月初の境界を明記する。累計値と期間値を同じ定義として混同しない。**2026-07-14追加:** 事業基準タイムゾーン・期間境界の全社統一ルールは[`business-time-and-reporting-period-governance.md`](business-time-and-reporting-period-governance.md)を正本として参照する(本Runbookでは重複記載しない)。
 
 ## 7. 集計方法・計算式
 `raw_or_derived`・`aggregation_method`・`calculation_formula`・`formula_version`・`numerator_kpi_id`・`denominator_kpi_id`・`input_kpi_ids`・`rounding_rule`・`missing_value_rule`・`divide_by_zero_rule`・`duplicate_handling_rule`を定義する。

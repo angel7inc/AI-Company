@@ -1,0 +1,35 @@
+# 外部サービス時刻対応表 テンプレート(項目定義のみ。実在する対応表ではない)
+# 正本としての実対応表の保存場所は本Batchでは確定しない。
+# 用語・確認方針の定義は
+# docs/runbooks/business-time-and-reporting-period-governance.md を正本として参照する。
+# 本Batchでは実ログイン・実設定確認を行っていない。account_referenceへ実アカウント名を入れない。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+mapping_id: null
+source_system: null
+account_reference: null             # 実アカウント名は入れない
+
+source_timezone: null
+timezone_source: null                # この値をどこから確認したか(画面表示/CSV/API仕様書等)
+display_timezone: null
+export_timezone: null
+api_timezone: null
+
+configurable: false                  # このサービスでタイムゾーン設定が変更可能か
+configuration_verified: false
+verified_at: null
+verified_by: null
+
+conversion_required: false
+conversion_rule_reference: null
+
+active: false
+
+human_review_required: true
+human_review_status: null
+ceo_review: null
+
+notes: null

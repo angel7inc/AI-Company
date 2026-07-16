@@ -37,7 +37,7 @@ KPI定義台帳と観測値管理は存在するが、観測値からdefinition_
 ### 2.1 意味内容を変える変更(新しいdefinition_versionが必要)
 以下の変更は、同じ`definition_version`へ上書きせず、**新しい`definition_version`を作成する対象**とする。
 
-KPIの意味、`value_type`、`unit`、`percentage_scale`、`currency_code`、`tax_treatment`、計算式、集計方法、期間境界、`business_timezone`、丸め規則、欠損値の扱い、分母0の扱い、必須ディメンション、許可ディメンション、ソースシステム、Financeとの境界。
+KPIの意味、`value_type`、`unit`、`percentage_scale`、`currency_code`、`tax_treatment`、計算式、集計方法、期間境界、`business_timezone`、丸め規則、欠損値の扱い、分母0の扱い、必須ディメンション、許可ディメンション、ソースシステム、Financeとの境界。**2026-07-14追加:** `business_timezone`・期間境界の全社統一ルールは[`business-time-and-reporting-period-governance.md`](business-time-and-reporting-period-governance.md)を正本として参照する。
 
 ### 2.2 ライフサイクル情報
 `active`版を`deprecated`または`superseded`へ変更する等のライフサイクル更新は、意味内容の変更と区別する。**ライフサイクル情報の変更もGitコミットとして記録する。** 過去観測値が参照する`definition_version`自体は変更しない。

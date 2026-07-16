@@ -1,0 +1,41 @@
+# 期間境界定義 テンプレート(項目定義のみ。実在する期間定義ではない)
+# 正本としての実定義の保存場所は本Batchでは確定しない。
+# 用語・状態値・境界規則の定義は
+# docs/runbooks/business-time-and-reporting-period-governance.md を正本として参照する。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+period_definition_id: null
+policy_version: null                # 参照する事業時刻ポリシーの版
+
+period_type: null                   # daily / weekly / monthly / quarterly / yearly / custom / cumulative / point_in_time
+boundary_timezone: null
+
+start_time_local: null
+end_time_local: null
+start_inclusive: false
+end_inclusive: false
+
+week_start_day: null
+iso_week_used: false
+
+month_start_rule: null
+quarter_definition: null
+year_start_rule: null
+fiscal_year_start_month: null
+
+cumulative_value_allowed: false
+partial_period_allowed: false
+late_arriving_data_rule: null
+
+effective_from: null
+effective_to: null
+active: false
+
+human_review_required: true
+human_review_status: null
+ceo_review: null
+
+notes: null

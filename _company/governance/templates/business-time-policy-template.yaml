@@ -1,0 +1,39 @@
+# 事業時刻ポリシー テンプレート(項目定義のみ。実在するポリシーではない)
+# 正本としての実ポリシーの保存場所は本Batchでは確定しない(承認後の保存場所はCEO確認事項)。
+# 用語・状態値・版管理の定義は
+# docs/runbooks/business-time-and-reporting-period-governance.md を正本として参照する。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+policy_id: null
+policy_version: null
+policy_status: null                 # not_decided〜blocked(定義はRunbook「11. 基準変更と版管理」参照)
+
+business_timezone: null             # IANA形式(例: Area/City)を使用する想定。実在する値は入れない
+business_timezone_status: null      # not_decided / proposed / review_required / approved / active / deprecated / blocked
+timezone_authority: null            # 誰(CEO等)がこの値を決定する権限を持つかの記録
+
+default_timestamp_storage: null     # UTC保存 / ローカル保存等の方針
+default_display_timezone: null
+default_reporting_timezone: null
+
+effective_from: null
+effective_to: null
+supersedes_policy_version: null
+superseded_by_policy_version: null
+backward_compatible: false
+reprocessing_required: false
+change_summary: null
+change_reason: null
+
+human_review_required: true
+human_review_status: null
+ceo_review: null
+approved_at: null
+approved_by: null
+
+created_at: null
+updated_at: null
+notes: null
