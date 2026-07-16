@@ -1,0 +1,170 @@
+# KPI定義スキーマ(構造定義のみ。実在するKPI定義・実績値・目標値は含まない)
+# 既存のkpi-actuals-schema.yamlと同じ形式(sample_only/do_not_import/sensitivity/schema_versionのヘッダー、
+# コメントによる許容値の説明、recordsサンプル配列)に整合させている。JSON Schema形式へは変更していない。
+#
+# 本ファイルは現時点では説明的・規約的なYAMLスキーマであり、自動検証を実行するJSON Schema等ではない。
+# 自動バリデーション機構は未実装であり、本ファイルが存在するだけで実定義ファイルの構文・内容が
+# 自動的に保証されるわけではない。将来、既存形式との互換性を確認したうえで機械検証(バリデータ)を
+# 追加する可能性があるが、本Batchでは新しい依存関係やバリデータを追加していない。
+#
+# 用語・状態遷移・版管理・Financeとの境界の詳細は docs/runbooks/kpi-definition-governance.md を正本として参照する。
+sample_only: true
+do_not_import: true
+sensitivity: public
+schema_version: 1
+
+# ============================================================
+# 必須項目(値が確定するまでdefinition_statusをactiveにしない)
+# ============================================================
+# kpi_id, definition_version, kpi_name, definition_status, raw_or_derived,
+# value_type, unit, reporting_frequency, aggregation_level, aggregation_method,
+# period_boundary_rule, effective_from
+# (詳細な必須条件・フェイルクローズ条件はRunbook「12. フェイルクローズ条件」参照)
+
+# ============================================================
+# ID形式の制約
+# ============================================================
+# kpi_id: 英語・snake_case(docs/naming-conventions.md「KPI項目名」規則を優先。例: follower_count, revenue_jpy)。
+#         一意・再利用禁止。実績値・目標値・個人名・顧客名・メールアドレス・電話番号・注文番号・
+#         秘密情報・APIキー・トークン・非公開URLを含めない。
+# definition_version: 単純増分の整数、または"{YYYY-MM-DD}-{連番}"等、版が一意に識別できる形式。
+
+# ============================================================
+# 状態値(definition_status) ― 型: string、null不可(未設定はテンプレート上null)
+# ============================================================
+# draft / review_required / changes_requested / approved / active / deprecated / superseded / blocked
+# (各状態の意味・遷移条件はRunbook「3. 定義状態」参照。approvedとactiveは別概念であり、単一のdefinition_statusフィールドが同時に両方の値を取ることはない)
+
+# ============================================================
+# value_type ― 型: string
+# ============================================================
+# count / percentage / currency / duration / ratio / score / boolean
+
+# ============================================================
+# aggregation_method ― 型: string
+# ============================================================
+# sum / count / distinct_count / average / weighted_average / minimum / maximum / latest / ratio / custom
+# (customの場合、change_summary等で説明と版管理を必須とする)
+
+# ============================================================
+# percentage scale ― 型: string(value_type: percentageの場合に必須)
+# ============================================================
+# 0_to_1 / 0_to_100
+
+# ============================================================
+# 通貨コード ― 型: string(value_type: currencyの場合に必須)
+# ============================================================
+# ISO 4217準拠のコード(例: jpy, usd)。実額はここに保存しない(Finance正本は_company/finance/actuals/)。
+
+# ============================================================
+# 有効期間・版管理 ― 型: string(日付) / boolean
+# ============================================================
+# effective_from, effective_to: 期間境界が不明な場合はactiveにしない
+# supersedes_definition_version, superseded_by_definition_version: 旧版は削除せずsuperseded/deprecatedとして保持
+# backward_compatible, reprocessing_required: 型はboolean、デフォルトfalse
+# 同一kpi_idについて、同一期間に複数のactive版を重複させない
+
+# ============================================================
+# ディメンション ― 型: 配列(array of string)
+# ============================================================
+# required_dimensions, optional_dimensions, prohibited_dimensions
+# 候補: brand_id, channel, account, content_id, campaign_id, product, service, region,
+#       audience_segment, device, organic_paid
+# 顧客個人を特定するディメンション(氏名・メールアドレス・電話番号・LINEユーザーID等)はprohibited_dimensions側に分類し、
+# required/optionalに含めない。
+
+# ============================================================
+# ソース ― 型: 配列(array of string) / string / boolean
+# ============================================================
+# allowed_source_systems(配列), preferred_source_system(string),
+# evidence_required(boolean), evidence_types(配列),
+# manual_entry_allowed / imported_entry_allowed / calculated_entry_allowed(いずれもboolean、デフォルトfalse)
+
+# ============================================================
+# Finance根拠 ― 型: boolean / string
+# ============================================================
+# finance_source_required: true の場合、通貨建て派生KPIはFinance側の根拠(source_system・source_reference・
+# evidence_ids・calculation_formula_reference・calculation_version等)を追跡できなければblockedとする。
+# 本スキーマ・本テンプレートは、売上・広告費等の金額実績そのものを保存しない
+# (金額実績の正本は_company/finance/actuals/、詳細はRunbook「11. Financeとの境界」参照)。
+
+# ============================================================
+# human review / CEO review ― 型: boolean / string
+# ============================================================
+# human_review_required(boolean、テンプレートでは既定true), human_review_status(string),
+# ceo_review(string), approved_at(string日時) / approved_by(string)
+# KPI定義の承認は、KPI実績値の外部報告承認(external_reporting_approved)と同義ではない。
+
+# ============================================================
+# records: 1件分の項目定義(実在するKPI定義ではない。全項目null/false/空配列)
+# ============================================================
+records:
+  - kpi_id: null
+    definition_version: null
+    kpi_name: null
+    display_name: null
+    description: null
+    business_purpose: null
+    category: null
+    definition_status: null
+    brand_ids: []
+    channels: []
+    raw_or_derived: null
+    value_type: null
+    unit: null
+    percentage_scale: null
+    currency_code: null
+    tax_treatment: null
+    decimal_precision: null
+    minimum_value: null
+    maximum_value: null
+    negative_value_allowed: false
+    zero_allowed: false
+    null_allowed: false
+    reporting_frequency: null
+    aggregation_level: null
+    aggregation_method: null
+    period_boundary_rule: null
+    business_timezone: null
+    source_timezone_policy: null
+    week_start_day: null
+    month_boundary_rule: null
+    cumulative_value_allowed: false
+    calculation_formula: null
+    formula_version: null
+    numerator_kpi_id: null
+    denominator_kpi_id: null
+    input_kpi_ids: []
+    rounding_rule: null
+    missing_value_rule: null
+    divide_by_zero_rule: null
+    duplicate_handling_rule: null
+    required_dimensions: []
+    optional_dimensions: []
+    prohibited_dimensions: []
+    allowed_source_systems: []
+    preferred_source_system: null
+    source_field_reference: null
+    evidence_required: null
+    evidence_types: []
+    source_freshness_rule: null
+    manual_entry_allowed: false
+    imported_entry_allowed: false
+    calculated_entry_allowed: false
+    finance_source_required: false
+    effective_from: null
+    effective_to: null
+    supersedes_definition_version: null
+    superseded_by_definition_version: null
+    backward_compatible: false
+    reprocessing_required: false
+    change_summary: null
+    change_reason: null
+    human_review_required: true
+    human_review_status: null
+    ceo_review: null
+    approved_at: null
+    approved_by: null
+    created_at: null
+    updated_at: null
+    notes: null

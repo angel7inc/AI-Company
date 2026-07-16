@@ -1,0 +1,93 @@
+# KPI定義 テンプレート(項目定義のみ。実在するKPI定義ではない)
+# 承認済みKPI定義ファイルの正本置き場は _company/kpi/definitions/ を想定するが、
+# 今回はテンプレートのみを作成し、実定義ファイルは作成しない。
+# 用語・状態値・版管理・Financeとの境界の定義は
+# docs/runbooks/kpi-definition-governance.md を正本として参照する。
+# kpi_idの命名は docs/naming-conventions.md「KPI項目名」規則(英語・snake_case、例: follower_count)を優先する。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+kpi_id: null
+definition_version: null
+
+kpi_name: null
+display_name: null
+description: null
+business_purpose: null
+category: null
+
+definition_status: null            # draft〜blocked(定義はRunbook「3. 定義状態」参照)
+
+brand_ids: []
+channels: []
+
+raw_or_derived: null                # raw / derived
+
+value_type: null                    # count / percentage / currency / duration / ratio / score / boolean
+unit: null
+percentage_scale: null              # 0_to_1 / 0_to_100
+currency_code: null
+tax_treatment: null
+decimal_precision: null
+minimum_value: null
+maximum_value: null
+negative_value_allowed: false
+zero_allowed: false
+null_allowed: false
+
+reporting_frequency: null           # daily / weekly / monthly / cumulative等
+aggregation_level: null
+aggregation_method: null            # sum / count / distinct_count / average / weighted_average / minimum / maximum / latest / ratio / custom
+period_boundary_rule: null
+business_timezone: null             # 事業上の基準タイムゾーンはnot_decided(Runbook参照)
+source_timezone_policy: null
+week_start_day: null
+month_boundary_rule: null
+cumulative_value_allowed: false
+
+calculation_formula: null
+formula_version: null
+numerator_kpi_id: null
+denominator_kpi_id: null
+input_kpi_ids: []
+rounding_rule: null
+missing_value_rule: null
+divide_by_zero_rule: null
+duplicate_handling_rule: null
+
+required_dimensions: []
+optional_dimensions: []
+prohibited_dimensions: []
+
+allowed_source_systems: []
+preferred_source_system: null
+source_field_reference: null        # 非公開URL・実ファイルパス等の実値は入れない
+evidence_required: null
+evidence_types: []
+source_freshness_rule: null
+manual_entry_allowed: false
+imported_entry_allowed: false
+calculated_entry_allowed: false
+
+finance_source_required: false      # 通貨建て派生KPIでFinance側の根拠追跡が必須かどうか
+
+effective_from: null
+effective_to: null
+supersedes_definition_version: null
+superseded_by_definition_version: null
+backward_compatible: false
+reprocessing_required: false
+change_summary: null
+change_reason: null
+
+human_review_required: true
+human_review_status: null
+ceo_review: null
+approved_at: null
+approved_by: null
+
+created_at: null
+updated_at: null
+notes: null
