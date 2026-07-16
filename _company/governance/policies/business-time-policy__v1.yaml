@@ -1,0 +1,38 @@
+# 事業時刻ポリシー(承認済み、初回登録)
+# 構造定義・許容値は_company/governance/templates/business-time-policy-template.yamlを参照する。
+# 用語・状態値・版管理の定義はdocs/runbooks/business-time-and-reporting-period-governance.mdを正本として参照する。
+#
+# human_review_status・ceo_reviewの許容値はRunbook「2.1 レビュー状態値」を正本として参照する(2026-07-16 CEO決定)。
+
+schema_version: 1
+
+policy_id: business_time_policy
+policy_version: 1
+policy_status: active
+
+business_timezone: Asia/Tokyo
+business_timezone_status: active
+timezone_authority: CEO
+
+default_timestamp_storage: RFC3339_UTC
+default_display_timezone: Asia/Tokyo
+default_reporting_timezone: Asia/Tokyo
+
+effective_from: "2026-07-16T00:00:00+09:00"
+effective_to: null
+supersedes_policy_version: null
+superseded_by_policy_version: null
+backward_compatible: false
+reprocessing_required: false
+change_summary: "全社の日時・期間解釈を統一する初回ポリシー。CEO決定によりAsia/Tokyoを事業基準タイムゾーンとして採用。"
+change_reason: "外部サービス別タイムゾーンは未確認であり、個別マッピングが別途必要。過去データの再分類・再計算は今回承認していない。"
+
+human_review_required: true
+human_review_status: approved
+ceo_review: approved
+approved_at: "2026-07-16T12:59:30+09:00"
+approved_by: CEO
+
+created_at: "2026-07-16T12:59:30+09:00"
+updated_at: "2026-07-16T12:59:30+09:00"
+notes: "正規化timestampはRFC 3339形式のUTCで保存する。元サービスのoriginal_source_timestamp・original_source_timezoneは上書きせず保持する。表示・報告時にAsia/Tokyoへ変換する。タイムゾーン不明の値を推測変換しない。effective_from(適用開始日時)とapproved_at(承認操作の実時刻)は別概念である。"

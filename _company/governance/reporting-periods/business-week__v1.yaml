@@ -1,0 +1,40 @@
+# 週次期間定義(承認済み、初回登録)
+# 構造定義は_company/governance/templates/reporting-period-definition-template.yamlを参照する。
+# 用語・状態値の定義はdocs/runbooks/business-time-and-reporting-period-governance.mdを正本として参照する。
+# human_review_status・ceo_reviewの許容値はRunbook「2.1 レビュー状態値」を正本として参照する(2026-07-16 CEO決定)。承認日時の正本は事業時刻ポリシー(business-time-policy__v1.yaml)およびGitコミット履歴とする。
+# 週番号だけで期間を識別せず、期間開始日・終了日を併用すること。
+
+schema_version: 1
+
+period_definition_id: business_week
+policy_version: 1
+
+period_type: weekly
+boundary_timezone: Asia/Tokyo
+
+start_time_local: "00:00:00"
+end_time_local: "00:00:00"
+start_inclusive: true
+end_inclusive: false
+
+week_start_day: monday
+iso_week_used: true
+
+month_start_rule: null
+quarter_definition: null
+year_start_rule: null
+fiscal_year_start_month: null
+
+cumulative_value_allowed: false
+partial_period_allowed: false
+late_arriving_data_rule: "確定済み・locked済み期間へは自動反映せず、人間レビューおよび訂正要否確認を必要とする"
+
+effective_from: "2026-07-16T00:00:00+09:00"
+effective_to: null
+active: true
+
+human_review_required: true
+human_review_status: approved
+ceo_review: approved
+
+notes: "月曜日00:00を含み、翌週月曜日00:00を含まない区間。週番号単独ではなく期間開始日・終了日を併用して識別する。"

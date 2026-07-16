@@ -20,16 +20,19 @@
 タイムゾーン項目・個別記載(KPI定義スキーマの`business_timezone`欄等)は存在するが、事業全体の基準と期間境界を統一管理する正式な管理基盤(ポリシー・状態管理・版管理・外部サービス対応表)は存在しないため、**ケースAとして実装を続行する。**
 
 ## 1. 事業基準タイムゾーンの確定状況
-本Batchでは、以下の理由により**事業基準タイムゾーン(`business_timezone`)を確定・承認しない。**
 
-**候補として整理できる事実(確定ではない):**
-- CEOの主な運用環境(検出PC)がJST(UTC+0900)であること
-- 対象ブランド(Tomo_Angel7)のコンテンツ・想定読者が日本語圏であること
-- Finance・KPI・投稿運用に関する既存文書がいずれもJST運用を前提とすることと矛盾しないこと
+**【2026-07-16追記】CEO決定により、事業基準タイムゾーンは`Asia/Tokyo`として承認・`active`化された。** 承認済み正式ポリシーは[`_company/governance/policies/business-time-policy__v1.yaml`](../../_company/governance/policies/business-time-policy__v1.yaml)、承認済み期間定義(日次/週次/月次/四半期/年次)は[`_company/governance/reporting-periods/`](../../_company/governance/reporting-periods/)配下に保存されている。
 
-**確定を見送る理由:** 「外部サービスとの変換ルールを明示できること」という条件を、本Batchでは満たせない。Instagram・LINE・Google系サービス等の実際のタイムゾーン設定は未確認であり(本Batchでは実ログイン・実設定確認を行っていない)、変換ルールを明示できない以上、独断で確定しない。
+**承認内容の要旨:**
+- `business_timezone`: `Asia/Tokyo`(`business_timezone_status: active`)
+- 正規化timestampはRFC 3339形式のUTCで保存する
+- 標準表示・標準報告タイムゾーンは`Asia/Tokyo`
+- 期間境界は開始を含み終了を含まない(`start_inclusive: true`/`end_inclusive: false`)
+- 会計年度は`not_decided`のまま(`fiscal_year_start_month: null`)。暦年と会計年度を同一視しない
 
-**したがって、`business_timezone_status: not_decided`のまま維持し、上記候補(Asia/Tokyo相当)を**CEO決定が必要な選択肢**として提示する。CEOが承認した時点で、`business-time-policy-template.yaml`を用いた正式なポリシー起案(`proposed`→`review_required`→`approved`→`active`)に進むことができる。
+**承認前の経緯(記録として保持):** 本Batch起案時点では、外部サービス(Instagram・LINE・Google系等)の実タイムゾーン設定が未確認であることを理由に確定を見送っていた。**この状況は今回の承認によっても変わっていない。外部サービス別タイムゾーンは依然として未確認のままであり、Instagram・LINE・Google等がAsia/Tokyoであると推測してはならない。** 外部サービス時刻対応表(`source-timezone-mapping-template.yaml`)への実登録は、実ログイン・実設定確認を伴う別Batchで行う。
+
+以下、旧版に記載した候補整理は経緯として残す。CEOの主な運用環境(検出PC)がJST(UTC+0900)であったこと、対象ブランド(Tomo_Angel7)のコンテンツ・想定読者が日本語圏であったこと、Finance・KPI・投稿運用に関する既存文書がいずれもJST運用を前提とすることと矛盾しなかったことが、承認の背景事実として存在した。
 
 ## 2. 事業基準タイムゾーン(business_timezone)の管理項目
 `business_timezone`・`business_timezone_status`・`timezone_authority`・`approved_at`・`approved_by`・`effective_from`・`effective_to`・`previous_timezone`・`change_reason`・`reprocessing_required`を管理する。
@@ -45,6 +48,21 @@
 - タイムゾーン不明時にローカルPC時刻を推測で採用しない
 - OS設定だけを事業基準の正本としない
 - 基準タイムゾーン変更時は過去データへの影響を評価する
+
+### 2.1 レビュー状態値(human_review_status・ceo_review)
+**【2026-07-16追記、CEO決定】** 事業時刻ポリシー・期間定義の`human_review_status`・`ceo_review`について、以下を正式な状態値とする。
+
+`human_review_status`の許容値: `not_started`/`review_required`/`changes_requested`/`approved`/`blocked`。
+
+`ceo_review`の許容値: `not_requested`/`review_required`/`approved`/`rejected`/`blocked`。
+
+- `human_review_status: approved`は、人間による内容確認が完了し承認された状態を意味する
+- `ceo_review: approved`は、CEOによる内容承認が完了した状態を意味する
+- `human_review_status`または`ceo_review`が`null`・未承認・`changes_requested`・`rejected`・`blocked`の場合は`active`にしない
+- `active`化後にレビュー状態が無効になった場合(訂正・撤回等)は、利用停止または再レビューを必要とする
+- これらはKPI実績値や投稿の外部公開承認(`external_reporting_approved`・`public_release_approved`)とは別概念である
+
+**本追記は今回の事業時刻ポリシー・期間定義に限定した状態値である。** 他の既存ファイル(KPI定義・アセット管理等)や全社共通の状態語彙への展開は今回行わず、将来課題として記録する。
 
 ## 3. 日時の保存形式
 - timestampはタイムゾーンまたはUTCオフセットを明示する
@@ -132,7 +150,10 @@
 
 - 予約時刻と実公開時刻を混同しない
 - 外部プラットフォーム表示日と事業上の日付が異なる可能性がある
-- 投稿実績は実公開時刻を基準にするかを別途決定する(未決定)
+- **【2026-07-16追記、CEO決定】投稿実績の集計基準は原則`published_at`(実公開時刻)とする。** `scheduled_at`(予約操作の時刻)は投稿実績の代替ではない
+- `source_platform_timestamp`を保持する。`published_at`のsource timezoneを確認する
+- `published_at`が不明またはタイムゾーン未確認の場合、日次・週次・月次集計へ確定反映しない
+- 投稿先サービス側の表示時刻を`Asia/Tokyo`と推測しない
 - タイムゾーン未確認の投稿を日次・週次集計へ無条件に含めない
 - **本Batchでは、第1投稿(`tomo-angel7-pilot-01`)の日時・公開状態を変更していない**
 
@@ -146,6 +167,8 @@
 - 再集計時に元データを上書きしない
 - 過去レポートへの影響を確認する
 - 同一期間に複数の`active`ポリシーを存在させない
+
+**`effective_from`と`approved_at`の役割の違い(2026-07-16追記):** `effective_from`はポリシー・期間定義が**適用され始める時点**(業務上の発効日時)であり、`approved_at`はCEOが**実際に承認操作を行った時刻**である。両者は別概念であり、同一値になるとは限らない。`created_at`・`updated_at`もそれぞれ、ファイルを実際に作成した日時・最終更新した日時であり、`effective_from`とは別の意味を持つ。
 
 ## 12. フェイルクローズ条件
 以下のいずれかに該当する場合、日時正規化・期間確定・`validated`化・`locked`化・外部報告使用を停止する。
@@ -193,12 +216,13 @@
 いずれも`sample_only: true`であり、実在する情報を含まない。承認済みポリシー・定義の正式な保存場所は、CEOが`business_timezone`を含む基準を決定した段階で別途確定する。
 
 ## 15. 現在の状態(正直な申告)
-- business_timezoneは未決定(CEO決定待ち。候補は「1」参照)
-- 実外部サービスのタイムゾーン確認は未実施
-- 実期間境界定義は未作成
-- 実時刻ポリシーは未作成
-- 実変換記録は未作成
-- 過去データへの影響評価は未実施
+- **【2026-07-16更新】business_timezoneは`Asia/Tokyo`としてCEO承認済み・`active`。** 正式ポリシー([`business-time-policy__v1.yaml`](../../_company/governance/policies/business-time-policy__v1.yaml))・日次/週次/月次/四半期/年次の期間定義([`_company/governance/reporting-periods/`](../../_company/governance/reporting-periods/))を初回登録済み
+- **【2026-07-16更新】** `human_review_status`・`ceo_review`の正式な許容値をCEO決定として「2.1」に追記し、事業時刻ポリシー・5期間定義とも`human_review_status: approved`・`ceo_review: approved`で確定した。この状態値は今回のBatchに限定した定義であり、他の既存ファイル・全社共通語彙への展開は将来課題のまま
+- 実外部サービスのタイムゾーン確認は未実施(Instagram・LINE・Google系等がAsia/Tokyoであるとは推測していない)
+- 外部サービス時刻対応表(`source-timezone-mapping-template.yaml`)への実登録は別Batchで行う(今回未実施)
+- 会計年度は`not_decided`のまま(`fiscal_year_start_month: null`)
+- 投稿実績は`published_at`基準とすることをCEO決定済み。ただし実投稿への適用(第1投稿等)は今回行っていない
+- 過去データへの影響評価・過去期間の再分類は未実施
 - 自動変換は未実装
 - 自動期間計算は未実装
 - 自動照合は未実装
@@ -211,3 +235,4 @@
 | 版 | 日付 | 変更内容 | 変更者 |
 |---|---|---|---|
 | 1 | 2026-07-14 | 初版作成(環境構築Gate2、事業基準タイムゾーン・報告期間境界管理基盤Batch) | COO |
+| 2 | 2026-07-16 | CEO決定によりAsia/Tokyoを事業基準タイムゾーンとして承認・active化。正式ポリシー・日次/週次/月次/四半期/年次の期間定義を初回登録。human_review_status・ceo_reviewの正式な許容値をCEO決定として追記し、5期間定義+ポリシーをapproved/active状態で確定(承認済み事業時刻ポリシー・報告期間定義の初回登録Batch) | COO |
