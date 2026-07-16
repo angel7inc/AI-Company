@@ -67,5 +67,5 @@
 - CEO reviewが完了している
 - 同一期間の`active`版重複がない
 
-## 観測値との参照方法(未決定事項)
-[`docs/runbooks/kpi-data-entry-and-validation.md`](../../../docs/runbooks/kpi-data-entry-and-validation.md)の観測値テンプレート(`kpi-observation-template.yaml`)には、現時点で`definition_version`を直接参照する項目が存在しない。観測値がどの定義版に基づくかの追跡方法は、**本Batchの範囲外の未決定事項・将来課題**とする(詳細はRunbook「10. KPI観測値との関係」参照)。既存のAnalyticsテンプレートは本Batchで変更していない。**この参照方式が未実装である以上、KPI Definition Registryの整備をもって観測値とのトレーサビリティが完成したとは評価しない。**
+## 観測値との参照方法
+**2026-07-14追加:** [`kpi-observation-template.yaml`](../../analytics/templates/kpi-observation-template.yaml)へ`definition_version`・`definition_reference`・`definition_commit_id`等の参照項目を追加した。ルール・GitコミットIDの扱い・旧観測値の後方互換性方針は[`docs/runbooks/kpi-definition-observation-traceability.md`](../../../docs/runbooks/kpi-definition-observation-traceability.md)を正本として参照する。**項目追加のみであり、実際の観測値と定義版の対応付け・Git履歴調査・旧観測値の移行は行っていない。** テンプレートに項目が存在することをもって、観測値とのトレーサビリティが完成したとは評価しない。

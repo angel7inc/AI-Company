@@ -158,17 +158,9 @@ KPI名称・目標・actuals schema・集約構造は存在するが、完全な
 ## 10. KPI観測値との関係
 [`kpi-data-entry-and-validation.md`](kpi-data-entry-and-validation.md)の観測値には、最低限`kpi_id`・定義版参照・対象期間・値・単位・ディメンション・元データ・証跡を記録できる必要がある。
 
-**現在の`kpi-observation-template.yaml`には`definition_version`を直接参照する項目が存在しない。本Batchでは、そのテンプレートを変更していない。** 以下を将来課題として明記する。
+**2026-07-14追加:** `kpi-observation-template.yaml`・`kpi-entry-batch-template.yaml`へ、`definition_version`・`definition_reference`・`definition_commit_id`等の定義版トレーサビリティ項目を追加した。ルール・状態定義・GitコミットIDの扱い・旧観測値の後方互換性方針の詳細は、[`kpi-definition-observation-traceability.md`](kpi-definition-observation-traceability.md)を正本として参照する(本Runbookでは重複記載しない)。
 
-- 観測値が使用した`definition_version`を記録する方法
-- definitionファイルまたは定義レコードへの参照方式
-- 既存観測値テンプレートへ項目追加する場合の後方互換性
-- 既存観測値がどの定義版で計算されたかを特定する方法
-- 定義変更時に再計算対象を抽出する方法
-
-**既存Analyticsテンプレート(4件)・`_company/analytics/`配下は本Batchで一切変更していない。**
-
-**この参照方式が未実装である以上、KPI Definition Registryの整備をもって、観測値とのトレーサビリティが完成したとは評価しない。** Definition Registry(定義)とAnalytics(観測値)は現時点で独立しており、両者を機械的に紐づける仕組みは今回実装していない。
+**この項目追加はルール・空テンプレートの整備であり、実際の観測値と定義版の対応付け・Git履歴調査・旧観測値の移行は行っていない。** テンプレートに項目が存在することをもって、観測値とのトレーサビリティが完成したとは評価しない。Definition Registry(定義)とAnalytics(観測値)は、実際の解決記録が作成されるまで実質的に独立している。
 
 ## 11. Financeとの境界
 - 売上・広告費・手数料・原価・費用・利益等の生の金額明細は`_company/finance/actuals/`が正本
@@ -245,11 +237,11 @@ KPI名称・目標・actuals schema・集約構造は存在するが、完全な
 - 実際のKPI定義は登録していない
 - 実在する`kpi_id`は発行していない
 - 実目標値・実績値は登録していない
-- Finance記録・Analyticsテンプレートは変更していない
+- Finance記録は変更していない
 - 事業上の基準タイムゾーンは未確定(`not_decided`)
-- 観測値とdefinition_versionの参照方法は未確定
+- 観測値とdefinition_versionを結び付ける項目は追加済みだが、実際の対応付け・解決記録の作成は未実施(詳細は[`kpi-definition-observation-traceability.md`](kpi-definition-observation-traceability.md)参照)
 - 自動バリデーション機構は未実装(`kpi-definition-schema.yaml`は説明的スキーマ)
-- KPI Definition RegistryとAnalytics観測値のトレーサビリティは未完成(参照方式が未実装のため)
+- KPI Definition RegistryとAnalytics観測値の完全なエンドツーエンドのトレーサビリティは未検証
 - `.gitignore`は変更していない(定義ファイル自体はGit管理対象として想定するため)
 - 外部サービス接続は行っていない
 

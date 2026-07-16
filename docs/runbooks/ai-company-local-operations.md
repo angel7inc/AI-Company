@@ -3,7 +3,7 @@
 ## 位置づけ
 本Runbookは、CEOまたは許可された担当者が、別PCまたは再起動後でも安全に作業を再開できるようにするための、現状事実に基づく最低限の手順書である。**実際には存在しない機能を存在するように記載しない。** 実行コード・Agent自動オーケストレーション・Dashboard・API接続・MCP接続の追加は本Runbookの対象外であり、将来それらを導入する際の別Batchで扱う。
 
-役割分担の詳細は[`_company/charter/tool-role-responsibility.md`](../../_company/charter/tool-role-responsibility.md)を参照する。秘密情報の扱いは[`_company/charter/secret-management-policy.md`](../../_company/charter/secret-management-policy.md)を正本とし、本Runbookでは要約のみを記載する。作業ログ・障害記録・バックアップ/復元の詳細は[`operations-continuity.md`](operations-continuity.md)を、画像・クリエイティブアセットの管理ルールは[`creative-asset-management.md`](creative-asset-management.md)を、KPI実績値の入力・検証・証跡・訂正ルールは[`kpi-data-entry-and-validation.md`](kpi-data-entry-and-validation.md)を、KPI定義・版管理ルールは[`kpi-definition-governance.md`](kpi-definition-governance.md)を参照する。
+役割分担の詳細は[`_company/charter/tool-role-responsibility.md`](../../_company/charter/tool-role-responsibility.md)を参照する。秘密情報の扱いは[`_company/charter/secret-management-policy.md`](../../_company/charter/secret-management-policy.md)を正本とし、本Runbookでは要約のみを記載する。作業ログ・障害記録・バックアップ/復元の詳細は[`operations-continuity.md`](operations-continuity.md)を、画像・クリエイティブアセットの管理ルールは[`creative-asset-management.md`](creative-asset-management.md)を、KPI実績値の入力・検証・証跡・訂正ルールは[`kpi-data-entry-and-validation.md`](kpi-data-entry-and-validation.md)を、KPI定義・版管理ルールは[`kpi-definition-governance.md`](kpi-definition-governance.md)を、KPI定義版と観測値のトレーサビリティルールは[`kpi-definition-observation-traceability.md`](kpi-definition-observation-traceability.md)を参照する。
 
 ## 1. 現在の運用形態(事実)
 - 本リポジトリは実行アプリケーションではない。`package.json`・`requirements.txt`等の実行依存関係定義は存在しない。

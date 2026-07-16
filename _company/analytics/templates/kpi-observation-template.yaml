@@ -57,6 +57,17 @@ rounding_rule: null
 
 duplicate_check_status: null
 
+# KPI定義版トレーサビリティ(2026-07-14追加、schema_versionは据え置き。既存項目への影響がない
+# 追加専用の変更であり、後方互換性の扱いはdocs/runbooks/kpi-definition-observation-traceability.md参照)
+definition_version: null
+definition_reference: null         # 定義ファイルへのリポジトリ相対参照(抽象形式のみ。実在パスは入れない)
+definition_commit_id: null         # 定義ファイルを確認できるフルGitコミットID(短縮ID・ブランチ名・タグ名では代替しない)
+definition_resolution_status: null # unresolved〜blocked(定義はRunbook「6. 定義版解決状態」参照)
+definition_resolution_id: null
+definition_effective_for_period: false
+definition_resolved_at: null
+definition_resolved_by: null
+
 validation_status: null           # 定義はRunbook「9.11 検証」参照
 validated_at: null
 validated_by: null

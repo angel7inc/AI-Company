@@ -1,0 +1,43 @@
+# KPI定義版解決記録 テンプレート(項目定義のみ。実在する解決記録ではない)
+# 正本としての実解決記録は _company/analytics/local/reconciliation/ 配下に置く想定だが、
+# 今回はテンプレートのみを作成し、実ファイルは作成しない。
+# _company/analytics/local/reconciliation/ は既存の.gitignore規則によりGit管理対象外
+# (本Batchでは.gitignoreを変更していない)。
+# 用語・状態値・解決方法の定義は
+# docs/runbooks/kpi-definition-observation-traceability.md を正本として参照する。
+
+schema_version: 1
+sample_only: true
+do_not_import: true
+
+resolution_id: null
+observation_id: null
+kpi_id: null
+
+source_period_start: null
+source_period_end: null
+
+previous_definition_version: null
+resolved_definition_version: null
+definition_reference: null          # 定義ファイルへのリポジトリ相対参照(抽象形式のみ。実在パスは入れない)
+definition_commit_id: null          # フルGitコミットID(短縮ID・ブランチ名・タグ名では代替しない)
+
+resolution_method: null             # direct_reference / source_document / git_history / period_matching /
+                                     # formula_matching / manual_review / unresolved
+resolution_status: null             # unresolved〜blocked(定義はRunbook「6. 定義版解決状態」参照)
+
+evidence_ids: []
+
+ambiguity_present: false
+backward_compatibility_confirmed: false
+reprocessing_required: false
+correction_required: false
+
+resolved_at: null
+resolved_by: null
+
+human_review_required: true
+human_review_status: null
+ceo_review: null
+
+notes: null

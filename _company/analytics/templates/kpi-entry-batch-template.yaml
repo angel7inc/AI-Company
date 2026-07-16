@@ -32,6 +32,13 @@ duplicate_check_status: null
 reconciliation_status: null
 validation_status: null
 
+# KPI定義版トレーサビリティ(2026-07-14追加、schema_versionは据え置き。詳細は
+# docs/runbooks/kpi-definition-observation-traceability.md参照)
+definition_resolution_status: null
+all_definitions_resolved: false     # Batch内に未解決観測値が1件でもあればtrueにしない
+unresolved_observation_ids: []
+definition_references: []           # 実在する参照は入れない(空テンプレート)
+
 human_review_required: null
 human_review_status: null
 ceo_review: null

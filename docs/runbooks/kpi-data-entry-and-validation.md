@@ -3,6 +3,8 @@
 ## 位置づけ
 本Runbookは、Instagram・LINE・Webサイト・ココナラ・広告・投稿実績等のKPIについて、実績値(observation)の入力・検証・証跡・訂正を管理するための**ルールと空テンプレートの設計**である。**今回のBatchはKPI実績値の入力・検証・証跡・訂正に関するルールと空テンプレートの設計だけを対象とする。** 実際のKPI数値の取得・入力・集計・計算、ダッシュボード作成、外部サービス接続は行っていない。
 
+**2026-07-14追加:** `kpi-observation-template.yaml`・`kpi-entry-batch-template.yaml`には、使用したKPI定義版を追跡するための項目(`definition_version`等)を追加した。定義版とのトレーサビリティの詳細ルールは[`kpi-definition-observation-traceability.md`](kpi-definition-observation-traceability.md)を正本として参照する(本Runbookでは重複記載しない)。
+
 ## 0. 既存構成との関係(重複回避)
 
 ### 0.1 既存のKPI・Finance構造の調査結果
