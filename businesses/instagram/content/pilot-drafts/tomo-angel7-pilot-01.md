@@ -199,6 +199,8 @@ asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
 **全体:** `ceo_review`(1〜5枚目本文・キャプション・ハッシュタグ・画像制作指示はCEO承認済み。ただし6枚目の`human_review_required`確認が完了するまで、全体としての`approved`への変更は行わない)
 **6枚目:** `human_review_required: true`・`public_release_approved: false`を維持。人間による公開前確認(6章のチェックリスト)が完了するまで`approved`・`public_release_approved: true`へは変更しない。
 
+**レビュー記録について(2026-07-17追記):** 1枚目draft-v2のデザインはCEOが目視確認し承認した(承認範囲は`visual_design_only`。投稿全体の公開承認・6枚目の承認・Outbound Action Approvalのいずれも意味しない)。6枚目固定CTA画像の13項目監査は完了しているが、実績表現・お客様の声・権利関係の根拠資料が不足しているため`blocked_pending_evidence`(証拠待ちで公開ブロック)と判定されている。詳細は[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)を参照する。
+
 ## 15. 変更履歴
 | 版 | 日付 | 変更内容 | 変更者 |
 |---|---|---|---|

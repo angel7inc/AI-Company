@@ -1,0 +1,178 @@
+# tomo-angel7-pilot-01 レビュー記録
+# 既存の正式なレビュー保存規約(claim_review/rights_review/testimonial等の専用スキーマ)は
+# 本リポジトリ内に確認されなかったため、本Batchの指示に基づき新規作成する。
+# carousel-ceo-approval-template.yaml(outbound-action-policy.md準拠の公開実行承認記録)とは
+# 別の概念であり、本ファイルは「投稿全体の公開承認」を代替しない。
+#
+# 本ファイル自体は実データを含むため、sample_only扱いとしない。
+# ただし、実際の投稿・公開・Outbound Action Approvalを伴うものではない。
+
+content_id: tomo-angel7-pilot-01
+review_version: 1
+reviewed_draft_version: 2
+visual_template_reference: businesses/instagram/content/templates/tomo-angel7-carousel-visual-template.md
+layout_spec_reference: businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01-layout-spec.yaml
+review_scope: "1枚目デザインのCEO目視確認(visual_design_only)、および6枚目固定CTA画像の13項目正式監査。投稿全体の公開承認・6枚目の内容承認・Outbound Action Approvalのいずれも兼ねない。"
+
+reviewed_at: "2026-07-17T10:22:16+09:00"
+review_timezone: Asia/Tokyo
+
+slides:
+
+  slide_01_visual_review:
+    slide_number: 1
+    draft_version: 2
+    output_file: _company/assets/local/exports/tomo-angel7-pilot-01/draft-v2/slide_01_draft_v2.png
+    output_sha256: 575932846fb1a256a5fd109e8471c41210f9254529b628726dbe53575009bdea
+    visual_review_status: approved
+    ceo_review_status: approved
+    reviewed_by_role: CEO
+    reviewed_at: "2026-07-17T10:22:16+09:00"
+    review_timezone: Asia/Tokyo
+    approval_scope: visual_design_only
+    public_release_approved: false
+    notes: "CEO判断: 表紙全体の見た目=承認/Tomo_Angel7の大文字A=承認/旧小文字aの修正跡=使用上問題なし/本文の位置・サイズ・色=承認/装飾とのバランス=承認/Instagram投稿画像としての使用=デザイン面では承認。本承認はデザイン面のみを対象とし、投稿全体の公開承認・6枚目の承認・実績表現の承認・お客様の声の掲載承認・権利関係の承認・Outbound Action Approvalのいずれも意味しない。"
+
+  slide_02_to_05_review_status:
+    slide_numbers: [2, 3, 4, 5]
+    review_status: not_formally_recorded
+    notes: "今回、CEOによる新しい正式承認は明示されていない。既存記録上も個別の正式承認記録は確認されなかったため、独断でapprovedとせず、not_formally_recordedとして維持する。draft-v1と同一内容(draft-v2でも再描画せずコピー)。"
+
+  slide_06_asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
+  slide_06_sha256: 150efe512077535a0b72484bd6eefa6975d31e87b18614106160985d918c7aa5
+  slide_06_source_verification:
+    matches_original: true
+    format: PNG
+    width_px: 1080
+    height_px: 1080
+    content_unmodified: true
+    notes: "draft-v2/slide_06_fixed_cta.pngは_company/assets/local/source/tomo-angel7-pilot-01/slide_06_fixed_cta.pngとSHA-256完全一致。編集・再保存なし。"
+
+  slide_06_review_items:
+    - item_number: 1
+      review_item: "画像同一性"
+      observed_content: "SHA-256(150efe51...)が期待値・原本と完全一致。1080×1080 PNG。編集・再保存の痕跡なし。"
+      status: verified
+      evidence_reference: "_company/assets/local/source/tomo-angel7-pilot-01/SHA256SUMS.txt、本Batchでの再計算結果"
+      reviewer_note: "バイナリレベルで一致を独立確認済み。"
+      release_impact: none
+
+    - item_number: 2
+      review_item: "ブランド表記"
+      observed_content: "画像内ロゴ横に「Tomo_Angel7」(大文字A)と表示。1枚目(draft-v2)の修正済み表記と一致。"
+      status: verified
+      evidence_reference: "画像内表示の目視確認"
+      reviewer_note: "1枚目・6枚目間で表記統一済み。"
+      release_impact: none
+
+    - item_number: 3
+      review_item: "CTA内容"
+      observed_content: "「詳細はプロフィールのURLをクリック♡」という誘導文が判読可能。ただし実際のURL文字列は画像内に表示されていない(「プロフィールのURL」という一般的表現のみ)。"
+      status: not_verified
+      evidence_reference: "リポジトリ内に実際のInstagramプロフィール設定・URLの記録なし。Instagramへのログインは今回実施していない(禁止事項のため)。"
+      reviewer_note: "画像の可読性自体は問題ないが、実際のプロフィール欄に有効なURLが設定されているかはリポジトリ内の記録だけでは確認できない。"
+      release_impact: evidence_required_before_release
+
+    - item_number: 4
+      review_item: "鑑定実績の表示(「鑑定実績1万件以上」)"
+      observed_content: "「鑑定実績1万件以上」という数量表示あり。"
+      status: evidence_required
+      evidence_reference: "根拠資料は本リポジトリ・Git管理外ローカル資料のいずれにも見つからなかった(算定方法・集計期間・重複件数の扱い・現在の有効性、いずれも不明)。"
+      reviewer_note: "証拠がないため verified としていない。"
+      release_impact: blocking
+
+    - item_number: 5
+      review_item: "ランキング実績(「ココナラ占いランキング上位」)"
+      observed_content: "「ココナラ占いランキング上位」という表示あり。"
+      status: evidence_required
+      evidence_reference: "対象カテゴリ・順位・集計期間・証拠となる画像やURLは本リポジトリ・ローカル資料のいずれにも見つからなかった。"
+      reviewer_note: "「上位」の範囲が未定義。証拠なし。"
+      release_impact: blocking
+
+    - item_number: 6
+      review_item: "メディア掲載実績(「複数占い情報メディアに紹介」)"
+      observed_content: "「複数占い情報メディアに紹介」という表示あり。"
+      status: evidence_required
+      evidence_reference: "メディア名・掲載日・掲載内容・掲載URLまたは保存証拠は見つからなかった。広告掲載か編集記事かの区別、ロゴ・媒体名の使用許可の記録もなし。"
+      reviewer_note: "証拠がないため verified としていない。"
+      release_impact: blocking
+
+    - item_number: 7
+      review_item: "お客様の声の出典"
+      observed_content: "3件の引用文(「人生180度変わった!!」「丁寧で的確な鑑定でした!」「心が癒され前向きなれた!」)を確認。氏名・アカウント名等の出典表示なし。"
+      status: evidence_required
+      evidence_reference: "取得元サービス・取得日・原文との一致・編集/要約の有無を示す証拠は見つからなかった。"
+      reviewer_note: "捏造ではないことを裏付ける証拠が現時点でない。"
+      release_impact: blocking
+
+    - item_number: 8
+      review_item: "お客様の声の掲載許諾"
+      observed_content: "上記3件の引用文について、転載・掲載許諾に関する記録の有無を確認。"
+      status: evidence_required
+      evidence_reference: "自社サイト/Instagramへの転載許諾、取得元プラットフォーム規約上の可否、個別同意記録、匿名化要否、いずれも記録が見つからなかった。"
+      reviewer_note: "明示的な根拠がないため verified としていない。"
+      release_impact: blocking
+
+    - item_number: 9
+      review_item: "個人情報・識別情報"
+      observed_content: "氏名・アカウント名・実在の顔写真・注文番号・具体的な鑑定内容等、顧客を識別できる情報は画像内に視覚上確認されなかった(人物表現はイラストのみ)。"
+      status: visually_confirmed
+      evidence_reference: "画像の目視確認(本Batch内、視覚確認のみ)"
+      reviewer_note: "視覚上は個人情報の混入なし。ただし、これはAIによる視覚確認であり、正式な人間レビューの完了を意味しない。"
+      release_impact: none
+
+    - item_number: 10
+      review_item: "画像・イラスト・ロゴの権利"
+      observed_content: "天使イラスト・月+天使ロゴ・背景装飾・花模様の装飾を確認。"
+      status: evidence_required
+      evidence_reference: "取得元・商用利用可否・SNS掲載可否・加工可否・クレジット表記要否・再配布禁止条件のいずれも、リポジトリおよびGit管理外の画像パッケージ(README.txt)に記録がない。README.txtには「本パッケージは公開承認・権利確認を構成しない」と明記されている。"
+      reviewer_note: "権利関係の根拠なし。"
+      release_impact: blocking
+
+    - item_number: 11
+      review_item: "フォントの権利"
+      observed_content: "画像内に複数書体(タイトル文字・見出し文字・本文文字)が使用されている。"
+      status: not_verified
+      evidence_reference: "フラット化された画像(ラスター)であり、使用フォント名を特定できる設計データ・記録が見つからなかった。"
+      reviewer_note: "フォントを特定できないため not_verified とする。"
+      release_impact: evidence_required_before_release
+
+    - item_number: 12
+      review_item: "誤認・過度な訴求のリスク"
+      observed_content: "「光と愛に満ち溢れた未来へと導きます」という将来効果を示唆する表現、「鑑定実績1万件以上」「ランキング上位」「複数メディアに紹介」という客観的根拠未確認の実績・優位性表現、「人生180度変わった!!」等の劇的な変化を示す顧客の声、いずれも確認した。"
+      status: evidence_required
+      evidence_reference: "上記項目4・5・6・7・8のいずれも根拠資料が見つからなかったため、これらの表現が現時点で裏付けられているかどうか判断できない。"
+      reviewer_note: "法的な断定は行わない。確認できる事実として、複数の強い実績・効果訴求表現が根拠未確認のまま画像内に存在することを記録する。"
+      release_impact: blocking
+
+    - item_number: 13
+      review_item: "総合公開判定(6枚目単体)"
+      observed_content: "項目1・2・9は verified/visually_confirmed。項目3・11は根拠不足で not_verified。項目4・5・6・7・8・10・12は evidence_required(根拠資料が見つからなかった)。"
+      status: blocked_pending_evidence
+      evidence_reference: "項目4〜8・10・12の根拠資料が必要。"
+      reviewer_note: "必要な証拠が不足しているため approved とはしない。"
+      release_impact: blocking
+
+  release_blockers:
+    - "鑑定実績「1万件以上」の算定根拠・集計期間・現在の有効性が未確認(項目4)"
+    - "「ココナラ占いランキング上位」の対象カテゴリ・順位・集計期間・証拠が未確認(項目5)"
+    - "「複数占い情報メディアに紹介」のメディア名・掲載証拠・使用許可が未確認(項目6)"
+    - "お客様の声3件の出典・原文一致・捏造でないことの証拠が未確認(項目7)"
+    - "お客様の声3件の掲載許諾(転載許諾・規約上の可否・同意記録)が未確認(項目8)"
+    - "画像内の天使イラスト・ロゴ・装飾の権利関係(取得元・商用利用可否・再配布条件)が未確認(項目10)"
+    - "画像内フォントの特定および利用許諾が未確認(項目11)"
+    - "プロフィールURL誘導が実際のInstagramプロフィール設定と整合するか未確認(項目3、Instagramログインを伴わないため今回未検証)"
+
+  evidence_required:
+    - "鑑定実績1万件以上の算定資料・集計期間"
+    - "ココナラ占いランキングの証拠(スクリーンショット・URL等)"
+    - "メディア掲載の実際の記事・掲載日・使用許可"
+    - "お客様の声3件の取得元・原文・掲載許諾記録"
+    - "天使イラスト・ロゴ・装飾素材の権利関係記録(取得元・ライセンス)"
+    - "画像内使用フォントの特定とライセンス確認"
+
+human_review_required: true
+human_review_status: review_required
+public_release_approved: false
+
+notes: "本レビュー記録は、1枚目デザインのCEO承認(visual_design_only)と、6枚目固定CTA画像の13項目監査結果を記録するものである。6枚目は総合判定blocked_pending_evidenceであり、実績表現・お客様の声・画像/ロゴ/フォントの権利関係について根拠資料が不足しているため、現時点でapprovedとしていない。2〜5枚目についても、今回新たな正式承認は行っていない(not_formally_recordedのまま維持)。本記録は投稿全体の公開承認・Outbound Action Approvalを代替しない。"
