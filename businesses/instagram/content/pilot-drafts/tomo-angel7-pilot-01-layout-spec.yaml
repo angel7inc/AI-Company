@@ -6,14 +6,19 @@
 #
 # 参照した実画像(視覚確認のみ、編集は行っていない):
 # _company/assets/local/source/tomo-angel7-pilot-01/slide_01.png〜slide_05.png
-# 確認結果: 1枚目はブランド見出し「鑑定士&ヒーラー Tomo_angel7」と区切り線、
+# 確認結果: 1枚目はブランド見出し「鑑定士&ヒーラー Tomo_Angel7」と区切り線、
 # 左上に天使+ハートかごの装飾、右下に3体の天使+ハートの装飾が既に配置された表紙テンプレート。
 # 2〜5枚目はいずれも同一の空白テンプレート(上下の帯状装飾のみ、文字なし、角の天使装飾なし)。
 # フォントサイズ数値・座標(px)はCanva側の編集情報から確認できないため、本ファイルでは
 # large/medium/small・upper_center/center/lower_center等の相対表現のみを用いる。
+#
+# 【2026-07-17更新】表紙原本のブランド表記をTomo_angel7(誤)からTomo_Angel7(正)へ修正済み
+# (Git管理外: _company/assets/local/source/tomo-angel7-pilot-01/slide_01.png)。
+# 共通ビジュアルテンプレート指示書: businesses/instagram/content/templates/tomo-angel7-carousel-visual-template.md
 
 content_id: tomo-angel7-pilot-01
 source_reference: businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01.md
+visual_template_reference: businesses/instagram/content/templates/tomo-angel7-carousel-visual-template.md
 applies_to_slides: [1, 2, 3, 4, 5]
 excludes_slide: 6
 
@@ -21,9 +26,11 @@ slides:
   - slide_number: 1
     slide_role: cover_title
     fixed_header:
-      text: "鑑定士&ヒーラー Tomo_angel7"
+      text: "鑑定士&ヒーラー Tomo_Angel7"
       status: fixed_do_not_change
-      note: "本Batchでは表記(Tomo_angel7の大小文字を含む)を変更しない。6枚目表記「Tomo_Angel7」との差は別課題として維持する。"
+      brand_header_text: "鑑定士&ヒーラー Tomo_Angel7"
+      brand_header_editing_allowed: false
+      note: "本Batchでは表記(Tomo_Angel7の大小文字を含む)を変更しない。2026-07-17に表紙原本の表記をTomo_angel7からTomo_Angel7へ修正済み(6枚目表記「Tomo_Angel7」と統一)。"
     source_text: "気づいたら、／またあの人のことを／考えてるあなたへ"
     display_text:
       - "気づいたら、"
@@ -39,7 +46,7 @@ slides:
     maximum_lines: 3
     font_size_priority: large
     prohibited_area:
-      - "上部のブランド見出し「鑑定士&ヒーラー Tomo_angel7」および区切り線"
+      - "上部のブランド見出し「鑑定士&ヒーラー Tomo_Angel7」および区切り線"
       - "左上の天使+ハートかごの装飾イラスト"
       - "右下の3体の天使+ハートの装飾イラスト"
       - "画像上下端の帯状装飾(バラ・ハート・蔦の線画)"

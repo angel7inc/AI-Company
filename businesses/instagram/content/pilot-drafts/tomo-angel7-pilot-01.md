@@ -140,7 +140,9 @@ asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
 
 1〜5枚目共通: 新しい画像素材・フォント・外部素材は取得しない。既存Tomo_Angel7ブランド素材(`_company/brands/tomo-angel7/assets/`)とテンプレートのみを使用する。スマートフォンの小さな画面でも文字が読めることを最優先とする。**6枚目には一切手を加えない。**
 
-**1枚目の表紙テンプレートについて(2026-07-14追記):** 1枚目は、上部に「鑑定士&ヒーラー Tomo_angel7」というブランド表記・区切り線が既に固定配置された表紙テンプレートである(文字差し込み前の未完成画像とは扱わない)。この上部表記は変更せず、その下からタイトルを配置する。詳細なテキスト配置仕様は[`tomo-angel7-pilot-01-layout-spec.yaml`](tomo-angel7-pilot-01-layout-spec.yaml)を参照する。
+**1枚目の表紙テンプレートについて(2026-07-14追記):** 1枚目は、上部に「鑑定士&ヒーラー Tomo_Angel7」というブランド表記・区切り線が既に固定配置された表紙テンプレートである(文字差し込み前の未完成画像とは扱わない)。この上部表記は変更せず、その下からタイトルを配置する。詳細なテキスト配置仕様は[`tomo-angel7-pilot-01-layout-spec.yaml`](tomo-angel7-pilot-01-layout-spec.yaml)を参照する。
+
+**表記統一について(2026-07-17追記):** 表紙原本(Git管理外`slide_01.png`)の上部ブランド表記に`Tomo_angel7`(小文字a)という誤表記があったため、`Tomo_Angel7`(大文字A)へ修正した(修正前バックアップをGit管理外領域に保持)。今後のカルーセル制作で使用する共通ビジュアルテンプレート指示書は[`tomo-angel7-carousel-visual-template.md`](../templates/tomo-angel7-carousel-visual-template.md)を参照する。
 
 ## 11. 調査根拠の記録
 | 項目 | 内容 |
