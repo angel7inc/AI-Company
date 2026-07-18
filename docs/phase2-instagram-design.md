@@ -360,7 +360,17 @@ AI-Company/
 
 ## 18. 投稿実行基盤 次Batch実装計画(2026-07-18追記・計画のみ、本Batchでは実装しない)
 
-本Batchでは、公式ドキュメント確認やネットワーク接続を伴う実装を一切行っていない。次Batch以降の実装範囲を、CEO確認・承認のための計画として整理する。
+**2026-07-18追記(実装トリガー方針):** CEOがFable 5への個別委任による経営判断提案を採用し、本計画の着手を以下のいずれかのトリガー条件到達まで正式に延期した(`docs/runbooks/human-approval-system-publication.md`「6. 手動操作の位置付け」・`businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01-review.yaml`「pilot_manual_publication_authorization.connector_trigger_conditions」を正本とする)。本計画自体は破棄しておらず(`connector_implementation_plan_status: retained`)、トリガー到達後にそのまま着手できる状態で保管する。
+
+1. Instagram投稿の累計公開数が5件に到達
+2. 週2投稿以上を2週間連続で実施
+3. 投稿操作および投稿結果記録に費やす時間が週30分を超過
+4. 予約投稿または複数アカウント管理が必要になった
+5. 手動投稿がコンテンツ公開頻度の明確なボトルネックになった
+
+上記いずれかを最初に満たした時点を実装開始トリガーとする。トリガー到達前であっても、CEOが明示的に指示した場合は着手可能とする。それまでの間、最初のInstagram投稿5件は`execution_model: pilot_human_execution_after_ai_preparation`(CEOによる投稿操作のみのパイロット運用)で公開する。
+
+本Batchでは、公式ドキュメント確認やネットワーク接続を伴う実装を一切行っていない。次Batch以降(トリガー到達後)の実装範囲を、CEO確認・承認のための計画として整理する。
 
 1. 公式Instagram投稿方式(Meta Graph API等)の最新仕様確認(公式ドキュメント参照が必要)
 2. 必要なアカウント種別・権限(Instagramビジネスアカウント/プロアカウント、Facebook連携要否等)の確認

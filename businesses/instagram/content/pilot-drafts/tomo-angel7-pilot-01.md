@@ -243,6 +243,17 @@ Outbound Action Approvalへの参照: [`tomo-angel7-pilot-01-outbound-approval.y
 - **公開後の自動記録(実装後):** 投稿実行アダプタ実装後、投稿URL・投稿日時・KPI計測開始日時はシステムが自動記録する想定。本追記時点ではアダプタ未実装のため、これらはまだ発生していない。
 - **旧手動実行決定の扱い:** 本追記より前の「CEOによる手動投稿」前提の決定(`posting_status: ready_for_manual_execution`等、2026-07-18T09:56:27+09:00時点)は削除せず、[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「system_publication_authorization」の`superseded_decision`として置き換え関係を明示している。既存の[`manual-posting-instructions.md`](../../../../_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/manual-posting-instructions.md)(Git管理外)は削除せず、緊急フォールバック専用の手順として位置付けを更新した。
 
+**限定的パイロット手動公開への移行について(2026-07-18追記):** CEOがFable 5への個別委任による経営判断提案を採用し、Instagram公式投稿コネクタの実装を所定トリガーまで延期する一方、最初のInstagram投稿5件に限り、CEOによる投稿操作のみを許可する限定的パイロット運用方式を正式決定した。
+
+- **コンテンツ制作はAI側で完了・CEO最終承認も完了:** 画像6枚・投稿順・キャプション・ハッシュタグ・対象アカウント・プロフィール導線・旧6枚目の使用判断は、いずれも変更していない。
+- **第1投稿はパイロット限定の人間実行方式の1件目:** `execution_model: pilot_human_execution_after_ai_preparation`。`content_preparation_actor: ai_system`(制作はAI・システム側)、`final_review_actor: CEO`(最終確認・OK承認はCEO)、`publication_execution_actor: CEO_during_pilot`(投稿操作のみパイロット期間中CEOが実行)。`current_pilot_publication_number: 1` / `pilot_manual_publication_limit: 5`(最初の5件限定)。
+- **CEOが行うのは完成済みパッケージの投稿操作だけ:** 画像制作・キャプション作成・ハッシュタグ選定・投稿情報の手入力/再編集は、パイロット期間中もCEOへ移管しない(`manual_content_creation: false` / `manual_caption_composition: false` / `manual_research_workflow: false`)。手順は[`manual-posting-instructions.md`](../../../../_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/manual-posting-instructions.md)(Git管理外)を参照する。
+- **投稿コネクタ実装は所定トリガーまで延期・計画は破棄しない:** `publisher_connector_status: deferred_until_trigger`。`permanent_target_model: system_publication_after_human_approval`は目標として維持し、実装計画(`docs/phase2-instagram-design.md`「17〜18章」、`connector_implementation_plan_status: retained`)も破棄していない。トリガー条件は、累計公開数5件到達/週2投稿以上を2週間連続/投稿関連作業が週30分超過/予約投稿・複数アカウント管理の必要化/手動投稿が明確なボトルネック化、のいずれか最初に満たした時点(CEOの個別指示があれば前倒し可)。
+- **投稿後のKPI記録:** 投稿直後・48時間後・7日後の3時点で、リーチ・インプレッション・いいね・コメント・保存・シェア・プロフィールアクセス・プロフィールリンククリック・フォロー増加・LINE登録または鑑定問い合わせ・投稿起因の成約を記録する(現時点で自動取得機構はなく、将来のコネクタ・KPI連携実装後の対象とする)。第1投稿1件のみで投稿形式の成否を断定せず、3〜5投稿分の傾向で判断する。
+- **リサーチ工程の方針:** ラッコキーワード等のリサーチは最初からAPI・MCP接続を標準方針とし、CEOによるCSVダウンロード・手渡しを標準工程にしない(今回、実際のAPI・MCP接続は行っていない)。
+
+詳細な正本は[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「pilot_manual_publication_authorization」を参照する。
+
 ## 15. 変更履歴
 | 版 | 日付 | 変更内容 | 変更者 |
 |---|---|---|---|

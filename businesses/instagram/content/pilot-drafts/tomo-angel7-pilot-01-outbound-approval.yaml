@@ -17,6 +17,13 @@
 # ready_for_manual_executionは削除せず、下記supersededフィールドで置き換え関係を明示する。
 # Instagram投稿実行アダプタ(publisher/connector)は本更新時点で未実装であり、
 # connector_status: not_configured / execution_status: blocked_on_publisher_connector とする。
+#
+# 2026-07-18更新(第11Batch): CEOがFable 5への個別委任による経営判断提案を採用し、
+# 投稿コネクタ実装を所定トリガーまで延期する一方、最初のInstagram投稿5件に限り
+# CEOによる投稿操作のみを許可する限定的パイロット運用方式を正式決定した。
+# system-managed実行モデル(第10Batch)は目標(permanent_target_model)として維持し撤回しない。
+# 第10Batchのapproved_awaiting_system_execution/blocked_on_publisher_connectorは削除せず、
+# 下記supersededフィールドで置き換え関係を明示する。承認対象は今回の第1投稿1件のみ。
 # Claude Code自身はInstagramへの投稿を実行しない。
 
 approval_record:
@@ -33,7 +40,7 @@ approval_record:
   caption_reference: _company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/caption.txt
   caption_sha256: d80e10c1975a82d637741ec26df564e3a605276366fdeac02af0b8ee6da94d15
   content_reference: businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01.md
-  content_hash: 54e063347e020041aed74254e2d4bfb398ce532796b2c3aeafe8c820fbc2bc45
+  content_hash: 5b9f969873308a984dcfdfd1bd4831e40be79feb73fdd803e0eee7e64279ec4f
 
   final_visual_review_status: approved
   final_ceo_review_status: approved
@@ -49,19 +56,21 @@ approval_record:
   approved_by_role: CEO
 
   status: approved           # outbound-action-policy.md準拠の4値(pending/approved/expired/revoked)。CEOによる内容承認自体は継続して有効。
-  approval_status: approved_awaiting_system_execution  # 独自enum。既存4値(pending/approved/expired/revoked)を補足する実行段階の詳細状態。意味: 「CEOは公開を承認済みだが、実行はシステム側の準備(投稿実行アダプタ接続)を待っている」。
-  approval_scope: one_system_managed_instagram_carousel_publication  # 今回の第1投稿1件のみ。将来の投稿・自動投稿・別アカウントへの投稿は包括承認しない。
+  approval_status: approved_for_pilot_manual_execution  # 独自enum。既存4値を補足する実行段階の詳細状態。意味: 「CEOはパイロット期間中(最初の5件)に限り、投稿操作の手動実行を承認済み」。
+  approval_scope: one_pilot_manual_instagram_carousel_publication  # 今回の第1投稿1件のみ。将来の投稿・自動投稿・別アカウントへの投稿は包括承認しない。
 
-  execution_method: official_instagram_publisher_connector  # 独自enum。既存スタイル(outbound-action-policy.mdのaction_type命名)に整合。公式Instagram投稿実行アダプタ経由での実行を意味する。
-  execution_actor: instagram_publisher_system
-  manual_execution_policy: emergency_fallback_only
+  execution_method: pilot_manual_publication  # 独自enum。パイロット期間中(最初の5件)に限りCEOが投稿操作を手動実行する方式。
+  content_prepared_by: ai_system
+  publication_execution_actor: CEO
+  manual_content_editing_authorized: false  # 画像・キャプション・ハッシュタグの手入力・再編集はCEOへ移管しない。投稿操作(ボタン押下・URL/時刻取得)のみ。
+  manual_execution_policy: emergency_fallback_only  # 恒久目標(system_publication_after_human_approval)における位置付け。パイロット期間中の本approval_statusとは別軸。
   automatic_execution_authorized_for_exact_package: true
 
   connector_status: not_configured  # mcp/servers.yamlのstatus語彙(active/candidate/planned)・tool-role-responsibility.md 8章のnot configured等に整合。
-  execution_status: blocked_on_publisher_connector  # 承認済みだが投稿実行アダプタ未実装のため実行不可能な状態。
+  execution_status: ready_for_pilot_manual_execution
 
   created_at: "2026-07-18T09:36:55+09:00"
-  updated_at: "2026-07-18T12:17:10+09:00"
+  updated_at: "2026-07-18T14:07:07+09:00"
   timezone: Asia/Tokyo
   expires_at: null  # 投稿予定日時が未確定のため有効期限は未設定。
 
@@ -71,13 +80,24 @@ approval_record:
   published_url: null
   platform_post_id: null
 
-  superseded_decision: "approval_status: approved_for_manual_execution / execution_status: ready_for_manual_execution / approval_scope: one_manual_instagram_carousel_publication(2026-07-18T09:59:40+09:00時点の決定)"
-  superseded_by: "approval_status: approved_awaiting_system_execution / execution_status: blocked_on_publisher_connector / approval_scope: one_system_managed_instagram_carousel_publication"
-  superseded_at: "2026-07-18T12:17:10+09:00"
-  supersession_reason: "CEOの役割は公開直前の最終確認・承認であり、通常の投稿操作はシステムが担当するという正式運用方針へ統一したため。"
+  pilot_manual_publication_limit: 5
+  current_pilot_publication_number: 1
+  permanent_target_model: system_publication_after_human_approval
+  publisher_connector_status: deferred_until_trigger
+  connector_implementation_plan_status: retained
+  connector_implementation_plan_reference: docs/phase2-instagram-design.md#18
 
-  rollback_or_correction_plan: "本記録はexecute実行前の状態であり、Claude Codeによる投稿は行っていない。将来のシステム実行(または緊急フォールバックとしての手動投稿)後に誤り(誤字・画像順・リンク不備等)が発見された場合は、CEO承認のもとでInstagram投稿の削除または編集を行う。削除・訂正の具体的な手順・権限者は、execute実行時点で別途SOP(`_shared/sop/publishing/`)に従い定める。"
+  supersedes:
+    - superseded_decision: "approval_status: approved_for_manual_execution / execution_status: ready_for_manual_execution / approval_scope: one_manual_instagram_carousel_publication(2026-07-18T09:59:40+09:00時点)"
+      superseded_by: "approval_status: approved_awaiting_system_execution / execution_status: blocked_on_publisher_connector / approval_scope: one_system_managed_instagram_carousel_publication(2026-07-18T12:17:10+09:00時点)"
+    - superseded_decision: "approval_status: approved_awaiting_system_execution / execution_status: blocked_on_publisher_connector / approval_scope: one_system_managed_instagram_carousel_publication(2026-07-18T12:17:10+09:00時点)"
+      superseded_by: "approval_status: approved_for_pilot_manual_execution / execution_status: ready_for_pilot_manual_execution / approval_scope: one_pilot_manual_instagram_carousel_publication(本追記時点)"
+      note: "system-managed実行モデル自体は撤回せず、permanent_target_modelとして維持する。置き換わるのは『いつ・誰が実行するか』の現在値のみ。"
+  superseded_at: "2026-07-18T14:07:07+09:00"
+  supersession_reason: "CEOがFable 5への個別委任による経営判断提案を採用し、投稿コネクタ実装を所定トリガーまで延期し、最初のInstagram投稿5件に限りCEOによる投稿操作のみを許可する限定的パイロット運用方式を正式決定したため。"
 
-  notes: "本承認記録は、6枚目固定CTA画像の13項目監査結果(tomo-angel7-pilot-01-review.yaml)における総合判定blocked_pending_evidence・release_blockersを解除・変更するものではない。実績表現・お客様の声・画像/ロゴ/フォントの権利関係についての根拠資料不足は、本記録更新後も引き続き有効な既存の指摘である。CEOはrisk_acceptance_by_ceo: trueとして表示内容が実際の実績・顧客評価に基づくことを確認したうえで公開使用を最終決定したが、これは証拠確認済みへの変更ではない。approval_scope: one_system_managed_instagram_carousel_publicationは今回の第1投稿1件のみを対象とする一回限りの承認であり、将来の投稿・自動投稿・別アカウントへの投稿には別途新たな承認記録が必要である。投稿実行アダプタの実装状況・次Batch計画はdocs/phase2-instagram-design.md「17〜18章」を参照する。"
+  rollback_or_correction_plan: "本記録はexecute実行前の状態であり、Claude Codeによる投稿は行っていない。将来のCEOによるパイロット手動実行後に誤り(誤字・画像順・リンク不備等)が発見された場合は、CEO承認のもとでInstagram投稿の削除または編集を行う。削除・訂正の具体的な手順・権限者は、execute実行時点で別途SOP(`_shared/sop/publishing/`)に従い定める。"
+
+  notes: "本承認記録は、6枚目固定CTA画像の13項目監査結果(tomo-angel7-pilot-01-review.yaml)における総合判定blocked_pending_evidence・release_blockersを解除・変更するものではない。実績表現・お客様の声・画像/ロゴ/フォントの権利関係についての根拠資料不足は、本記録更新後も引き続き有効な既存の指摘である。CEOはrisk_acceptance_by_ceo: trueとして表示内容が実際の実績・顧客評価に基づくことを確認したうえで公開使用を最終決定したが、これは証拠確認済みへの変更ではない。approval_scope: one_pilot_manual_instagram_carousel_publicationは今回の第1投稿1件のみを対象とする一回限りの承認であり、将来の投稿・自動投稿・別アカウントへの投稿には別途新たな承認記録が必要である。投稿実行アダプタの実装状況・次Batch計画はdocs/phase2-instagram-design.md「17〜18章」を参照する(破棄していない)。"
 
 # 承認記録に含めていない情報: 顧客情報・DM本文・LINE登録者情報・APIキー・アクセストークン・パスワード(outbound-action-policy.md準拠)

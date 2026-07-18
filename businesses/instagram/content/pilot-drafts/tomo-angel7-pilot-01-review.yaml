@@ -365,3 +365,80 @@ system_publication_authorization:
   supersession_reason: "CEOの役割は公開直前の最終確認・承認であり、通常の投稿操作はシステムが担当するという正式運用方針へ統一したため。"
 
   notes: "本ブロックはコンテンツ承認(画像・キャプション・ハッシュタグ・対象アカウント・プロフィール導線・6枚目の使用判断)を変更するものではなく、それらは全てfinal_visual_review・final_publication_approvalの記録どおり維持される。変更するのは実行方式(誰が・どのように公開を実行するか)のみである。投稿実行アダプタの実装状況はdocs/phase2-instagram-design.md「17. 投稿実行基盤(Instagram Publisher)準備状況」を参照する。実装完了までの間、緊急フォールバック(docs/runbooks/human-approval-system-publication.md「6. 手動操作の位置付け」)以外での投稿実行は行わない。"
+
+# 2026-07-18追記(第11Batch): CEOがFable 5の経営判断提案(投稿頻度・運用実績が
+# コネクタ構築を正当化するまで実装を延期)を採用し、最初のInstagram投稿5件に限り、
+# 「AI・システムが準備を完了→CEOが最終確認・OK承認→CEOが投稿操作のみ実行」という
+# 限定的パイロット運用方式を正式決定した。system_publication_authorization(system-managed
+# 実行モデル)は目標(permanent_target_model)として維持し、削除・撤回しない。
+# 過去のapproved_for_manual_execution・ready_for_manual_execution・
+# system_managed_after_human_approvalに関する検討・Instagram投稿コネクタ実装計画・
+# Outbound Action Approval・過去の監査履歴・旧6枚目に関するCEOリスク受容は、いずれも
+# 削除せず、本ブロックを最新方針(latest_decision)として追記する。
+pilot_manual_publication_authorization:
+  latest_decision: true
+  decided_by_role: CEO
+  decided_at: "2026-07-18T13:54:53+09:00"
+  decision_timezone: Asia/Tokyo
+  decision_basis: "Fable 5への個別委任(2026-07-18)による経営判断提案を、CEOが採用して正式決定した。"
+
+  final_visual_review_status: approved
+  final_ceo_review_status: approved
+  content_approval_status: approved
+  public_release_approved: true
+
+  execution_model: pilot_human_execution_after_ai_preparation
+  content_preparation_actor: ai_system
+  final_review_actor: CEO
+  publication_execution_actor: CEO_during_pilot
+  publication_execution_actor_note: "「CEO_during_pilot」は投稿ボタン操作(および投稿URL・時刻の取得)だけを意味する。画像制作、キャプション作成、ハッシュタグ選定、投稿情報の再入力・再編集はCEOへ移管しない。これらは引き続きAI・システム側(content_preparation_actor: ai_system)が担当する。"
+
+  manual_content_creation: false
+  manual_caption_composition: false
+  manual_research_workflow: false
+
+  pilot_manual_publication_limit: 5
+  current_pilot_publication_number: 1
+
+  publisher_connector_status: deferred_until_trigger
+  permanent_target_model: system_publication_after_human_approval
+  connector_implementation_plan_status: retained
+  connector_implementation_plan_reference: docs/phase2-instagram-design.md#18
+
+  connector_trigger_conditions:
+    - condition_id: 1
+      description: "Instagram投稿の累計公開数が5件に到達"
+    - condition_id: 2
+      description: "週2投稿以上を2週間連続で実施"
+    - condition_id: 3
+      description: "投稿操作および投稿結果記録に費やす時間が週30分を超過"
+    - condition_id: 4
+      description: "予約投稿または複数アカウント管理が必要になった"
+    - condition_id: 5
+      description: "手動投稿がコンテンツ公開頻度の明確なボトルネックになった"
+  connector_trigger_rule: "上記いずれかを最初に満たした時点を実装開始トリガーとする。トリガー到達前であっても、CEOが明示的に指示した場合は着手可能とする。"
+
+  execution_status: ready_for_pilot_manual_publication
+  reapproval_required_if_package_changes: true
+
+  research_workflow_policy: "ラッコキーワード等のリサーチは、最初からAPIまたはMCP接続を標準方針とし、CEOによるCSVダウンロード・手渡しを標準工程にしない。Google Trends・検索結果・Search Console等と統合する。Instagram第2投稿以降はリサーチ工程を先に通す。InstagramとSEO記事へ同じリサーチ結果を展開可能にする。本Batchでは実際のAPI・MCP接続は行っていない(方針の記録のみ)。"
+
+  kpi_measurement_plan:
+    checkpoints: [投稿直後, 48時間後, 7日後]
+    metrics: [リーチ, インプレッション, いいね, コメント, 保存, シェア, プロフィールアクセス, プロフィールリンククリック, フォロー増加, LINE登録または鑑定問い合わせ, 投稿に起因すると判断できる成約]
+    automatic_collection_status: not_available_yet
+    automatic_collection_note: "現時点でKPIの自動取得機構は存在しない(将来のInstagram投稿コネクタ・KPI連携実装後の対象とする)。当面は人間による手動記録とする。"
+    evaluation_policy: "第1投稿1件のみで投稿形式の成否を断定しない。3〜5投稿分の傾向を確認して判断する。"
+
+  supersedes:
+    - superseded_decision: "final_publication_approval.posting_status: ready_for_manual_execution / final_publication_approval.outbound_action_approval_status: approved_for_manual_execution(2026-07-18T09:56:27+09:00時点)"
+      superseded_by: pilot_manual_publication_authorization
+    - superseded_decision: "system_publication_authorization.posting_status: approved_waiting_for_system_publisher / system_publication_authorization.execution_status: blocked_on_publisher_connector(2026-07-18T12:15:46+09:00時点。system-managed実行を『現時点の唯一の実行手段』とした部分)"
+      superseded_by: pilot_manual_publication_authorization
+      note: "system_publication_authorization自体は削除せず、permanent_target_model(将来の目標モデル)として維持する。本追記が置き換えるのは『いつ・誰が実行するか』の現在値のみであり、目標モデルとしての位置付けは変更しない。"
+  superseded_at: "2026-07-18T13:54:53+09:00"
+  supersession_reason: "CEOがFable 5の経営判断提案を採用し、投稿コネクタ実装を所定トリガーまで延期し、最初のInstagram投稿5件に限りCEOによる投稿操作のみを許可する限定的パイロット運用方式を正式決定したため。"
+
+  relationship_to_prior_compliance_audit: "本決定は、過去の13項目監査結果・release_blockers・evidence_required・旧6枚目に関するCEOリスク受容(risk_acceptance_by_ceo: true)を削除・改変するものではない。証拠が新たに存在すると捏造してもいない。実行方式(誰がいつ投稿操作を行うか)のみを変更する。"
+
+  notes: "本ブロックは、system_publication_authorization(目標とするsystem-managed実行モデル)を撤回するものではなく、permanent_target_model: system_publication_after_human_approvalとして維持する。Instagram投稿コネクタ実装計画(docs/phase2-instagram-design.md 17〜18章)は破棄していない(connector_implementation_plan_status: retained)。画像6枚・キャプション・ハッシュタグ・対象アカウント・プロフィール導線は変更していない。"
