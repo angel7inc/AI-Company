@@ -89,7 +89,7 @@ Claude Code、Perplexity(`ig-content-planner`が使用)、Canva(人間が使用)
 13. **人間によるCanva等での仕上げ** ― 画像は自動生成・自動公開せず、人間が仕上げる
 14. **画像最終確認** ― 人間が文字切れ・視認性・余白・誤字・ブランド整合を確認する(`shared-image-quality-checker`は経由しない)
 15. **CEO最終承認** ― **【CEO承認ポイント②・常時必須】** `businesses/instagram/content/templates/carousel-ceo-approval-template.yaml`に基づく承認記録を紐付ける
-16. **手動投稿** ― CEOまたは許可された人間が投稿する(status: `published`)。本SOP・本パイロットではここまでを実行しない(Gate2は構造・テンプレートの整備までとする)
+16. **手動投稿** ― CEOまたは許可された人間が投稿する(status: `published`)。本SOP・本パイロットではここまでを実行しない(Gate2は構造・テンプレートの整備までとする)。**(2026-07-18追記: 標準運用モデルは「CEO最終承認後のシステム実行」へ更新された。詳細は[`docs/runbooks/human-approval-system-publication.md`](../../../docs/runbooks/human-approval-system-publication.md)を参照。ただしInstagram投稿実行アダプタは本追記時点で未実装のため、実装完了までは本項の手動投稿が唯一の実行手段であり、実装後は緊急フォールバック限定の位置付けとなる。)**
 17. **投稿後データ記録** ― `ig-analytics`が実KPIを`_company/kpi/actuals/`へ記録する(status: `measured`)
 18. **改善提案** ― `ig-analytics`が投稿結果と制作工程の両方を評価し、次サイクルへ反映する(status: `archived`)
 
@@ -122,6 +122,9 @@ draft ──┬─→ qa_failed ─→ draft(差し戻し)
 **`hr-workforce-manager`および上記に明記されていないその他のAgentには、投稿成果物のstatus変更権限を与えない。** 既存Agent定義自体は変更していない(役割はいずれも既存定義の範囲内)。
 
 #### `published`への必須条件(手動運用上のフェイルクローズ規則。**技術的な自動強制機構はまだ存在せず、今回は人間が確認する運用ルールとして明文化するのみ**)
+
+**(2026-07-18追記)** 標準運用モデルは「CEO最終承認後のシステム実行」へ更新された([`docs/runbooks/human-approval-system-publication.md`](../../../docs/runbooks/human-approval-system-publication.md)参照)。将来、投稿実行アダプタが実装された場合、下記条件はシステムによる自動検証・自動実行の前提条件として引き継がれる想定である。**本追記時点ではアダプタ・自動強制機構のいずれも未実装であり**、下記の必須条件は現状どおり人間(またはCEO)による手動確認・手動実行の運用ルールとして適用する。
+
 以下を**全て**満たさない限り、`approved`から`published`へは変更禁止とする。
 1. 最終画像が完成している
 2. 全ページの人間確認が完了している

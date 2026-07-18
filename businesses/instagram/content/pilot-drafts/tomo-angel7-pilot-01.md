@@ -232,7 +232,16 @@ Outbound Action Approvalへの参照: [`tomo-angel7-pilot-01-outbound-approval.y
 - **最終画像パッケージ参照:** Git管理外`_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/`(`01.png`〜`06.png`。内容・デザイン変更なし)。
 - **Outbound Action Approval:** [`tomo-angel7-pilot-01-outbound-approval.yaml`](tomo-angel7-pilot-01-outbound-approval.yaml)を`approval_status: approved_for_manual_execution`へ更新(今回の第1投稿1件のみを対象とし、将来の投稿・自動投稿を包括承認するものではない)。
 
-**上記に伴い、`status`は`approved`(1章frontmatter参照)、`human_review_required: false`、`human_review_status: completed`、`public_release_approved: true`、`posting_status: ready_for_manual_execution`へ更新した。** Claude Code自身はInstagramへの投稿を実行していない。実際の手動投稿は、[`manual-posting-instructions.md`](../../../../_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/manual-posting-instructions.md)(Git管理外)に基づきCEOが実施する。
+**上記に伴い、`status`は`approved`(1章frontmatter参照)、`human_review_required: false`、`human_review_status: completed`、`public_release_approved: true`へ更新した。** Claude Code自身はInstagramへの投稿を実行していない。
+
+**公開実行方式の統一について(2026-07-18追記):** 会社全体の公開運用モデルが「CEOによる手動投稿」から「CEO最終承認後のシステム実行」へ正式に統一された。詳細な正本は[`docs/runbooks/human-approval-system-publication.md`](../../../../docs/runbooks/human-approval-system-publication.md)を参照する。
+
+- **コンテンツ承認は維持:** 画像6枚・投稿順・キャプション・ハッシュタグ・対象アカウント(`@tomo_angel7`)・プロフィール導線(`https://tomo-angel7.com/`)・旧6枚目の使用判断・`public_release_approved: true`は、いずれも変更していない。今回変更するのは実行方式のみである。
+- **実行方式:** `execution_model: system_managed_after_human_approval`。CEOの役割は公開直前の最終確認・承認のみ(`human_role: final_review_and_approval_only`)。実行主体はシステム(`execution_actor: instagram_publisher_system`)。手動投稿は緊急フォールバックのみ(`manual_execution_policy: emergency_fallback_only`)。
+- **投稿アダプタ接続待ち:** 本追記時点でInstagram投稿実行アダプタ(publisher/connector)は未実装であり(`connector_status: not_configured`)、システムによる実行はまだ技術的に不可能な状態である(`execution_status: blocked_on_publisher_connector`)。投稿パッケージ自体は承認済みのままシステム実行待ちとする(`posting_status: approved_waiting_for_system_publisher`)。現状の実装状況・次Batch実装計画は[`docs/phase2-instagram-design.md`](../../../../docs/phase2-instagram-design.md)「17. 投稿実行基盤(Instagram Publisher)準備状況」「18. 次Batch実装計画」を参照する。
+- **接続・dry-run完了後の扱い:** 投稿実行アダプタが接続・検証された後、固定パッケージ(画像6枚SHA-256・キャプションSHA-256・対象アカウント・プロフィール導線)に変更がなければ、同じ内容について再度CEO承認を求めずシステムが実行できる(`automatic_execution_authorized_for_exact_package: true`)。画像・文章・順序・対象アカウント・導線のいずれかが変更された場合は再承認が必要(`reapproval_required_if_content_changes: true`)。
+- **公開後の自動記録(実装後):** 投稿実行アダプタ実装後、投稿URL・投稿日時・KPI計測開始日時はシステムが自動記録する想定。本追記時点ではアダプタ未実装のため、これらはまだ発生していない。
+- **旧手動実行決定の扱い:** 本追記より前の「CEOによる手動投稿」前提の決定(`posting_status: ready_for_manual_execution`等、2026-07-18T09:56:27+09:00時点)は削除せず、[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「system_publication_authorization」の`superseded_decision`として置き換え関係を明示している。既存の[`manual-posting-instructions.md`](../../../../_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/manual-posting-instructions.md)(Git管理外)は削除せず、緊急フォールバック専用の手順として位置付けを更新した。
 
 ## 15. 変更履歴
 | 版 | 日付 | 変更内容 | 変更者 |

@@ -54,6 +54,8 @@
 - 投稿完了の証拠記録
 - **自分の判断だけで公開しない**(CEO承認・Outbound Action Approval Policyの条件が揃った場合のみ投稿する)
 
+**(2026-07-18追記)** 標準運用モデルは「CEOによる最終確認・承認のみ→システムが実行」へ更新された。詳細は[`docs/runbooks/human-approval-system-publication.md`](../../docs/runbooks/human-approval-system-publication.md)を参照する。**投稿実行アダプタ(publisher/connector)は本追記時点で未実装であり**、実装されるまでの間は上記の人間による手動投稿が唯一の実行手段である。実装完了後、人間による手動投稿は「投稿実行基盤の障害・認証障害・緊急訂正・システム停止中の臨時対応・CEOが個別に指示した場合」に限る例外的役割となる。
+
 ## 7. 48 Agent(`_company/org/agents.yaml`登録分)
 - 独立して実行するソフトウェアではない
 - 各Agentは、役割・責任範囲・判断基準を記述したMarkdown定義(`_company/agents/`・`_shared/agents/`・`businesses/{事業}/agents/`配下)である

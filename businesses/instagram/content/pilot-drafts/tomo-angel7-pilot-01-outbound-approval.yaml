@@ -6,12 +6,17 @@
 # 本記録は「execute(Instagram投稿の実行)」に対する承認記録であり、outbound-action-policy.md
 # のdefault-deny原則に基づき、有効な承認記録が確認できない限り実際の投稿(execute)は禁止される。
 #
-# 2026-07-18更新: CEOによるInstagramプロフィールの人間確認(target_account確定)、
+# 2026-07-18更新(第9Batch): CEOによるInstagramプロフィールの人間確認(target_account確定)、
 # 第9章ハッシュタグの正式採用、旧6枚目のリスク受容による最終公開判断を経て、
-# approval_status: approved_for_manual_execution へ更新した。ただし本承認は
-# 「今回の第1投稿1件」のみを対象とし、将来の投稿・自動投稿を包括承認するものではない
-# (approval_scope: one_manual_instagram_carousel_publication)。
-# 実際の投稿実行(Instagramログイン・投稿ボタン押下)はCEOが手動で行う。
+# approval_status: approved_for_manual_execution へ更新した(第1投稿1件のみを対象)。
+#
+# 2026-07-18更新(第10Batch): 会社全体の公開運用モデルが「CEOによる手動投稿」から
+# 「CEO最終承認後のシステム実行」へ正式に統一された(docs/runbooks/human-approval-system-publication.md参照)。
+# コンテンツ承認(画像・キャプション・ハッシュタグ・対象アカウント・プロフィール導線・6枚目の使用判断)は
+# 変更していない。変更するのは実行方式のみである。第9Batchのapproved_for_manual_execution/
+# ready_for_manual_executionは削除せず、下記supersededフィールドで置き換え関係を明示する。
+# Instagram投稿実行アダプタ(publisher/connector)は本更新時点で未実装であり、
+# connector_status: not_configured / execution_status: blocked_on_publisher_connector とする。
 # Claude Code自身はInstagramへの投稿を実行しない。
 
 approval_record:
@@ -28,10 +33,11 @@ approval_record:
   caption_reference: _company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/caption.txt
   caption_sha256: d80e10c1975a82d637741ec26df564e3a605276366fdeac02af0b8ee6da94d15
   content_reference: businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01.md
-  content_hash: 43d375e69027bc85d8afc75dc7f72a41d32323cee307faff3fb1de06a5b4a7a5
+  content_hash: 54e063347e020041aed74254e2d4bfb398ce532796b2c3aeafe8c820fbc2bc45
 
   final_visual_review_status: approved
   final_ceo_review_status: approved
+  content_approval_status: approved
   caption_status: approved
   hashtags_status: approved
   profile_destination_verification_status: verified_by_ceo
@@ -42,23 +48,36 @@ approval_record:
   requested_by_role: COO
   approved_by_role: CEO
 
-  status: approved           # outbound-action-policy.md準拠の4値(pending/approved/expired/revoked)。
-  approval_status: approved_for_manual_execution
-  approval_scope: one_manual_instagram_carousel_publication  # 今回の第1投稿1件のみ。将来の投稿・自動投稿は包括承認しない。
+  status: approved           # outbound-action-policy.md準拠の4値(pending/approved/expired/revoked)。CEOによる内容承認自体は継続して有効。
+  approval_status: approved_awaiting_system_execution  # 独自enum。既存4値(pending/approved/expired/revoked)を補足する実行段階の詳細状態。意味: 「CEOは公開を承認済みだが、実行はシステム側の準備(投稿実行アダプタ接続)を待っている」。
+  approval_scope: one_system_managed_instagram_carousel_publication  # 今回の第1投稿1件のみ。将来の投稿・自動投稿・別アカウントへの投稿は包括承認しない。
+
+  execution_method: official_instagram_publisher_connector  # 独自enum。既存スタイル(outbound-action-policy.mdのaction_type命名)に整合。公式Instagram投稿実行アダプタ経由での実行を意味する。
+  execution_actor: instagram_publisher_system
+  manual_execution_policy: emergency_fallback_only
+  automatic_execution_authorized_for_exact_package: true
+
+  connector_status: not_configured  # mcp/servers.yamlのstatus語彙(active/candidate/planned)・tool-role-responsibility.md 8章のnot configured等に整合。
+  execution_status: blocked_on_publisher_connector  # 承認済みだが投稿実行アダプタ未実装のため実行不可能な状態。
 
   created_at: "2026-07-18T09:36:55+09:00"
-  updated_at: "2026-07-18T09:59:40+09:00"
+  updated_at: "2026-07-18T12:17:10+09:00"
   timezone: Asia/Tokyo
   expires_at: null  # 投稿予定日時が未確定のため有効期限は未設定。
 
   public_release_approved: true
-  execution_status: ready_for_manual_execution
   scheduled_at: null
   published_at: null
   published_url: null
+  platform_post_id: null
 
-  rollback_or_correction_plan: "本記録は手動execute実行前の状態であり、Claude Codeによる投稿は行っていない。将来CEOによる手動投稿実行後に誤り(誤字・画像順・リンク不備等)が発見された場合は、CEO承認のもとでInstagram投稿の削除または編集を行う。削除・訂正の具体的な手順・権限者は、execute実行時点で別途SOP(`_shared/sop/publishing/`)に従い定める。"
+  superseded_decision: "approval_status: approved_for_manual_execution / execution_status: ready_for_manual_execution / approval_scope: one_manual_instagram_carousel_publication(2026-07-18T09:59:40+09:00時点の決定)"
+  superseded_by: "approval_status: approved_awaiting_system_execution / execution_status: blocked_on_publisher_connector / approval_scope: one_system_managed_instagram_carousel_publication"
+  superseded_at: "2026-07-18T12:17:10+09:00"
+  supersession_reason: "CEOの役割は公開直前の最終確認・承認であり、通常の投稿操作はシステムが担当するという正式運用方針へ統一したため。"
 
-  notes: "本承認記録は、6枚目固定CTA画像の13項目監査結果(tomo-angel7-pilot-01-review.yaml)における総合判定blocked_pending_evidence・release_blockersを解除・変更するものではない。実績表現・お客様の声・画像/ロゴ/フォントの権利関係についての根拠資料不足は、本記録更新後も引き続き有効な既存の指摘である。CEOはrisk_acceptance_by_ceo: trueとして表示内容が実際の実績・顧客評価に基づくことを確認したうえで公開使用を最終決定したが、これは証拠確認済みへの変更ではない。approval_status: approved_for_manual_executionは今回の第1投稿1件のみを対象とする一回限りの承認であり、将来の投稿・自動投稿には別途新たな承認記録が必要である。"
+  rollback_or_correction_plan: "本記録はexecute実行前の状態であり、Claude Codeによる投稿は行っていない。将来のシステム実行(または緊急フォールバックとしての手動投稿)後に誤り(誤字・画像順・リンク不備等)が発見された場合は、CEO承認のもとでInstagram投稿の削除または編集を行う。削除・訂正の具体的な手順・権限者は、execute実行時点で別途SOP(`_shared/sop/publishing/`)に従い定める。"
+
+  notes: "本承認記録は、6枚目固定CTA画像の13項目監査結果(tomo-angel7-pilot-01-review.yaml)における総合判定blocked_pending_evidence・release_blockersを解除・変更するものではない。実績表現・お客様の声・画像/ロゴ/フォントの権利関係についての根拠資料不足は、本記録更新後も引き続き有効な既存の指摘である。CEOはrisk_acceptance_by_ceo: trueとして表示内容が実際の実績・顧客評価に基づくことを確認したうえで公開使用を最終決定したが、これは証拠確認済みへの変更ではない。approval_scope: one_system_managed_instagram_carousel_publicationは今回の第1投稿1件のみを対象とする一回限りの承認であり、将来の投稿・自動投稿・別アカウントへの投稿には別途新たな承認記録が必要である。投稿実行アダプタの実装状況・次Batch計画はdocs/phase2-instagram-design.md「17〜18章」を参照する。"
 
 # 承認記録に含めていない情報: 顧客情報・DM本文・LINE登録者情報・APIキー・アクセストークン・パスワード(outbound-action-policy.md準拠)
