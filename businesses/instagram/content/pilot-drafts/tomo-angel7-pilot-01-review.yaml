@@ -191,11 +191,11 @@ slides:
     - "天使イラスト・ロゴ・装飾素材の権利関係記録(取得元・ライセンス)"
     - "画像内使用フォントの特定とライセンス確認"
 
-human_review_required: true
-human_review_status: review_required
-public_release_approved: false
+human_review_required: false  # 2026-07-18更新(final_publication_approval参照)。全項目の人間確認完了。
+human_review_status: completed  # 同上。
+public_release_approved: true  # 同上。CEOによる最終公開判断(risk_acceptance_by_ceo: true)に基づく。過去の13項目監査結果・release_blockers・evidence_requiredは削除・改変していない(下記final_publication_approval.relationship_to_prior_compliance_audit参照)。
 
-notes: "本レビュー記録は、1枚目デザインのCEO承認(visual_design_only)と、6枚目固定CTA画像の13項目監査結果を記録するものである。6枚目は総合判定blocked_pending_evidenceであり、実績表現・お客様の声・画像/ロゴ/フォントの権利関係について根拠資料が不足しているため、現時点でapprovedとしていない。2〜5枚目についても、今回新たな正式承認は行っていない(not_formally_recordedのまま維持)。本記録は投稿全体の公開承認・Outbound Action Approvalを代替しない。"
+notes: "本レビュー記録は、1枚目デザインのCEO承認(visual_design_only)と、6枚目固定CTA画像の13項目監査結果を記録するものである。6枚目は総合判定blocked_pending_evidenceであり、実績表現・お客様の声・画像/ロゴ/フォントの権利関係について根拠資料が不足しているため、現時点でapprovedとしていない。2〜5枚目についても、今回新たな正式承認は行っていない(not_formally_recordedのまま維持)。本記録は投稿全体の公開承認・Outbound Action Approvalを代替しない。(2026-07-18注記: 本notesは2026-07-17時点の原文のまま保持する。その後のCEO最終公開判断はfinal_publication_approvalに別途記録し、本文は書き換えていない。)"
 
 # 2026-07-18追記: CEOによる全6枚の最終目視承認記録。
 # CEO承認文(原文): 「6枚すべて最終承認。内容・デザインの修正なし。」
@@ -246,3 +246,71 @@ final_visual_review:
       design_modified: false
 
   relationship_to_prior_compliance_audit: "本最終承認は、CEOによる6枚全体の画像内容・デザイン・投稿順の最終目視承認である。項目1〜13の監査結果・release_blockers・総合判定(blocked_pending_evidence)を変更・解除するものではない。「権利資料確認済み」「外部証拠保存済み」等の記録は行っていない。実績表現・お客様の声・画像/ロゴ/フォントの権利関係についての根拠資料不足は、本承認後も引き続き有効な既存の指摘として保持する。"
+
+# 2026-07-18追記(第9Batch): CEOによる最終投稿実行承認記録。
+# target_account・プロフィール導線は、CEOによるInstagramアプリ/ブラウザでの人間確認結果に基づく。
+# ハッシュタグは、pilot-01.md第9章の内容を表記・順序変更せず正式採用したものである。
+# 旧6枚目については、過去の13項目監査結果・release_blockers・evidence_requiredを削除・改変せず、
+# CEOによる新たな最終公開判断・リスク受容判断を本ブロックへ別途追記する。
+final_publication_approval:
+  final_publication_decision: approved
+  approved_slide_count: 6
+
+  target_account: "@tomo_angel7"
+  instagram_profile_url: "https://www.instagram.com/tomo_angel7/"
+  profile_destination_verification_status: verified_by_ceo
+  profile_destination: "https://tomo-angel7.com/"
+  profile_destination_human_confirmation:
+    account_confirmed: true
+    profile_link_present: true
+    profile_link_works: true
+    profile_destination_relevant: true
+    error_or_warning: none
+    confirmed_by_role: CEO
+    confirmed_at: "2026-07-18T09:54:05+09:00"
+    confirmation_timezone: Asia/Tokyo
+    confirmation_method: "Instagramアプリまたはログイン済みブラウザによるCEO目視確認。認証情報・Cookie・パスワード・ログイン情報は記録していない。"
+
+  caption_final_review_status: approved
+  caption_reference: _company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/caption.txt
+  caption_sha256: d80e10c1975a82d637741ec26df564e3a605276366fdeac02af0b8ee6da94d15
+  caption_structure:
+    - "1. 第7章の正式キャプション本文(変更なし)"
+    - "2. 空行1行"
+    - "3. 第9章のハッシュタグ(表記・順序変更なし)"
+  hashtags_status: approved
+  hashtags_adopted: "#恋愛の悩み #片思い #考えすぎてしまう #頭から離れない #自分を責めない #自分の時間 #心を軽くする #TomoAngel7"
+  hashtags_source_reference: "businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01.md#9"
+
+  slide_06_final_use_status: approved_for_publication
+  slide_06_final_publication_decision:
+    selected_asset: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
+    selected_sha256: 150efe512077535a0b72484bd6eefa6975d31e87b18614106160985d918c7aa5
+    content_modified: false
+    design_modified: false
+    selected_by_role: CEO
+    final_use_decision: approved_for_publication
+    evidence_basis:
+      - "public Coconala profile"
+      - "private reading count confirmed by CEO"
+      - "dated ranking records"
+      - "customer feedback confirmed by CEO"
+    ceo_attestation_status: confirmed
+    unresolved_documentation_archiving: follow_up_required
+    unresolved_documentation_is_release_blocker: false
+    risk_acceptance_by_ceo: true
+    decided_at: "2026-07-18T09:56:27+09:00"
+    decision_timezone: Asia/Tokyo
+    notes: "過去の監査履歴は維持する。未保存の証拠資料や権利資料が存在することを確認済みとは扱わない。一方、CEOは表示内容が実際の実績・顧客評価に基づくことを確認し、既存6枚目を内容変更なしで公開使用する最終判断を行った。証拠アーカイブ(スクリーンショット等の保存)は投稿後のfollow_up_documentationとして別途実施する。"
+
+  risk_acceptance_by_ceo: true
+  human_review_required: false
+  human_review_status: completed
+  public_release_approved: true
+  posting_status: ready_for_manual_execution
+  outbound_action_approval_status: approved_for_manual_execution
+  outbound_action_approval_reference: businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01-outbound-approval.yaml
+
+  supersedes_note: "本ブロックの各ステータス(caption_final_review_status・profile_destination_verification_status・outbound_action_approval_status・public_release_approved)は、final_visual_review内の同名フィールド(2026-07-18T09:32:52+09:00時点の暫定値)を最新状態へ更新するものである。final_visual_reviewブロック自体は当時の記録として書き換えていない。"
+
+  relationship_to_prior_compliance_audit: "本最終公開判断は、過去の13項目監査結果・release_blockers・evidence_requiredを削除・改変するものではない。証拠が新たに存在すると捏造してもいない。CEOによるリスク受容(risk_acceptance_by_ceo: true)と、一部項目が引き続きevidence_required(未確認)であるという事実は、矛盾するものではなく両立して記録する。follow_up_documentationとして、投稿後に証拠資料のアーカイブ作業を別途行う(unresolved_documentation_archiving: follow_up_required)。"

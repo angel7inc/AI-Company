@@ -7,7 +7,7 @@ category: A
 category_name: 恋愛・パートナーシップ
 pain_point_id: relationship-anxiety
 theme_status: approved_for_drafting
-status: ceo_review
+status: approved
 created_at: "2026-07-13"
 updated_at: "2026-07-13"
 ---
@@ -196,8 +196,8 @@ asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
 **6枚目についての判定:** 画像内テキストを確認できないため、内容を推測してQA合格とせず、**「CEO準備済み固定画像として、公開前の人間確認対象」**と明記します。1〜5枚目のQA合格をもって6枚目のブランド適合性を保証するものではありません。
 
 ## 14. status
-**全体:** `ceo_review`(1〜5枚目本文・キャプション・ハッシュタグ・画像制作指示はCEO承認済み。ただし6枚目の`human_review_required`確認が完了するまで、全体としての`approved`への変更は行わない)
-**6枚目:** `human_review_required: true`・`public_release_approved: false`を維持。人間による公開前確認(6章のチェックリスト)が完了するまで`approved`・`public_release_approved: true`へは変更しない。
+**全体:** `approved`(2026-07-18更新。`_shared/sop/instagram/carousel-post-pilot.md`に定める8段階status(draft/qa_failed/qa_passed/ceo_review/approved/published/measured/archived)のうち`approved`= 「投稿内容および完成画像がCEOによる内容確認を通過した状態」であり、外部公開の実行そのもの(`published`)を意味しない。1〜6枚目本文・キャプション・ハッシュタグ・画像制作指示・6枚目の最終公開判断まで、いずれもCEO承認済み)
+**6枚目:** `human_review_required: false`・`public_release_approved: true`(2026-07-18更新。詳細は本章末尾および[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「final_publication_approval」を参照)。
 
 **レビュー記録について(2026-07-17追記):** 1枚目draft-v2のデザインはCEOが目視確認し承認した(承認範囲は`visual_design_only`。投稿全体の公開承認・6枚目の承認・Outbound Action Approvalのいずれも意味しない)。6枚目固定CTA画像の13項目監査は完了しているが、実績表現・お客様の声・権利関係の根拠資料が不足しているため`blocked_pending_evidence`(証拠待ちで公開ブロック)と判定されている。詳細は[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)を参照する。
 
@@ -222,6 +222,17 @@ asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
 Outbound Action Approvalへの参照: [`tomo-angel7-pilot-01-outbound-approval.yaml`](tomo-angel7-pilot-01-outbound-approval.yaml)(`approval_status: pending_final_execution_confirmation`。実際のInstagram投稿実行の承認ではない)。
 
 **この最終承認は、13項目監査結果・`release_blockers`・総合判定`blocked_pending_evidence`を変更・解除するものではない。** `status: ceo_review`・`human_review_required: true`・`public_release_approved: false`は本追記時点で維持している。詳細は[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「final_visual_review」を参照する。
+
+**最終投稿実行承認について(2026-07-18追記):** 上記の状態から、以下がCEOにより追加で確定・承認された。
+
+- **投稿対象アカウント:** `@tomo_angel7`(公開プロフィールURL: `https://www.instagram.com/tomo_angel7/`)
+- **プロフィール導線の人間確認結果:** CEOがInstagramアプリ/ブラウザで直接確認(認証情報・Cookie・パスワードは記録していない)。ACCOUNT_CONFIRMED=yes/PROFILE_LINK_PRESENT=yes/PROFILE_LINK_WORKS=yes/DESTINATION_RELEVANT=yes/ERROR_OR_WARNING=none。確認済み遷移先: `https://tomo-angel7.com/`。確認日時: 2026-07-18T09:54:05+09:00(Asia/Tokyo)。`profile_destination_verification_status: verified_by_ceo`として記録する。
+- **キャプション構成:** Git管理外[`caption.txt`](../../../../_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/caption.txt)を、(1) 7章の正式キャプション本文(変更なし)、(2) 空行1行、(3) 9章のハッシュタグ(表記・順序変更なし)、の構成で確定した(SHA-256: `d80e10c1975a82d637741ec26df564e3a605276366fdeac02af0b8ee6da94d15`)。9章のハッシュタグ案を正式採用し、独自の追加・削除・並べ替えは行っていない。
+- **6枚目の最終使用状態:** `slide_06_final_use_status: approved_for_publication`。旧固定CTA(`asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1`、SHA-256 `150efe512077535a0b72484bd6eefa6975d31e87b18614106160985d918c7aa5`)を内容・デザインとも無変更のまま採用。CEOは表示内容が実際の実績・顧客評価に基づくことを確認しリスクを受容した(`risk_acceptance_by_ceo: true`)うえで公開使用を最終決定したが、**これは13項目監査結果・`release_blockers`・`evidence_required`を確認済みへ変更するものではない。** 未保存の証拠資料のアーカイブは投稿後のfollow_up_documentationとして別途行う。詳細は[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「final_publication_approval」を参照する。
+- **最終画像パッケージ参照:** Git管理外`_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/`(`01.png`〜`06.png`。内容・デザイン変更なし)。
+- **Outbound Action Approval:** [`tomo-angel7-pilot-01-outbound-approval.yaml`](tomo-angel7-pilot-01-outbound-approval.yaml)を`approval_status: approved_for_manual_execution`へ更新(今回の第1投稿1件のみを対象とし、将来の投稿・自動投稿を包括承認するものではない)。
+
+**上記に伴い、`status`は`approved`(1章frontmatter参照)、`human_review_required: false`、`human_review_status: completed`、`public_release_approved: true`、`posting_status: ready_for_manual_execution`へ更新した。** Claude Code自身はInstagramへの投稿を実行していない。実際の手動投稿は、[`manual-posting-instructions.md`](../../../../_company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/manual-posting-instructions.md)(Git管理外)に基づきCEOが実施する。
 
 ## 15. 変更履歴
 | 版 | 日付 | 変更内容 | 変更者 |
