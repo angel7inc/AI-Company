@@ -203,6 +203,26 @@ asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
 
 **6枚目アセット選定について(2026-07-17追記):** CEOが既存の6枚目(`asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1`)を内容変更なしで使用すると明示決定した。文章・実績表現・お客様の声・画像・装飾・配色・配置・フォント・サイズを含め、一切変更していない。代替候補として作成した`draft-v3`の6枚目(Git管理外)は不採用としたが、削除はしていない。**この選定決定は、13項目監査結果・`release_blockers`・総合判定`blocked_pending_evidence`を変更・解除するものではない。** 実績表現・お客様の声・権利関係の根拠資料が不足しているという指摘は、本決定後も引き続き有効である。詳細は[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「slide_06_asset_selection_decision」を参照する。
 
+**全6枚最終目視承認について(2026-07-18追記):** CEOより「6枚すべて最終承認。内容・デザインの修正なし。」との最終判断を受けた。承認対象は[`final-review-v1`](../../../../_company/assets/local/exports/tomo-angel7-pilot-01/final-review-v1/)(Git管理外)の6枚(`slide_01_final_review.png`〜`slide_06_final_review.png`)であり、画像内容・文言・デザイン・配色・装飾・レイアウト・投稿順・6枚目の実績表現とお客様の声を含む既存内容・旧6枚目を無変更で使用する判断のいずれも変更していない。
+
+最終画像6枚のSHA-256(投稿順1→6で確定):
+| 枚目 | SHA-256 |
+|---|---|
+| 1 | `575932846fb1a256a5fd109e8471c41210f9254529b628726dbe53575009bdea` |
+| 2 | `152da17658ed5308c863194f99b39f4901bd016296d80b3bd01f4663ae3b43a6` |
+| 3 | `05c5321460101fa48c55483f2a7f9f3dc3371e6e1224687becb6b11e9492b71f` |
+| 4 | `cddb7cdf342cd65b14419429ce0b39f97fb85da8362f65c1265a3238e6d64e74` |
+| 5 | `4ae801a027d13f1b8a802e43b33ee07d6b9b320818cf791df97388ed153d78b7` |
+| 6 | `150efe512077535a0b72484bd6eefa6975d31e87b18614106160985d918c7aa5`(旧固定CTA、`asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1`、内容変更なし) |
+
+キャプション確認状態: 7章の正式キャプション本文を変更せずGit管理外`caption.txt`へ抽出し、diff比較で完全一致を確認済み(`caption_final_review_status: extracted_verbatim_pending_hashtag_placement_confirmation`。9章のハッシュタグ案をキャプション本文へ含めるか否かは未確定のため、人間による最終確認が必要)。
+
+プロフィール導線確認状態: リポジトリ内にInstagramアカウント名・公開プロフィールURLの記録が見つからず、対象を推測できないため`profile_destination_verification_status: manual_confirmation_required`とする。
+
+Outbound Action Approvalへの参照: [`tomo-angel7-pilot-01-outbound-approval.yaml`](tomo-angel7-pilot-01-outbound-approval.yaml)(`approval_status: pending_final_execution_confirmation`。実際のInstagram投稿実行の承認ではない)。
+
+**この最終承認は、13項目監査結果・`release_blockers`・総合判定`blocked_pending_evidence`を変更・解除するものではない。** `status: ceo_review`・`human_review_required: true`・`public_release_approved: false`は本追記時点で維持している。詳細は[`tomo-angel7-pilot-01-review.yaml`](tomo-angel7-pilot-01-review.yaml)「final_visual_review」を参照する。
+
 ## 15. 変更履歴
 | 版 | 日付 | 変更内容 | 変更者 |
 |---|---|---|---|

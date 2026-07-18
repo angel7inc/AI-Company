@@ -196,3 +196,53 @@ human_review_status: review_required
 public_release_approved: false
 
 notes: "本レビュー記録は、1枚目デザインのCEO承認(visual_design_only)と、6枚目固定CTA画像の13項目監査結果を記録するものである。6枚目は総合判定blocked_pending_evidenceであり、実績表現・お客様の声・画像/ロゴ/フォントの権利関係について根拠資料が不足しているため、現時点でapprovedとしていない。2〜5枚目についても、今回新たな正式承認は行っていない(not_formally_recordedのまま維持)。本記録は投稿全体の公開承認・Outbound Action Approvalを代替しない。"
+
+# 2026-07-18追記: CEOによる全6枚の最終目視承認記録。
+# CEO承認文(原文): 「6枚すべて最終承認。内容・デザインの修正なし。」
+# 本承認は画像内容・デザイン・投稿順の最終承認であり、実際のInstagram投稿実行・
+# public_release_approved: trueへの変更・Outbound Action Approvalの実行承認を意味しない。
+# 既存の13項目監査結果・release_blockers・総合判定(blocked_pending_evidence)は、
+# この最終承認によって解除・変更されない。実績表現・お客様の声・権利関係の根拠資料が
+# 不足しているという既存の指摘は、本承認後も引き続き有効である。
+final_visual_review:
+  final_visual_review_status: approved
+  final_ceo_review_status: approved
+  final_review_scope: all_six_slides
+  reviewed_by_role: CEO
+  reviewed_at: "2026-07-18T09:32:52+09:00"
+  review_timezone: Asia/Tokyo
+  ceo_approval_statement: "6枚すべて最終承認。内容・デザインの修正なし。"
+  approved_package_reference: _company/assets/local/exports/tomo-angel7-pilot-01/final-review-v1/
+  approved_slide_count: 6
+  image_content_changes_requested: false
+  design_changes_requested: false
+  slide_order_approved: true
+  caption_final_review_status: extracted_verbatim_pending_hashtag_placement_confirmation
+  profile_destination_verification_status: manual_confirmation_required
+  outbound_action_approval_status: pending_final_execution_confirmation
+  public_release_approved: false
+
+  approved_slides:
+    slide_01:
+      formal_status: approved
+      sha256: 575932846fb1a256a5fd109e8471c41210f9254529b628726dbe53575009bdea
+    slide_02:
+      formal_status: approved
+      sha256: 152da17658ed5308c863194f99b39f4901bd016296d80b3bd01f4663ae3b43a6
+    slide_03:
+      formal_status: approved
+      sha256: 05c5321460101fa48c55483f2a7f9f3dc3371e6e1224687becb6b11e9492b71f
+    slide_04:
+      formal_status: approved
+      sha256: cddb7cdf342cd65b14419429ce0b39f97fb85da8362f65c1265a3238e6d64e74
+    slide_05:
+      formal_status: approved
+      sha256: 4ae801a027d13f1b8a802e43b33ee07d6b9b320818cf791df97388ed153d78b7
+    slide_06:
+      formal_status: approved_by_ceo_for_selected_use
+      asset_reference: tomo_angel7_pilot_01_slide_06_fixed_cta_v1
+      sha256: 150efe512077535a0b72484bd6eefa6975d31e87b18614106160985d918c7aa5
+      content_modified: false
+      design_modified: false
+
+  relationship_to_prior_compliance_audit: "本最終承認は、CEOによる6枚全体の画像内容・デザイン・投稿順の最終目視承認である。項目1〜13の監査結果・release_blockers・総合判定(blocked_pending_evidence)を変更・解除するものではない。「権利資料確認済み」「外部証拠保存済み」等の記録は行っていない。実績表現・お客様の声・画像/ロゴ/フォントの権利関係についての根拠資料不足は、本承認後も引き続き有効な既存の指摘として保持する。"

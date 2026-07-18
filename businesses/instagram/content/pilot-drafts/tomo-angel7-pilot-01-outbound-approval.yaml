@@ -1,0 +1,53 @@
+# tomo-angel7-pilot-01 Outbound Action Approval記録
+# _company/charter/outbound-action-policy.md の承認記録スキーマに準拠。
+# businesses/instagram/content/templates/carousel-ceo-approval-template.yaml(sample_only)を
+# 実データ化したものであり、テンプレート自体ではない。
+#
+# 本記録は「execute(Instagram投稿の実行)」に対する承認記録であり、outbound-action-policy.md
+# のdefault-deny原則に基づき、approval_status/execution_statusのいずれかがpending/not_executedの
+# 間は、実際の投稿(execute)を行ってはならない。
+#
+# 本記録が承認するのは画像・デザイン・投稿順の最終目視承認(CEO確認済み)のみである。
+# 実際の外部投稿実行(Instagramログイン・投稿ボタン押下等)には、次Batchでの
+# 最終実行確認(execution confirmation)が別途必要である。
+
+approval_record:
+  action_id: "approve-tomo-angel7-pilot-01-v1"
+  content_id: tomo-angel7-pilot-01
+  approval_version: 1
+  action_type: instagram_carousel_publication
+  target_platform: Instagram
+  target_account: null  # リポジトリ内にInstagramアカウント名の記録が見つからず、対象を推測できないため未確定
+  slide_count: 6
+
+  final_image_package_reference: _company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/
+  caption_reference: _company/assets/local/exports/tomo-angel7-pilot-01/publication-candidate-v1/caption.txt
+  content_reference: businesses/instagram/content/pilot-drafts/tomo-angel7-pilot-01.md
+  content_hash: 495eb944784e66767328e6aa7892bcb30a6ba9185bdb1620c814fef7b4f52673
+
+  final_visual_review_status: approved
+  profile_destination_verification_status: manual_confirmation_required
+
+  requested_action: "Instagramカルーセル投稿(6枚、キャプション別紙caption.txt)の実行(execute)申請"
+  requested_by_role: COO
+  approved_by_role: CEO
+
+  status: pending           # outbound-action-policy.md準拠の4値(pending/approved/expired/revoked)。現時点はpending。
+  approval_status: pending_final_execution_confirmation
+  approval_scope: "画像内容・デザイン・投稿順・6枚目を無変更で使用する判断についてのCEO最終目視承認(2026-07-18)を根拠とする。実際の外部投稿実行(execute)そのものを承認するものではなく、次Batchでの最終実行確認が別途必要。"
+
+  created_at: "2026-07-18T09:36:55+09:00"
+  timezone: Asia/Tokyo
+  expires_at: null  # 投稿予定日時が未確定のため有効期限は未設定。investigate/確定後に別途設定する。
+
+  public_release_approved: false
+  execution_status: not_executed
+  scheduled_at: null
+  published_at: null
+  published_url: null
+
+  rollback_or_correction_plan: "本記録はexecute実行前の状態であり、投稿は行っていない。将来execute実行後に誤り(誤字・画像順・リンク不備等)が発見された場合は、CEO承認のもとでInstagram投稿の削除または編集を行う。削除・訂正の具体的な手順・権限者は、execute実行時点で別途SOP(`_shared/sop/publishing/`)に従い定める。"
+
+  notes: "本承認記録は、6枚目固定CTA画像の13項目監査結果(tomo-angel7-pilot-01-review.yaml)における総合判定blocked_pending_evidence・release_blockersを解除・変更するものではない。実績表現・お客様の声・画像/ロゴ/フォントの権利関係についての根拠資料不足は、本記録作成後も引き続き有効な既存の指摘である。有効なCEO承認記録(status: approved かつ execution_status: not_executedからの変更)が確認できない限り、Instagram投稿(execute)は禁止(default-deny、outbound-action-policy.md準拠)とする。"
+
+# 承認記録に含めていない情報: 顧客情報・DM本文・LINE登録者情報・APIキー・アクセストークン・パスワード(outbound-action-policy.md準拠)
